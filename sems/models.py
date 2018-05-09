@@ -18,7 +18,7 @@ class Course(models.Model):
     credits = models.IntegerField(null=True, default=0)
 
     def __str__(self):
-        return self.name + ' - ' + self.program.name
+        return self.name
 
 
 class State(models.Model):

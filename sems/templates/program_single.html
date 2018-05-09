@@ -3,4 +3,23 @@
 {% block content %}
 <h2>{{ program.name }}</h2>
 <p>{{ program.summary }}</p>
+<br/><br/>
+<div class="shadow-box">
+    <table>
+        <thead>
+            <tr>
+                <th>Course name</th>
+                <th class="text-right">Students</th>
+                <th class="text-right">Credits</th>
+            </tr>
+        </thead>
+    {% for course in courses %}
+        <tr>
+            <td><a href="{{ course.pk }}">{{ course }}</a></td>
+            <td></td>
+            <td class="text-right"><b>{{ course.credits }}</b></td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
 {% endblock %}

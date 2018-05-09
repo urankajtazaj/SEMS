@@ -2,13 +2,19 @@
 
 
 {% block content %}
+<div class="shadow-box">
 {% if programs %}
     {% for p in programs %}
     <a href="{% url 'program_single' pk=p.pk %}" class="box">
         {{ p }}
     </a>
     {% endfor %}
+    <br/><br/><br/>
+    <!--<div class="text-right">-->
+        <a href="#" class="btn btn-primary">Add New</a>
+    <!--</div>-->
 {% else %}
 <p>There are no programs available</p>
 {% endif %}
+</div>
 {% endblock %}

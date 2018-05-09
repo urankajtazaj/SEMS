@@ -13,10 +13,12 @@ def programs_view(request):
 
 def program_detail(request, pk):
     program = Program.objects.get(pk=pk)
+    courses = Course.objects.filter(program_id=pk)
+    students = Student.objects.filter()
     return render(
         request,
         'program_single.html',
-        context = {'program': program},
+        context = {'program': program, 'courses': courses},
     )
 
 def students_view(request):

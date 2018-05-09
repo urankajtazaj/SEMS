@@ -1,0 +1,64 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+<div class="shadow-box">
+    <form class="form-spaced" action="" method="get">
+        <label for="name">
+            <small>Name</small> <br/>
+            <input class="form-control" value="{{ request.GET.name }}" type="text" name="name" id="name">
+        </label>
+        <label for="email">
+            <small>Email</small> <br/>
+            <input class="form-control" value="{{ request.GET.email }}" type="email" name="email" id="email">
+        </label>
+        <label for="program">
+            <small>Program</small> <br/>
+            <select class="form-control" name="program" id="program">
+                <option value="">All</option>
+                {% if programs %}
+                    {% for p in programs %}
+                    <option {% if request.GET.program == p.pk %} selected {% endif %} value="{{ p.pk }}">{{ p }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+        </label>
+        <input type="submit" class="btn btn-primary" value="Search">
+    </form>
+    <hr/>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Program</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in students %}
+            <tr>
+                <td><div class="img-round"><img src="../static/uploads/{% if s.picture %}{{ s.picture }} {% else %}no-img.png {% endif %}" /></div></td>
+                <td><a href="{% url 'student_detail' pk=s.pk %}">{{ s }}</a></td>
+                <td>{{ s.email }}</td>
+                <td class="text-uppercase">{{ s.country }}</td>
+                <td class="text-uppercase">{{ s.city }}</td>
+                <td><a href="{% url 'program_single' pk=s.program.pk %}">{{ s.program }}</a></td>
+                <td><a href="#"><i class="fas fa-pencil-alt"></i></a></td>
+                <td><a href="#"><i class="fas fa-times"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

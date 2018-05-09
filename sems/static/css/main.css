@@ -1,0 +1,95 @@
+* {
+    --main-color: #273c75;
+}
+
+body {
+    background-color: #fff;
+    /*font-family: "Roboto";
+*/}
+
+nav {
+    padding: 15px 0;
+    background-color: var(--main-color);
+}
+
+nav a {
+    padding: 10px;
+    color: rgba(255,255,255,.85);
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.shadow-box {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+}
+
+td, th {
+    padding: 15px 10px;
+    border-top: 1px solid #eee;
+    color: #777;
+}
+
+th {
+    border: none;
+}
+
+th:first-child, td:first-child {
+    border-radius: 13px 0 0 13px;
+}
+
+th:last-child, td:last-child {
+    border-radius: 0 13px 13px 0;
+}
+
+th {
+    color: #333;
+    background-color: #fff;
+    text-transform: uppercase;
+}
+
+.form-spaced label {
+    margin-right: 10px;
+}
+
+.box {
+    margin-right: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    height: 220px;
+    border: 1px solid #eee;
+}
+
+.btn {
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--main-color);
+}
+
+.img-round {
+    width: 65px;
+    height: 65px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+}
+
+.img-round img {
+    min-height: 100%;
+}

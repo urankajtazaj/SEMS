@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+{% if programs %}
+    {% for p in programs %}
+    <a href="{% url 'program_single' pk=p.pk %}" class="box">
+        {{ p }}
+    </a>
+    {% endfor %}
+{% else %}
+<p>There are no programs available</p>
+{% endif %}
+{% endblock %}

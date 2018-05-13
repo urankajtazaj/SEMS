@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base_generic.html' %}
 
-</body>
-</html>
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-xs-12 text-center">
+            <img class="thumb img-round" src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
+        </div>
+        <div class="col-md-10 col-xs-12">
+            <h2>{{ student }}</h2>
+            <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary">{{ student.program }}</a>
+            <hr/>
+            <!--<br/>-->
+            <div><span class="sm-label label text-primary"><i class="fas fa-map-marker"></i></span> {{ student.city }}, {{ student.country }}</div><br/>
+            <div><span class="sm-label label text-primary"><i class="fas fa-envelope"></i></span> {{ student.email }}</div><br/>
+            <div><span class="sm-label label text-primary"><i class="fas fa-link"></i></span> <a href="{{ student.get_website }}" title="{{ student.get_website }}" target="_blank">{{ student.website }}</a> </div>
+            <hr/>
+            <h4>Courses</h4>
+            <!--<div class="well">-->
+                {% if student.course %}
+                    {% for course in student.course.all %}
+                    <a class="label" href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a>
+                    {% endfor %}
+                {% else %}
+                <b class="text-danger">No courses</b>
+                {% endif %}
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+{% endblock %}

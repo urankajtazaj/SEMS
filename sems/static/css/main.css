@@ -98,6 +98,11 @@ th {
     border-radius: 100px;
 }
 
+.thumb {
+    width: 125px;
+    height: 125px;
+}
+
 .img-round img {
     min-height: 100%;
 }
@@ -110,11 +115,9 @@ tr:hover td {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: #273c7520;
-    border-radius: 50px;
+    background-color: #5bc0de30;
+    border-radius: 5px;
     padding: 5px;
-    width: 25px;
-    height: 25px;
 }
 
 a:hover {
@@ -122,5 +125,13 @@ a:hover {
 }
 
 .sm-label {
+    width: 25px;
+    height: 25px;
     font-size: 13px;
+}
+
+.well {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
 }

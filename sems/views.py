@@ -50,7 +50,7 @@ def student_detail(request, pk):
     student = Student.objects.get(pk=pk)
 
     return render(
-        request, 'student_detail.html', {'student': student},
+        request, 'student_profile.html', {'student': student},
     )
 
 

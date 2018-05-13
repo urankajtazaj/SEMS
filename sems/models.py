@@ -34,9 +34,17 @@ class Student(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(null=True, blank=True)
+    website = models.CharField(max_length=100, null=True, blank=True)
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     city = models.CharField(max_length=100, null=True)
+    course = models.ManyToManyField(Course, null=True)
+
+    def get_website(self):
+        if self.website[0:4] != 'http':
+            return 'http://' + self.website
+        else:
+            return self.website
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name

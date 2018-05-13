@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<h2>{{ course }}</h2>
+<br/>
+<div class="shadow-box">
+    {% if files %}
+    <table>
+        <thead>
+            <tr>
+                <th>File name</th>
+                <th class="text-right">Uploaded</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+        <tr>
+            {% load static %}
+            <td><a href="{% static 'uploads/files/' %}{{ file }}" title="{{ file }}"><i style="font-size: 18px; padding-right: 10px;" class="fas fa-file-{{ file.get_extension_short }}"></i> {{ file.name }}</a><br/></td>
+            <td class="text-right">{{ file.upload_time|date:'d/m/Y - H:i' }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="lead text-center">No files have been uploaded</p>
+    {% endif %}
+</div>
+{% endblock %}

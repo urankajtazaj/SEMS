@@ -36,7 +36,7 @@
                 <th>City</th>
                 <th>Program</th>
                 <th></th>
-                <th></th>
+                <!--<th></th>-->
             </tr>
         </thead>
         <tbody>
@@ -48,8 +48,8 @@
                 <td class="text-uppercase">{{ s.country }}</td>
                 <td class="text-uppercase">{{ s.city }}</td>
                 <td><a href="{% url 'program_single' pk=s.program.pk %}">{{ s.program }}</a></td>
-                <td><a href="#"><i class="fas fa-pencil-alt"></i></a></td>
-                <td><a href="#"><i class="fas fa-times"></i></a></td>
+                <td><a href="#"><span class="label sm-label"><i class="fas fa-pencil-alt"></i></span></a>
+                <a href="#"><span class="label sm-label"><i class="fas fa-times"></i></span></a></td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from datetime import datetime
 
 class Program(models.Model):
     name = models.CharField(max_length=200)
@@ -44,7 +45,23 @@ class Student(models.Model):
 class Upload(models.Model):
     name = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    file = models.FileField(validators=[FileExtensionValidator(['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx'])])
+    file = models.FileField(upload_to='files/', validators=[FileExtensionValidator(['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'rar', '7zip'])])
+    upload_time = models.DateTimeField(default=datetime.now)
+
+    def get_extension_short(self):
+        ext = str(self.file).split(".")
+        ext = ext[len(ext)-1]
+
+        if ext == 'doc' or ext == 'docx':
+            return 'word'
+        elif ext == 'pdf':
+            return 'pdf'
+        elif ext == 'xls' or ext == 'xlsx':
+            return 'excel'
+        elif ext == 'ppt' or ext == 'pptx':
+            return 'powerpoint'
+        elif ext == 'zip' or ext == 'rar' or ext == '7zip':
+            return 'archive'
 
     def __str__(self):
-        return self.name
+        return str(self.file)[6:]

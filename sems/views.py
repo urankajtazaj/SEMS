@@ -1,15 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpRequest
-from .models import Student, Course, Program, State
+from .models import Student, Course, Program, State, Upload
 from elearning import settings
+
 
 def programs_view(request):
     programs = Program.objects.all()
     return render (
         request,
         'programs_list.html',
-        context = {'programs': programs},
+        {'programs': programs},
     )
+
 
 def program_detail(request, pk):
     program = Program.objects.get(pk=pk)
@@ -18,8 +20,9 @@ def program_detail(request, pk):
     return render(
         request,
         'program_single.html',
-        context = {'program': program, 'courses': courses},
+        {'program': program, 'courses': courses},
     )
+
 
 def students_view(request):
     students = Student.objects.all()
@@ -38,8 +41,9 @@ def students_view(request):
     return render(
         request,
         'students_list.html',
-        context = {'students': students, 'programs': programs, 'media_url': settings.MEDIA_ROOT},
+        {'students': students, 'programs': programs, 'media_url': settings.MEDIA_ROOT},
     )
+
 
 
 def student_detail(request, pk):
@@ -48,3 +52,15 @@ def student_detail(request, pk):
     return render(
         request, 'student_detail.html', {'student': student},
     )
+
+
+def course_detail(request, pk):
+    course = Course.objects.get(pk = pk)
+    files = Upload.objects.filter(course_id = pk)
+
+    return render(
+        request, 'course_single.html', {'course': course, 'files': files, 'media_url': settings.MEDIA_ROOT},
+    )
+
+def course_add(request):
+    pass

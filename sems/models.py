@@ -39,6 +39,8 @@ class Student(models.Model):
     country = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     city = models.CharField(max_length=100, null=True)
     course = models.ManyToManyField(Course, null=True)
+    register_date = models.DateField(default=datetime.now)
+    last_login = models.DateTimeField(auto_now=True)
 
     def get_website(self):
         if self.website[0:4] != 'http':

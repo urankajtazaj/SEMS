@@ -58,7 +58,9 @@ def create_profile(sender, **kwargs):
     if kwargs['created']:
         student = Student.objects.create(user=kwargs['instance'])
 
+
 post_save.connect(create_profile, sender=User)
+
 
 class Upload(models.Model):
     name = models.CharField(max_length=100)

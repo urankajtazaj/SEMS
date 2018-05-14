@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest
+from django.shortcuts import redirect
+from .forms import UploadForm
 from .models import Course, Program, User, Upload, Student
 from django.contrib.auth.models import User, Group
 from elearning import settings
@@ -47,7 +49,6 @@ def students_view(request):
     )
 
 
-
 def student_detail(request, pk):
     student = Student.objects.get(pk=pk)
 
@@ -67,5 +68,20 @@ def course_detail(request, pk):
         request, 'course_single.html', {'usrs': users, 'course': course, 'files': files, 'media_url': settings.MEDIA_ROOT},
     )
 
+
 def course_add(request):
     pass
+
+
+def handle_file_upload(request, course_id):
+    course = Course.objects.get(pk = course_id)
+    if request.method == 'POST':
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('students')
+    else:
+        form = UploadForm()
+    return render(
+        request, 'upload_file_form.html', {'form': form, 'course': course},
+    )

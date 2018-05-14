@@ -1,10 +1,14 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<h1>{{ program.name }}</h1>
-<p class="lead">
+<h3>{{ program.name }}</h3>
+<p>
     {% if program.summary %} {{ program.summary }} {% endif %}
 </p>
+<hr/>
+{% for u in users %}
+{{ student.last_name }}
+{% endfor %}
 <br/><br/>
 <div class="shadow-box">
     {% if courses %}
@@ -21,6 +25,10 @@
             <td class="text-right"><b>{{ course.credits }}</b></td>
         </tr>
     {% endfor %}
+        <tr>
+            <td></td>
+            <td class="text-right">Total<br/><b>{{ credits.credits__sum }}</b></td>
+        </tr>
     </table>
     {% else %}
     <p class="lead text-center">There are no courses available.</p>

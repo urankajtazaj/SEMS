@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpRequest
-from .models import Student, Course, Program, State, Upload
+from .models import Course, Program, User, Upload, Student
+from django.contrib.auth.models import User, Group
 from elearning import settings
+from django.db.models import Sum
 
 
 def programs_view(request):
@@ -16,15 +18,18 @@ def programs_view(request):
 def program_detail(request, pk):
     program = Program.objects.get(pk=pk)
     courses = Course.objects.filter(program_id=pk)
-    students = Student.objects.filter()
+    credits = Course.objects.aggregate(Sum('credits'))
+    group = Group.objects.get(name='Teacher')
+    users = group.user_set.all()
     return render(
         request,
         'program_single.html',
-        {'program': program, 'courses': courses},
+        {'program': program, 'courses': courses, 'credits': credits, 'users': users},
     )
 
 
 def students_view(request):
+    # User.objects.all().delete()
     students = Student.objects.all()
     programs = Program.objects.all()
 

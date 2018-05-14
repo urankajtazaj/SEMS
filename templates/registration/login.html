@@ -1,0 +1,29 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<form method="post" class="login shadow-box">
+    {% csrf_token %}
+
+    {% if user.is_authenticated %}
+        <p class="lead text-center">Already logged in</p>
+    {% else %}
+        <h1 class="text-center">SEMS</h1><br/>
+        <div class="form-group">
+            <label>
+                Username<br/>
+                <input type="text" class="form-control" name="username" id="username">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Password<br/>
+                <input type="password" class="form-control" name="password" id="password">
+            </label>
+        </div>
+        <input style="width: 100%" type="submit" class="btn btn-primary" value="Login"/>
+        <hr/>
+        <a href="{% url 'password_reset' %}">Forgot password?</a>
+    {% endif %}
+</form>
+{% endblock %}

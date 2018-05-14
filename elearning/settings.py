@@ -55,7 +55,7 @@ ROOT_URLCONF = 'elearning.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,6 +100,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/students/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+# AUTH_USER_MODEL = 'sems.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

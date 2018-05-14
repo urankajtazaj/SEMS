@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from django.contrib.auth.models import User
 from datetime import datetime
+from django.db.models.signals import post_save
 
 class Program(models.Model):
     name = models.CharField(max_length=200)
@@ -30,17 +32,17 @@ class State(models.Model):
 
 
 class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=100, null=True)
     picture = models.ImageField(null=True, blank=True, default='no-img.png')
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(null=True, blank=True)
-    website = models.CharField(max_length=100, null=True, blank=True)
+    website = models.URLField(max_length=100, null=True, blank=True)
+    email = models.EmailField(max_length=100, null=True)
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     city = models.CharField(max_length=100, null=True)
-    course = models.ManyToManyField(Course, null=True)
-    register_date = models.DateField(default=datetime.now)
-    last_login = models.DateTimeField(auto_now=True)
+    course = models.ManyToManyField(Course)
+
 
     def get_website(self):
         if self.website[0:4] != 'http':
@@ -49,8 +51,14 @@ class Student(models.Model):
             return self.website
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return self.user.username
 
+
+def create_profile(sender, **kwargs):
+    if kwargs['created']:
+        student = Student.objects.create(user=kwargs['instance'])
+
+post_save.connect(create_profile, sender=User)
 
 class Upload(models.Model):
     name = models.CharField(max_length=100)

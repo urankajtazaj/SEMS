@@ -8,7 +8,7 @@
             <img class="thumb img-round" src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
         </div>
         <div class="col-md-10 col-xs-12">
-            <h2>{{ student }}</h2>
+            <h2>{{ student.first_name }} {{ student.last_name }}</h2>
             <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary"><span class="label">{{ student.program }}</span></a>
             <hr/>
             <!--<br/>-->

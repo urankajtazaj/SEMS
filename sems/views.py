@@ -19,17 +19,14 @@ def program_detail(request, pk):
     program = Program.objects.get(pk=pk)
     courses = Course.objects.filter(program_id=pk)
     credits = Course.objects.aggregate(Sum('credits'))
-    group = Group.objects.get(name='Teacher')
-    users = group.user_set.all()
     return render(
         request,
         'program_single.html',
-        {'program': program, 'courses': courses, 'credits': credits, 'users': users},
+        {'program': program, 'courses': courses, 'credits': credits},
     )
 
 
 def students_view(request):
-    # User.objects.all().delete()
     students = Student.objects.all()
     programs = Program.objects.all()
 
@@ -62,9 +59,12 @@ def student_detail(request, pk):
 def course_detail(request, pk):
     course = Course.objects.get(pk = pk)
     files = Upload.objects.filter(course_id = pk)
+    group = Group.objects.get(name='Teacher')
+    users = group.user_set.all()
+    # users = Student.objects.all()
 
     return render(
-        request, 'course_single.html', {'course': course, 'files': files, 'media_url': settings.MEDIA_ROOT},
+        request, 'course_single.html', {'usrs': users, 'course': course, 'files': files, 'media_url': settings.MEDIA_ROOT},
     )
 
 def course_add(request):

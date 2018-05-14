@@ -41,7 +41,7 @@ class Student(models.Model):
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     city = models.CharField(max_length=100, null=True)
-    course = models.ManyToManyField(Course)
+    course = models.ManyToManyField(Course, related_name='course')
 
 
     def get_website(self):

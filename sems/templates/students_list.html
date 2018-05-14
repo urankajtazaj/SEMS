@@ -2,31 +2,30 @@
 
 {% block content %}
 
+<form class="form-spaced" action="" method="get">
+    <label for="name">
+        <small>Name</small> <br/>
+        <input class="form-control" value="{{ request.GET.name }}" type="text" name="name" id="name">
+    </label>
+    <label for="email">
+        <small>Email</small> <br/>
+        <input class="form-control" value="{{ request.GET.email }}" type="email" name="email" id="email">
+    </label>
+    <label for="program">
+        <small>Program</small> <br/>
+        <select class="form-control" name="program" id="program">
+            <option value="">All</option>
+            {% if programs %}
+                {% for p in programs %}
+                <option {% if request.GET.program == p.pk %} selected {% endif %} value="{{ p.pk }}">{{ p }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </label>
+    <input type="submit" class="btn btn-primary" value="Search">
+</form>
+<br/>
 <div class="shadow-box">
-    <hr/>
-    <form class="form-spaced" action="" method="get">
-        <label for="name">
-            <small>Name</small> <br/>
-            <input class="form-control" value="{{ request.GET.name }}" type="text" name="name" id="name">
-        </label>
-        <label for="email">
-            <small>Email</small> <br/>
-            <input class="form-control" value="{{ request.GET.email }}" type="email" name="email" id="email">
-        </label>
-        <label for="program">
-            <small>Program</small> <br/>
-            <select class="form-control" name="program" id="program">
-                <option value="">All</option>
-                {% if programs %}
-                    {% for p in programs %}
-                    <option {% if request.GET.program == p.pk %} selected {% endif %} value="{{ p.pk }}">{{ p }}</option>
-                    {% endfor %}
-                {% endif %}
-            </select>
-        </label>
-        <input type="submit" class="btn btn-primary" value="Search">
-    </form>
-    <hr/>
     <table>
         <thead>
             <tr>
@@ -43,12 +42,12 @@
             {% for s in students %}
             <tr>
                 <td><div class="img-round"><img src="../static/uploads/{% if s.picture %}{{ s.picture }} {% else %}no-img.png {% endif %}" /></div></td>
-                <td><a href="{% url 'student_detail' pk=s.pk %}">{{ s }}</a></td>
+                <td><a href="{% url 'student_detail' pk=s.pk %}">{{ s.first_name }} {{ s.last_name }}</a></td>
                 <td>{{ s.email }}</td>
                 <td class="text-uppercase">{{ s.country }}</td>
                 <td class="text-uppercase">{{ s.city }}</td>
                 <td><a href="{% url 'program_single' pk=s.program.pk %}">{{ s.program }}</a></td>
-                <td><a href="#"><span class="label sm-label"><i class="fas fa-pencil-alt"></i></span></a>
+                <td style="width: 70px"><a href="#"><span class="label sm-label"><i class="fas fa-pencil-alt"></i></span></a>
                 <a href="#"><span class="label sm-label"><i class="fas fa-times"></i></span></a></td>
             </tr>
             {% endfor %}

@@ -82,20 +82,31 @@ th {
 
 .btn {
     border: none;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .btn-primary {
     background-color: var(--main-color);
+    background-color: #fff;
+    color: unset;
+    border: 1px solid #ddd;
 }
 
 .img-round {
     width: 65px;
     height: 65px;
     overflow: hidden;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     border-radius: 100px;
+}
+
+.img-round > img {
+    max-height: 110%;
+    min-height: 100%;
 }
 
 .thumb {
@@ -105,10 +116,6 @@ th {
 
 .img-round img {
     min-height: 100%;
-}
-
-tr:hover td {
-    background-color: #f9f9f9;
 }
 
 .label {

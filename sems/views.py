@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.shortcuts import redirect
-from .forms import UploadForm
-from .models import Course, Program, User, Upload, Student
+from .models import Course, Program, User, Upload, Student, UploadForm
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum
+from .forms import UploadFormFile
 
 
 def programs_view(request):
@@ -76,12 +76,12 @@ def course_add(request):
 def handle_file_upload(request, course_id):
     course = Course.objects.get(pk = course_id)
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
+        form = UploadFormFile(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('students')
     else:
-        form = UploadForm()
+        form = UploadFormFile()
     return render(
         request, 'upload_file_form.html', {'form': form, 'course': course},
     )

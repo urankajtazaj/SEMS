@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 from datetime import datetime
+from django import forms
 from django.db.models.signals import post_save
 
 class Program(models.Model):
@@ -60,6 +61,11 @@ def create_profile(sender, **kwargs):
 
 
 post_save.connect(create_profile, sender=User)
+
+
+class UploadForm(models.Model):
+    title = models.CharField(max_length=200)
+    file = models.FileField()
 
 
 class Upload(models.Model):

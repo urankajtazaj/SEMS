@@ -4,8 +4,12 @@
 
 body {
     background-color: #fff;
-    /*font-family: "Roboto";
-*/}
+
+}
+
+.text-lighter {
+    font-weight: lighter;
+}
 
 nav {
     padding: 15px 0;

@@ -72,7 +72,7 @@ class Upload(models.Model):
     name = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     file = models.FileField(upload_to='files/', validators=[FileExtensionValidator(['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'rar', '7zip'])])
-    upload_time = models.DateTimeField(default=datetime.now)
+    upload_time = models.DateTimeField(default=datetime.now, null=True)
 
     def get_extension_short(self):
         ext = str(self.file).split(".")

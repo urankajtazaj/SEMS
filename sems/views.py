@@ -76,7 +76,7 @@ def course_add(request):
 def handle_file_upload(request, course_id):
     course = Course.objects.get(pk = course_id)
     if request.method == 'POST':
-        form = UploadFormFile(request.POST, request.FILES)
+        form = UploadFormFile(request.POST, request.FILES, {'course': course})
         if form.is_valid():
             form.save()
             return redirect('students')

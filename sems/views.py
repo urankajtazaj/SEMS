@@ -79,7 +79,7 @@ def handle_file_upload(request, course_id):
         form = UploadFormFile(request.POST, request.FILES, {'course': course})
         if form.is_valid():
             form.save()
-            return redirect('students')
+            return redirect('/programs/course/' + str(course_id))
     else:
         form = UploadFormFile()
     return render(

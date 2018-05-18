@@ -94,6 +94,12 @@ th {
     border: 1px solid #ddd;
 }
 
+.btn-primary:hover {
+    border-color: #007bff;
+    color: #007bff;
+    background-color: transparent;
+}
+
 .img-round {
     width: 65px;
     height: 65px;

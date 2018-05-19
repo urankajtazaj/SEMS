@@ -2,17 +2,27 @@
 
 
 {% block content %}
+<br/>
+<h2 class="text-uppercase">Choose a Program</h2>
+<br/>
 <div class="shadow-box">
 {% if programs %}
+<table>
+    <thead>
+        <tr>
+            <th>Program name</th>
+        </tr>
+    </thead>
     {% for p in programs %}
-    <a href="{% url 'program_single' pk=p.pk %}" class="box">
-        {{ p }}
-    </a>
+        <tr>
+            <td><a href="{% url 'program_single' pk=p.pk %}">{{ p }}</a></td>
+        </tr>
     {% endfor %}
-    <br/><br/><br/>
-    <!--<div class="text-right">-->
-        <a href="#" class="btn btn-primary">Add New</a>
-    <!--</div>-->
+    </table>
+    {% if user.is_superuser %}
+    <br/><br/>
+    <a href="#" class="btn btn-primary">Add New</a>
+    {% endif %}
 {% else %}
 <p>There are no programs available</p>
 {% endif %}

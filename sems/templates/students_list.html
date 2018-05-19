@@ -35,7 +35,9 @@
                 <th>Country</th>
                 <th>City</th>
                 <th>Program</th>
+                {% if user.is_superuser and user.is_authenticated %}
                 <th></th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -47,17 +49,18 @@
                 <td class="text-uppercase">{{ s.country }}</td>
                 <td class="text-uppercase">{{ s.city }}</td>
                 <td><a href="{% url 'program_single' pk=s.program.pk %}">{{ s.program }}</a></td>
+                {% if user.is_superuser and user.is_authenticated %}
                 <td style="width: 70px"><a href="#"><span class="label sm-label"><i class="fas fa-pencil-alt"></i></span></a>
                 <a href="#"><span class="label sm-label"><i class="fas fa-times"></i></span></a></td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <br/>
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
-        </div>
-    </div>
+    {% if user.is_authenticated and user.is_superuser %}
+    <br/>
+    <a class="btn btn-primary btn-lg" href="#">Add new user</a>
+    {% endif %}
 </div>
 {% endblock %}

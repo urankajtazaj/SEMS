@@ -19,8 +19,7 @@
             <div class="container">
                 <a href="#">Home</a>
                 <a href="{% url 'students' %}">Students</a>
-                <a href="{% url 'programs' %}">Programs</a>
-                <a href="#">Courses</a>
+                <a href="{% url 'programs' %}">Courses</a>
                 {% if not user.is_authenticated %}
                 <a href="{% url 'login' %}">Login</a>
                 {% else %}

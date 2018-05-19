@@ -4,8 +4,19 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-2 col-xs-12 text-center">
-            <img class="thumb img-round" src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
+        <div class="col-md-2 col-xs-12">
+            <div class="thumb img-round">
+                <img src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
+            </div>
+            {% if user.is_authenticated %}
+            {% if user.pk == student.pk or user.is_superuser %}
+            <div class="text-left">
+                <br/>
+                <a href="#"><i class="fas fa-pencil-alt"></i> Edit</a><br/>
+                <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+            {% endif %}
+            {% endif %}
         </div>
         <div class="col-md-10 col-xs-12">
             <h2>{{ student.first_name }} {{ student.last_name }}</h2>

@@ -10,4 +10,5 @@ urlpatterns = [
     path('programs/course/<int:pk>', views.course_detail, name='course_detail'),
     path('program/<int:pk>', views.program_detail, name='program_single'),
     path('program/course/<int:course_id>/upload/', views.handle_file_upload, name='upload_file_view'),
+    path('students/add/', views.user_add, name='user_add'),
 ]

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum
 from .forms import UploadFormFile
+from django.contrib.auth.forms import UserCreationForm
 
 
 def programs_view(request):
@@ -84,4 +85,17 @@ def handle_file_upload(request, course_id):
         form = UploadFormFile()
     return render(
         request, 'upload_file_form.html', {'form': form, 'course': course},
+    )
+
+
+def user_add(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('students')
+    else:
+        form = UserCreationForm()
+    return render(
+        request, 'user_add.html', {'form': form},
     )

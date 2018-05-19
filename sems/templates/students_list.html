@@ -61,7 +61,7 @@
     <br/>
     {% if user.is_authenticated and user.is_superuser %}
     <br/>
-    <a class="btn btn-primary" href="#">Add new user</a>
+    <a class="btn btn-primary" href="{% url 'user_add' %}">Add new user</a>
     {% endif %}
 </div>
 {% endblock %}

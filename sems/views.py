@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student, UploadForm
+from .models import Course, Program, User, Upload, Student
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum

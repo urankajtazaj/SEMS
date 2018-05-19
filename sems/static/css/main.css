@@ -104,7 +104,7 @@ th {
 
 .btn-primary:hover {
     border-color: #007bff;
-    color: #007bff;
+    color: initial;
     background-color: transparent;
 }
 

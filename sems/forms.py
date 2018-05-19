@@ -12,10 +12,21 @@ class UploadFormFile(forms.ModelForm):
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
 
 
-class UpdateProfile:
+class UpdateProfile(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('first_name', 'last_name', 'course', )
+        fields = ('first_name', 'last_name', 'email', 'course', 'program', 'country', 'city', 'picture', 'website', )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'First Name'})
+        self.fields['last_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Last Name'})
+        self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Email'})
+        self.fields['program'].widget.attrs.update({'class': 'form-control'})
+        self.fields['country'].widget.attrs.update({'class': 'form-control'})
+        self.fields['city'].widget.attrs.update({'class': 'form-control', 'placeholder': 'City'})
+        self.fields['website'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Website'})
+        self.fields['course'].widget.attrs.update({'class': 'full-width'})
 
 
 class SignUpForm(forms.Form):

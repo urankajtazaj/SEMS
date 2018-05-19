@@ -2,6 +2,10 @@
     --main-color: #006992;
 }
 
+.inline-block {
+    display: inline-block;
+}
+
 body {
     background-color: #fff;
 

@@ -19,7 +19,7 @@ class Course(models.Model):
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
-    credits = models.IntegerField(null=True, default=0)
+    credits = models.IntegerField(null=True, default=80)
 
     def __str__(self):
         return self.name

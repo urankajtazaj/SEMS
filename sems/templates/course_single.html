@@ -2,19 +2,18 @@
 
 
 {% block content %}
-<h2>{{ course }}</h2>
-
-
-
-{% for u in usrs %}
-{% for us in u.student.course.all %}
-    {% if us.pk == course.pk %}
-        <a class="label" href="{% url 'student_detail' pk=u.student.pk%}"><i class="fas fa-user-tie"></i> &nbsp; {{ u.student.first_name }} {{ u.student.last_name }}</a>
-    {% endif %}
-{% endfor %}
-{% endfor %}
-<br/>
-<br/>
+<div class="card-box">
+    <h2>{{ course }}</h2>
+    <p>{{ course.summary }}</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae dui ligula. Pellentesque vitae neque felis.</p>
+    {% for u in usrs %}
+    {% for us in u.student.course.all %}
+        {% if us.pk == course.pk %}
+            <a class="label" href="{% url 'student_detail' pk=u.student.pk%}"><i class="fas fa-user-tie"></i> &nbsp; {{ u.student.first_name }} {{ u.student.last_name }}</a>
+        {% endif %}
+    {% endfor %}
+    {% endfor %}
+</div>
 {% load static %}
 <div class="shadow-box">
     {% if files %}
@@ -38,15 +37,14 @@
         </tbody>
     </table>
     {% else %}
-    <p class="lead text-center">No files have been uploaded</p>
+    <p class="lead">No files have been uploaded</p>
     {% endif %}
 
     {% if user.is_authenticated %}
     {% for u in usrs %}
         {% for us in u.student.course.all %}
         {% if us.pk == course.pk or user.is_superuser %}
-        <br/>
-        <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary btn-lg">Upload new file</a>
+        <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary">Upload new file</a>
         {% endif %}
         {% endfor %}
     {% endfor %}

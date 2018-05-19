@@ -2,17 +2,18 @@
 
 {% block content %}
 
+<div class="shadow-box">
 <form class="form-spaced" action="" method="get">
     <label for="name">
-        <small>Name</small> <br/>
-        <input class="form-control" value="{{ request.GET.name }}" type="text" name="name" id="name">
+        <!--<small>Name</small> <br/>-->
+        <input class="form-control" placeholder="Name" value="{{ request.GET.name }}" type="text" name="name" id="name">
     </label>
     <label for="email">
-        <small>Email</small> <br/>
-        <input class="form-control" value="{{ request.GET.email }}" type="email" name="email" id="email">
+        <!--<small>Email</small> <br/>-->
+        <input class="form-control" placeholder="Email" value="{{ request.GET.email }}" type="email" name="email" id="email">
     </label>
     <label for="program">
-        <small>Program</small> <br/>
+        <!--<small>Program</small> <br/>-->
         <select class="form-control" name="program" id="program">
             <option value="">All</option>
             {% if programs %}
@@ -24,7 +25,7 @@
     </label>
     <input type="submit" class="btn btn-primary" value="Search">
 </form>
-<br/>
+</div>
 <div class="shadow-box">
     <table>
         <thead>
@@ -43,7 +44,7 @@
         <tbody>
             {% for s in students %}
             <tr>
-                <td><div class="img-round"><img src="../static/uploads/{% if s.picture %}{{ s.picture }} {% else %}no-img.png {% endif %}" /></div></td>
+                <td class="text-center"><div class="img-round"><img src="../static/uploads/{% if s.picture %}{{ s.picture }} {% else %}no-img.png {% endif %}" /></div></td>
                 <td><a href="{% url 'student_detail' pk=s.pk %}">{{ s.first_name }} {{ s.last_name }}</a></td>
                 <td>{{ s.email }}</td>
                 <td class="text-uppercase">{{ s.country }}</td>
@@ -60,7 +61,7 @@
     <br/>
     {% if user.is_authenticated and user.is_superuser %}
     <br/>
-    <a class="btn btn-primary btn-lg" href="#">Add new user</a>
+    <a class="btn btn-primary" href="#">Add new user</a>
     {% endif %}
 </div>
 {% endblock %}

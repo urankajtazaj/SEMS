@@ -11,17 +11,17 @@
         <h1 class="text-center">SEMS</h1><br/>
         <div class="form-group">
             <label>
-                Username<br/>
-                <input type="text" class="form-control" name="username" id="username">
+                <!--Username<br/>-->
+                <input type="text" placeholder="Username" class="form-control" name="username" id="username">
             </label>
         </div>
         <div class="form-group">
             <label>
-                Password<br/>
-                <input type="password" class="form-control" name="password" id="password">
+                <!--Password<br/>-->
+                <input type="password" placeholder="Password" class="form-control" name="password" id="password">
             </label>
         </div>
-        <input style="width: 100%" type="submit" class="btn btn-primary btn-lg" value="Login"/>
+        <input style="width: 100%" type="submit" class="btn btn-primary" value="Login"/>
         <hr/>
         <a href="{% url 'password_reset' %}">Forgot password?</a>
     {% endif %}

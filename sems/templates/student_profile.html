@@ -3,41 +3,43 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-2 col-xs-12">
-            <div class="thumb img-round">
-                <img src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-2 col-xs-12">
+                <div class="thumb img-round">
+                    <img src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
+                </div>
+                {% if user.is_authenticated %}
+                {% if user.pk == student.pk or user.is_superuser %}
+                <div class="text-left">
+                    <br/>
+                    <a href="#"><i class="fas fa-pencil-alt"></i> Edit</a><br/>
+                    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+                {% endif %}
+                {% endif %}
             </div>
-            {% if user.is_authenticated %}
-            {% if user.pk == student.pk or user.is_superuser %}
-            <div class="text-left">
+            <div class="col-md-10 col-xs-12">
+                <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+                <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary"><span class="label">{{ student.program }}</span></a>
+                <hr/>
+                <!--<br/>-->
+                <div><span class="sm-label label text-primary"><i class="fas fa-map-marker"></i></span> {{ student.city }}, {{ student.country }}</div><br/>
+                <div><span class="sm-label label text-primary"><i class="fas fa-envelope"></i></span> {{ student.email }}</div>
+                {% if student.website %}
                 <br/>
-                <a href="#"><i class="fas fa-pencil-alt"></i> Edit</a><br/>
-                <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <div><span class="sm-label label text-primary"><i class="fas fa-link"></i></span> <a href="{{ student.get_website }}" title="{{ student.get_website }}" target="_blank">{{ student.website }}</a> </div>
+                {% endif %}
+                <hr/>
+                <h4>Enrolled Courses</h4>
+                {% if student.course.all %}
+                    {% for course in student.course.all %}
+                    <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
+                    {% endfor %}
+                {% else %}
+                <b class="text-danger">No courses</b>
+                {% endif %}
             </div>
-            {% endif %}
-            {% endif %}
-        </div>
-        <div class="col-md-10 col-xs-12">
-            <h2>{{ student.first_name }} {{ student.last_name }}</h2>
-            <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary"><span class="label">{{ student.program }}</span></a>
-            <hr/>
-            <!--<br/>-->
-            <div><span class="sm-label label text-primary"><i class="fas fa-map-marker"></i></span> {{ student.city }}, {{ student.country }}</div><br/>
-            <div><span class="sm-label label text-primary"><i class="fas fa-envelope"></i></span> {{ student.email }}</div>
-            {% if student.website %}
-            <br/>
-            <div><span class="sm-label label text-primary"><i class="fas fa-link"></i></span> <a href="{{ student.get_website }}" title="{{ student.get_website }}" target="_blank">{{ student.website }}</a> </div>
-            {% endif %}
-            <hr/>
-            <h4>Enrolled Courses</h4>
-            {% if student.course.all %}
-                {% for course in student.course.all %}
-                <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
-                {% endfor %}
-            {% else %}
-            <b class="text-danger">No courses</b>
-            {% endif %}
         </div>
     </div>
 </div>

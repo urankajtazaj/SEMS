@@ -1,11 +1,12 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<h3>{{ program.name }}</h3>
-<p>
-    {% if program.summary %} {{ program.summary }} {% endif %}
-</p>
-<br/>
+<div class="card-box">
+    <h3>{{ program.name }}</h3>
+    {% if program.summary %}
+    <p>{{ program.summary }}</p>
+    {% endif %}
+</div>
 <div class="shadow-box">
     {% if courses %}
     <table>
@@ -24,7 +25,7 @@
     </table>
     {% else %}
     <p class="lead text-center">There are no courses available.</p>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user.is_superuser %}
     <div class="text-center"><a href="{% url 'course_add' %}">Add new course</a></div>
     {% endif %}
     {% endif %}

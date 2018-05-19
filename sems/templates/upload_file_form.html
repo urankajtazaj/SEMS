@@ -6,7 +6,8 @@
     <form method="post" enctype="multipart/form-data" >
         {% csrf_token %}
         <!--{{ form.as_p }}-->
-        <h3 class="text-uppercase"><span class="text-lighter">Upload to</span><br/>{{ course }}</h3><hr/>
+        <h3>{{ course }}</h3>
+        <hr/>
         <div class="form-group">
             <label>
                 File name<br/>

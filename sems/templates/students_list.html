@@ -58,10 +58,10 @@
             {% endfor %}
         </tbody>
     </table>
-    <br/>
-    {% if user.is_authenticated and user.is_superuser %}
-    <br/>
-    <a class="btn btn-primary" href="{% url 'user_add' %}">Add new user</a>
-    {% endif %}
 </div>
+    {% if user.is_authenticated and user.is_superuser %}
+    <div class="card-box text-right">
+        <a class="btn btn-primary" href="{% url 'user_add' %}">Add new user</a>
+    </div>
+    {% endif %}
 {% endblock %}

@@ -30,4 +30,9 @@
     {% endif %}
     {% endif %}
 </div>
+{% if user.is_authenticated and user.is_superuser %}
+<div class="card-box text-right">
+    <a class="btn btn-primary" href="#">Add course</a>
+</div>
+{% endif %}
 {% endblock %}

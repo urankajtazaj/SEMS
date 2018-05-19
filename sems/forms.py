@@ -1,5 +1,5 @@
 from django import forms
-from .models import Upload
+from .models import Upload, Student
 from django.contrib.auth.models import User
 
 class UploadFormFile(forms.ModelForm):
@@ -12,10 +12,18 @@ class UploadFormFile(forms.ModelForm):
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
 
 
+class UpdateProfile:
+    class Meta:
+        model = Student
+        fields = ('first_name', 'last_name', 'course', )
+
+
 class SignUpForm(forms.Form):
-    username = forms.CharField(max_length=128, widget = forms.TextInput(attrs={'class': 'form-control'}))
+    username = forms.CharField()
     password1 = forms.CharField(widget = forms.PasswordInput())
     password2 = forms.CharField(widget = forms.PasswordInput())
+
+    username.widget.attrs.update({'class': 'form-control'})
 
 
     def clean_username(self):
@@ -33,3 +41,4 @@ class SignUpForm(forms.Form):
         if pw1 and pw2 and pw1 == pw2:
             return pw1
         raise forms.ValidationError("Password doesn't match")
+

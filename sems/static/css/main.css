@@ -183,6 +183,10 @@ form.login label {
     border-bottom: 2px solid #eee;
 }
 
+.form-control:focus {
+    box-shadow: none;
+}
+
 
 
 

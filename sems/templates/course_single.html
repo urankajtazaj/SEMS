@@ -39,15 +39,16 @@
     {% else %}
     <p class="lead">No files have been uploaded</p>
     {% endif %}
-
+    </div>
     {% if user.is_authenticated %}
     {% for u in usrs %}
         {% for us in u.student.course.all %}
         {% if us.pk == course.pk or user.is_superuser %}
-        <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary">Upload new file</a>
+        <div class="card-box text-right">
+            <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary">Upload new file</a>
+        </div>
         {% endif %}
         {% endfor %}
     {% endfor %}
     {% endif %}
-</div>
 {% endblock %}

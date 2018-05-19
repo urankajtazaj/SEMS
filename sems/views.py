@@ -5,7 +5,7 @@ from .models import Course, Program, User, Upload, Student
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum
-from .forms import UploadFormFile
+from .forms import UploadFormFile, UpdateProfile
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -93,9 +93,26 @@ def user_add(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('students')
+            uid = User.objects.latest('pk').pk
+            return redirect('user_edit', pk=uid)
     else:
         form = UserCreationForm()
     return render(
         request, 'user_add.html', {'form': form},
+    )
+
+
+def user_edit(request, pk):
+    user = User.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = UpdateProfile(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('students')
+    else:
+        form = UpdateProfile()
+
+    return render(
+        request, 'user_profile_edit.html', {'form': form, 'user': user},
     )

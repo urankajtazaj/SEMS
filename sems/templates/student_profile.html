@@ -10,10 +10,10 @@
                     <img src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
                 </div>
                 {% if user.is_authenticated %}
-                {% if user.pk == student.pk or user.is_superuser %}
+                {% if user.student.pk == student.pk or user.is_superuser %}
                 <div class="text-left">
                     <br/>
-                    <a href="#"><i class="fas fa-pencil-alt"></i> Edit</a><br/>
+                    <a href="{% url 'user_edit' pk=student.pk %}"><i class="fas fa-pencil-alt"></i> Edit</a><br/>
                     <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
                 {% endif %}

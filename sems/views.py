@@ -7,6 +7,7 @@ from elearning import settings
 from django.db.models import Sum
 from .forms import UploadFormFile, UpdateProfile
 from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import get_object_or_404
 
 
 def programs_view(request):
@@ -93,7 +94,7 @@ def user_add(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            uid = User.objects.latest('pk').pk
+            uid = Student.objects.latest('pk').pk
             return redirect('user_edit', pk=uid)
     else:
         form = UserCreationForm()
@@ -103,15 +104,16 @@ def user_add(request):
 
 
 def user_edit(request, pk):
-    user = User.objects.get(pk=pk)
+    user = Student.objects.get(pk=pk)
 
+    instance = get_object_or_404(Student, pk=pk)
     if request.method == 'POST':
-        form = UpdateProfile(request.POST)
+        form = UpdateProfile(request.POST, instance = instance)
         if form.is_valid():
             form.save()
             return redirect('students')
     else:
-        form = UpdateProfile()
+        form = UpdateProfile(instance=instance)
 
     return render(
         request, 'user_profile_edit.html', {'form': form, 'user': user},

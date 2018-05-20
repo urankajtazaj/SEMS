@@ -103,23 +103,23 @@ th {
     color: #444;
     border: 0;
     background-color: #00a8e8;
-    background-color: #2574A9;
+    background-color: #f6511d;
     color: #fff;
 }
 
 .btn-primary:hover {
     color: #fff;
     background-color: #00b1f4;
-    background-color: #277cb5;
+    background-color: #ff5e2b;
 }
 
-.btn-sec {
+.btn-primary {
     color: #444;
     border: 0;
     background-color: #eee;
 }
 
-.btn-sec:hover {
+.btn-primary:hover {
     color: #333;
     background-color: #eaeaea;
 }

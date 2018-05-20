@@ -7,7 +7,7 @@
     <p>{{ course.summary }}</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae dui ligula. Pellentesque vitae neque felis.</p>
     {% for u in usrs %}
-    {% for us in u.student.course.all %}
+    {% for us in u.student.course_teacher.all %}
         {% if us.pk == course.pk %}
             <a class="label" href="{% url 'student_detail' pk=u.student.pk%}"><i class="fas fa-user-tie"></i> &nbsp; {{ u.student.first_name }} {{ u.student.last_name }}</a>
         {% endif %}
@@ -41,14 +41,21 @@
     {% endif %}
     </div>
     {% if user.is_authenticated %}
-    {% for u in usrs %}
-        {% for us in u.student.course.all %}
-        {% if us.pk == course.pk or user.is_superuser %}
-        <div class="card-box text-right">
-            <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary">Upload new file</a>
-        </div>
+        {% if user.is_superuser %}
+            <div class="card-box">
+                <a href="{% url 'add_teacher' course_id=course.pk %}" class="btn btn-primary">Add teacher</a>
+                <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary">Upload new file</a>
+            </div>
+        {% else %}
+            {% for u in usrs %}
+                {% for us in u.student.course_teacher.all %}
+                {% if us.pk == course.pk %}
+                <div class="card-box text-right">
+                    <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary">Upload new file</a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endfor %}
         {% endif %}
-        {% endfor %}
-    {% endfor %}
     {% endif %}
 {% endblock %}

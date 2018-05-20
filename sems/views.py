@@ -5,7 +5,7 @@ from .models import Course, Program, User, Upload, Student
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum
-from .forms import UploadFormFile, UpdateProfile
+from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 
@@ -62,9 +62,9 @@ def student_detail(request, pk):
 def course_detail(request, pk):
     course = Course.objects.get(pk = pk)
     files = Upload.objects.filter(course_id = pk)
-    group = Group.objects.get(name='Teacher')
-    users = group.user_set.all()
-    # users = Student.objects.all()
+    # group = Group.objects.get(name='Teacher')
+    # users = group.user_set.all()
+    users = User.objects.all()
 
     return render(
         request, 'course_single.html', {'usrs': users, 'course': course, 'files': files, 'media_url': settings.MEDIA_ROOT},
@@ -117,4 +117,18 @@ def user_edit(request, pk):
 
     return render(
         request, 'user_profile_edit.html', {'form': form, 'user': user},
+    )
+
+def select_teacher(request, course_id):
+
+    instance = get_object_or_404(Student, pk=1)
+    if request.method == 'POST':
+        form = SelectTeachersForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('programs')
+    else:
+        form = SelectTeachersForm(instance=instance)
+    return render (
+        request, 'select_teacher.html', {'form': form},
     )

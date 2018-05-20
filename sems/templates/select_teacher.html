@@ -1,0 +1,20 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 card-box">
+            <h5>Select Users</h5><br/>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.first_name }}
+                    <small class="faded">Hold 'Control', or 'Command' on Mac and select</small>
+                </div>
+                <input type="submit" value="Save" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

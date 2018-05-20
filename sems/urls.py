@@ -12,4 +12,5 @@ urlpatterns = [
     path('program/course/<int:course_id>/upload/', views.handle_file_upload, name='upload_file_view'),
     path('students/add/', views.user_add, name='user_add'),
     path('profile/edit/<int:pk>', views.user_edit, name='user_edit'),
+    path('course/<int:course_id>/teacher/edit/', views.select_teacher, name='add_teacher'),
 ]

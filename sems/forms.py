@@ -2,6 +2,7 @@ from django import forms
 from .models import Upload, Student
 from django.contrib.auth.models import User
 
+# Upload files to specific course
 class UploadFormFile(forms.ModelForm):
     class Meta:
         model = Upload
@@ -12,6 +13,7 @@ class UploadFormFile(forms.ModelForm):
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
 
 
+# Add/Edit User profile
 class UpdateProfile(forms.ModelForm):
     class Meta:
         model = Student
@@ -29,6 +31,7 @@ class UpdateProfile(forms.ModelForm):
         self.fields['course'].widget.attrs.update({'class': 'full-width'})
 
 
+# Sign up form
 class SignUpForm(forms.Form):
     username = forms.CharField()
     password1 = forms.CharField(widget = forms.PasswordInput())
@@ -53,3 +56,14 @@ class SignUpForm(forms.Form):
             return pw1
         raise forms.ValidationError("Password doesn't match")
 
+
+# Select teachers for a specific course
+class SelectTeachersForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ('first_name', )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'] = forms.ModelMultipleChoiceField(queryset=Student.objects.all())
+        self.fields['first_name'].widget.attrs.update({'class': 'form-control'})

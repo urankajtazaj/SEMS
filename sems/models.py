@@ -43,6 +43,7 @@ class Student(models.Model):
     country = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     city = models.CharField(max_length=100, null=True)
     course = models.ManyToManyField(Course, related_name='course')
+    course_teacher = models.ManyToManyField(Course, related_name='course_teacher', null=True)
 
 
     def get_website(self):

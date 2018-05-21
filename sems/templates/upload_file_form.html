@@ -2,29 +2,33 @@
 
 
 {% block content %}
-<div class="card-box">
-    <form method="post" enctype="multipart/form-data" >
-        {% csrf_token %}
-        <!--{{ form.as_p }}-->
-        <h3>{{ course }}</h3>
-        <hr/>
-        <div class="form-group">
-            <label>
-                File name<br/>
-                {{ form.name }}
-            </label>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-xs-12 card-box">
+            <form method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                <!--{{ form.as_p }}-->
+                <h5>Upload file</h5>
+                <br/>
+                <div class="form-group">
+                    <!--<label>-->
+                        File name<br/>
+                        {{ form.name }}
+                    <!--</label>-->
+                </div>
+                <div class="form-group">
+                    {{ form.file }}
+                </div>
+                <div class="form-group">
+                    <select hidden name="course" required="" id="id_course">
+                        <option value="{{ course.pk }}" selected>{{ course }}</option>
+                    </select>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary">Upload</button>
+                <a class="btn btn-danger" href="{% url 'course_detail' pk=course.pk %}">Cancel</a>
+            </form>
         </div>
-        <div class="form-group">
-            {{ form.file }}
-        </div>
-        <div class="form-group">
-            <select hidden name="course" required="" id="id_course">
-                <option value="{{ course.pk }}" selected>{{ course }}</option>
-            </select>
-        </div>
-        <hr/>
-        <button type="submit" class="btn btn-primary">Upload</button>
-        <a class="btn btn-danger" href="{% url 'course_detail' pk=course.pk %}">Cancel</a>
-    </form>
+    </div>
 </div>
 {% endblock %}

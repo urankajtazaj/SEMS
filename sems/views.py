@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect
 from .models import Course, Program, User, Upload, Student
 from django.contrib.auth.models import User, Group
@@ -119,6 +119,7 @@ def user_edit(request, pk):
         request, 'user_profile_edit.html', {'form': form, 'user': user},
     )
 
+
 def select_teacher(request, course_id):
 
     instance = get_object_or_404(Student, pk=1)
@@ -132,3 +133,10 @@ def select_teacher(request, course_id):
     return render (
         request, 'select_teacher.html', {'form': form},
     )
+
+
+def filter_courses_view(request):
+    program = request.GET.get('program', None)
+    course = Course.objects.filter(program=program).values('pk', 'name', )
+    data = list(course)
+    return JsonResponse(data, safe=False)

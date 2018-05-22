@@ -28,7 +28,7 @@
         <tbody>
         {% for file in files %}
         <tr>
-            <td><a href="{% static 'uploads/files/' %}{{ file }}" title="{{ file }}"><i style="font-size: 18px; padding-right: 10px;" class="fas fa-file-{{ file.get_extension_short }}"></i> {{ file.name }}</a><br/></td>
+            <td><a href="{% static 'uploads/' %}{{ file.file }}" title="{{ file }}"><i style="font-size: 18px; padding-right: 10px;" class="fas fa-file-{{ file.get_extension_short }}"></i> {{ file.name }}</a><br/></td>
             <td class="text-right">{{ file.upload_time|date:'d/m/Y - H:i' }}</td>
             <td style="width: 70px" class="text-right"><a href="#"><span class="label sm-label"><i class="fas fa-pencil-alt"></i></span></a>
                 <a href="#"><span class="label sm-label"><i class="fas fa-times"></i></span></a></td>

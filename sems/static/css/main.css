@@ -39,6 +39,16 @@ nav a:hover {
     border-bottom: 2px solid #eee;
 }
 
+.card-box ul {
+    margin-top: 25px;
+}
+
+.card-box li {
+    padding: 8px;
+    font-size: 15px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
 table {
     width: 100%;
 }

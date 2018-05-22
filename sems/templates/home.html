@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-xs-12">
+        <div class="card-box">
+            <h5>Programs</h5>
+            <ul class="list-unstyled">
+                {% for program in programs %}
+                <li><a href="{% url 'program_single' pk=program.pk %}">{{ program.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+        <div class="card-box">
+            <h5>Latest uploads</h5>
+            {% load static %}
+            <ul class="list-unstyled">
+                {% for upload in uploads %}
+                <li><a href="{% static 'uploads/' %}{{upload.file }}" title="{{ upload }}">{{ upload.name }}</a> &mdash; <a href="{% url 'course_detail' pk=upload.course.pk %}">{{ upload.course }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+        <div class="card-box">
+            <h5>Recently logged users</h5>
+            <ul class="list-unstyled">
+                {% for user in users %}
+                <li><a href="{% url 'student_detail' pk=user.student.pk %}">{{ user.student.first_name }} {{ user.student.last_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -140,3 +140,14 @@ def filter_courses_view(request):
     course = Course.objects.filter(program=program).values('pk', 'name', )
     data = list(course)
     return JsonResponse(data, safe=False)
+
+
+def home_view(request):
+
+    uploads = Upload.objects.all().order_by('upload_time')[:5]
+    programs = Program.objects.all()
+    users = User.objects.all().order_by('last_login')[:5]
+
+    return render (
+        request, 'home.html', {'uploads': uploads, 'programs': programs, 'users': users},
+    )

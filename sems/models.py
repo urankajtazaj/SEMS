@@ -64,6 +64,9 @@ def create_profile(sender, **kwargs):
 post_save.connect(create_profile, sender=User)
 
 
+class News(models.Model):
+    pass
+
 
 class Upload(models.Model):
     name = models.CharField(max_length=100)

@@ -64,8 +64,17 @@ def create_profile(sender, **kwargs):
 post_save.connect(create_profile, sender=User)
 
 
-class News(models.Model):
-    pass
+class New(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    picture = models.ImageField(null=True, blank=True)
+    create_date = models.DateTimeField(default=datetime.now)
+
+    def get_content(self):
+        return self.content[:150] + '...'
+
+    def __str__(self):
+        return self.title
 
 
 class Upload(models.Model):

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student
+from .models import Course, Program, User, Upload, Student, New
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum
@@ -147,7 +147,8 @@ def home_view(request):
     uploads = Upload.objects.all().order_by('upload_time')[:5]
     programs = Program.objects.all()
     users = User.objects.all().order_by('last_login')[:5]
+    news = New.objects.all().order_by('create_date')[:3]
 
     return render (
-        request, 'home.html', {'uploads': uploads, 'programs': programs, 'users': users},
+        request, 'home.html', {'uploads': uploads, 'programs': programs, 'users': users, 'news': news},
     )

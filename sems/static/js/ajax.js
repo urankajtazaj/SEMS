@@ -10,11 +10,14 @@ $('#id_program').change(function() {
         },
         dataType: 'json',
         success: function(data) {
-            console.log(data);
+            $(courses).children('option').remove();
+            $(data).each(function(i, el) {
+                $(courses).append('<option value="'+ el.pk +'">' + el.name + '</option>');
+            })
         },
         error : function(xhr,errmsg,err) {
-            $('#results').html(+errmsg); // add the error to the dom
-            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            $('#results').html(+errmsg);
+            console.log(xhr.status + ": " + xhr.responseText);
         }
     });
 });

@@ -1,0 +1,17 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-box">
+            <div class="single-post-img">
+                {% load static %}
+                <img src="{% static 'uploads/' %}{{ post.picture }}" />
+            </div>
+            <h4>{{ post.title }}</h4>
+            <p>{{ post.content }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

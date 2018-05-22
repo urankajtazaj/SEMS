@@ -143,7 +143,6 @@ def filter_courses_view(request):
 
 
 def home_view(request):
-
     uploads = Upload.objects.all().order_by('upload_time')[:5]
     programs = Program.objects.all()
     users = User.objects.all().order_by('last_login')[:5]
@@ -151,4 +150,11 @@ def home_view(request):
 
     return render (
         request, 'home.html', {'uploads': uploads, 'programs': programs, 'users': users, 'news': news},
+    )
+
+
+def post_single(request, pk):
+    post = New.objects.get(pk=pk)
+    return render (
+        request, 'post_single.html', {'post': post},
     )

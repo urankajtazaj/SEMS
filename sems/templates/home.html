@@ -12,8 +12,8 @@
                 <div class="col-md-4 col-xs-12">
                     <div class="post-img">
                         <img src="{% static 'uploads/' %}{{ post.picture }}" />
-                    </div><br/><br/>
-                    <h5><a href="">{{ post.title }}</a></h5>
+                    </div>
+                    <h5><a href="{% url 'post_single' pk=post.pk %}">{{ post.title }}</a></h5>
                     <p>{{ post.get_content }}</p>
                 </div>
                 {% endfor %}

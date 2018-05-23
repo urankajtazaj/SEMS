@@ -3,14 +3,35 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8 col-xs-12">
         <div class="card-box">
+            {% if post.picture %}
             <div class="single-post-img">
                 {% load static %}
                 <img src="{% static 'uploads/' %}{{ post.picture }}" />
             </div>
+            {% endif %}
             <h4>{{ post.title }}</h4>
             <p>{{ post.content }}</p>
+        </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+        <div class="card-box">
+            <h5>Latest Posts</h5>
+            <ul class="list-unstyled">
+                {% for p in posts %}
+                    <li><a href="{% url 'post_single' pk=p.pk %}">{{ p.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="card-box">
+            <h5>Latest Uploads</h5>
+            <ul class="list-unstyled">
+                {% load static %}
+                {% for upload in uploads %}
+                    <li><a href="{% static 'uploads/' %}{{ upload.file }}">{{ upload.name }} <small><a href="#">- {{ upload.course }}</a></small></a></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>

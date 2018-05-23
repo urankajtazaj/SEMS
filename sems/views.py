@@ -6,7 +6,7 @@ from .models import Course, Program, User, Upload, Student, New
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum
-from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm
+from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 
@@ -122,7 +122,6 @@ def user_edit(request, pk):
 
 
 def select_teacher(request, course_id):
-
     instance = get_object_or_404(Student, pk=1)
     if request.method == 'POST':
         form = SelectTeachersForm(request.POST, instance=instance)
@@ -147,7 +146,7 @@ def home_view(request):
     uploads = Upload.objects.all().order_by('-upload_time')[:5]
     programs = Program.objects.all()
     users = User.objects.all().order_by('-last_login')[:5]
-    news = New.objects.all().order_by('create_date')[:3]
+    news = New.objects.all().order_by('-create_date')[:3]
 
     return render (
         request, 'home.html', {'uploads': uploads, 'programs': programs, 'users': users, 'news': news},
@@ -161,4 +160,18 @@ def post_single(request, pk):
 
     return render (
         request, 'post_single.html', {'post': post, 'posts': posts, 'uploads': uploads},
+    )
+
+def post_add(request):
+
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AddPostForm()
+
+    return render (
+        request, 'add_new_post.html', {'form': form},
     )

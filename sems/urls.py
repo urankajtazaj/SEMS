@@ -15,5 +15,6 @@ urlpatterns = [
     path('course/<int:course_id>/teacher/edit/', views.select_teacher, name='add_teacher'),
     path('ajax/filter_course/', views.filter_courses_view, name='filter_views'),
     path('post/<int:pk>', views.post_single, name='post_single'),
+    path('post/add/', views.post_add, name='post_add'),
     re_path(r'^$', views.home_view, name='home'),
 ]

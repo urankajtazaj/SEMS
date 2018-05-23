@@ -1,5 +1,5 @@
 from django import forms
-from .models import Upload, Student
+from .models import Upload, Student, New
 from django.contrib.auth.models import User
 
 # Upload files to specific course
@@ -67,3 +67,17 @@ class SelectTeachersForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['first_name'] = forms.ModelMultipleChoiceField(queryset=Student.objects.all())
         self.fields['first_name'].widget.attrs.update({'class': 'form-control'})
+
+
+class AddPostForm(forms.ModelForm):
+    class Meta:
+        model = New
+        fields = ('title', 'content', 'picture', )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({'class': 'form-control'})
+        self.fields['content'].widget.attrs.update({'class': 'form-control'})
+        self.fields['picture'].widget.attrs.update({'class': 'form-control'})
+
+

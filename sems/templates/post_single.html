@@ -12,7 +12,7 @@
             </div>
             {% endif %}
             <h4>{{ post.title }}</h4>
-            <p>{{ post.content }}</p>
+            <p>{{ post.content|safe }}</p>
         </div>
     </div>
     <div class="col-md-4 col-xs-12">

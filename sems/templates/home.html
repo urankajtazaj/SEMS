@@ -16,9 +16,16 @@
                     </div>
                     {% endif %}
                     <h5><a href="{% url 'post_single' pk=post.pk %}">{{ post.title }}</a></h5>
-                    <p>{{ post.get_content }}</p>
+                    <p>{{ post.get_content|safe }}</p>
                 </div>
                 {% endfor %}
+                <div class="col-md-12 text-center">
+                    <br/>
+                    <a class="btn btn-primary" href="#">View all posts</a>
+                    {% if user.is_authenticated and user.is_superuser %}
+                    <a class="btn btn-primary" href="{% url 'post_add' %}">Add new</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

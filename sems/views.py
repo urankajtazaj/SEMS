@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect
@@ -143,9 +144,9 @@ def filter_courses_view(request):
 
 
 def home_view(request):
-    uploads = Upload.objects.all().order_by('upload_time')[:5]
+    uploads = Upload.objects.all().order_by('-upload_time')[:5]
     programs = Program.objects.all()
-    users = User.objects.all().order_by('last_login')[:5]
+    users = User.objects.all().order_by('-last_login')[:5]
     news = New.objects.all().order_by('create_date')[:3]
 
     return render (
@@ -155,6 +156,9 @@ def home_view(request):
 
 def post_single(request, pk):
     post = New.objects.get(pk=pk)
+    posts = New.objects.all().order_by('-create_date')[:10]
+    uploads = Upload.objects.all().order_by('-upload_time')[:5]
+
     return render (
-        request, 'post_single.html', {'post': post},
+        request, 'post_single.html', {'post': post, 'posts': posts, 'uploads': uploads},
     )

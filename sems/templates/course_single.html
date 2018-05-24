@@ -2,19 +2,23 @@
 
 
 {% block content %}
-<div class="card-box">
-    <h2>{{ course }}</h2>
-    <p>{{ course.summary }}</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae dui ligula. Pellentesque vitae neque felis.</p>
-    {% for u in usrs %}
-    {% for us in u.student.course_teacher.all %}
-        {% if us.pk == course.pk %}
-            <a class="label" href="{% url 'student_detail' pk=u.student.pk%}"><i class="fas fa-user-tie"></i> &nbsp; {{ u.student.first_name }} {{ u.student.last_name }}</a>
-        {% endif %}
-    {% endfor %}
-    {% endfor %}
-</div>
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+        <div class="card-box">
+            <h2>{{ course }}</h2>
+            <p>{{ course.summary }}</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae dui ligula. Pellentesque vitae neque felis.</p>
+            {% for u in usrs %}
+            {% for us in u.student.course_teacher.all %}
+                {% if us.pk == course.pk %}
+                    <a class="label" href="{% url 'student_detail' pk=u.student.pk%}"><i class="fas fa-user-tie"></i> &nbsp; {{ u.student.first_name }} {{ u.student.last_name }}</a>
+                {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
 {% load static %}
+<div class="col-md-8 col-xs-12">
 <div class="shadow-box">
     {% if files %}
     <table>
@@ -40,11 +44,28 @@
     <p class="lead">No files have been uploaded</p>
     {% endif %}
     </div>
+</div>
+    <div class="col-md-4 col-xs-12">
+        <div class="card-box">
+            <h5>Current Grade</h5><br/>
+            <h1 class="text-center" style="font-size: 90px; font-weight: lighter">
+                {% if grades %}
+                    {% for grade in grades %}
+                        {{ grade.grade }}
+                    {% endfor %}
+                {% else %}
+                    None
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+</div>
     {% if user.is_authenticated %}
         {% if user.is_superuser %}
             <div class="card-box">
                 <a href="{% url 'add_teacher' course_id=course.pk %}" class="btn btn-primary">Add teacher</a>
                 <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary">Upload new file</a>
+                <a href="{% url 'grade_students' course_id=course.pk %}" class="btn btn-primary">Grade Students</a>
             </div>
         {% else %}
             {% for u in usrs %}
@@ -52,6 +73,7 @@
                 {% if us.pk == course.pk %}
                 <div class="card-box text-right">
                     <a href="{% url 'upload_file_view' course_id=course.pk %}" class="btn btn-primary">Upload new file</a>
+                    <a href="{% url 'grade_students' course_id=course.pk %}" class="btn btn-primary">Grade Students</a>
                 </div>
                 {% endif %}
                 {% endfor %}

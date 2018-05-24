@@ -77,6 +77,13 @@ class New(models.Model):
         return self.title
 
 
+
+class Grade(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    grade = models.IntegerField(default=0)
+
+
 class Upload(models.Model):
     name = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)

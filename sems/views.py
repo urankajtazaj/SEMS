@@ -2,11 +2,11 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student, New
+from .models import Course, Program, User, Upload, Student, New, Grade
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum
-from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm
+from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 
@@ -66,9 +66,10 @@ def course_detail(request, pk):
     # group = Group.objects.get(name='Teacher')
     # users = group.user_set.all()
     users = User.objects.all()
+    grades = Grade.objects.filter(student_id=request.user.id, course_id=pk)
 
     return render(
-        request, 'course_single.html', {'usrs': users, 'course': course, 'files': files, 'media_url': settings.MEDIA_ROOT},
+        request, 'course_single.html', {'usrs': users, 'course': course, 'files': files, 'grades': grades, 'media_url': settings.MEDIA_ROOT},
     )
 
 
@@ -174,4 +175,22 @@ def post_add(request):
 
     return render (
         request, 'add_new_post.html', {'form': form},
+    )
+
+
+def grade_students(request, course_id):
+    course = Course.objects.get(pk=course_id)
+    students = User.objects.all()
+
+    if request.method == 'POST':
+        form = GradeStudentsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print(request.POST.getlist('student'))
+            return redirect('course_detail', pk=course_id)
+    else:
+        form = GradeStudentsForm()
+
+    return render (
+        request, 'grade_students.html', {'course': course, 'form': form, 'students': students},
     )

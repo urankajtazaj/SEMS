@@ -1,0 +1,40 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-xs-12">
+        <div class="card-box">
+            <h5>Grade Students in {{ course }}</h5><br/>
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        {% for student in students %}
+                            {% for c in student.student.course.all %}
+                                {% if c.pk == course.pk %}
+                                <div class="form-group">
+                                {{ form.student }}
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                    {% endfor %}
+                    </div>
+                    <div class="col-md-6">
+                        {% for student in students %}
+                            {% for c in student.student.course.all %}
+                                {% if c.pk == course.pk %}
+                                <div class="form-group">
+                                {{ form.grade }}
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </form>
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+    </div>
+</div>
+{% endblock %}

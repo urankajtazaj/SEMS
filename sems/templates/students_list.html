@@ -60,7 +60,7 @@
     </table>
 </div>
     {% if user.is_authenticated and user.is_superuser %}
-    <div class="card-box text-right">
+    <div class="card-box">
         <a class="btn btn-primary" href="{% url 'user_add' %}">Add new user</a>
     </div>
     {% endif %}

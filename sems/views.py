@@ -6,9 +6,11 @@ from .models import Course, Program, User, Upload, Student, New, Grade
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum
-from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm
+from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsFormSet
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
+from django.forms import inlineformset_factory
+from django.forms import modelformset_factory
 
 
 def programs_view(request):
@@ -180,17 +182,29 @@ def post_add(request):
 
 def grade_students(request, course_id):
     course = Course.objects.get(pk=course_id)
-    students = User.objects.all()
+    students = Student.objects.filter(course=course)
+    curr_grades = Grade.objects.filter(course=course)
+
+    list_data = []
+    for grade in curr_grades:
+        list_data.append({'student': grade.student, 'course': grade.course, 'grade': grade.grade})
+
+    # GradeStudentsFormSet = inlineformset_factory(Course, Grade, fields='__all__', extra=len(students), can_delete=False)
+
+    queryset = Grade.objects.filter(course=course)
 
     if request.method == 'POST':
-        form = GradeStudentsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            print(request.POST.getlist('student'))
+        formset = GradeStudentsFormSet(request.POST, queryset=queryset)
+        if formset.is_valid():
+            instances = formset.save(commit=False)
+            for instance in instances:
+                instance.save()
             return redirect('course_detail', pk=course_id)
+        else:
+            print(formset.errors)
     else:
-        form = GradeStudentsForm()
+        formset = GradeStudentsFormSet(queryset=queryset)
 
     return render (
-        request, 'grade_students.html', {'course': course, 'form': form, 'students': students},
+        request, 'grade_students.html', {'formset': formset, 'course': course, 'students': students},
     )

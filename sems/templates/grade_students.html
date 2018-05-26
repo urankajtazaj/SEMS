@@ -8,32 +8,31 @@
             <h5>Grade Students in {{ course }}</h5><br/>
             <form method="post">
                 {% csrf_token %}
-                <div class="row">
-                    <div class="col-md-6">
-                        {% for student in students %}
-                            {% for c in student.student.course.all %}
-                                {% if c.pk == course.pk %}
-                                <div class="form-group">
-                                {{ form.student }}
-                                </div>
-                                {% endif %}
-                            {% endfor %}
+                {{ formset.management_form }}
+                {% if formset|length > 0 %}
+                    {% for form in formset %}
+                        <div class="row justify-content-center border-bottom input-styled">
+                            {{ form.id }}
+                            <div class="col-md-6 col-xs-12">
+                                <label>
+                                    Student<br/>
+                                    {{ form.student }}
+                                </label>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <label>
+                                    Grade<br/>
+                                    {{ form.grade }}
+                                </label>
+                            </div>
+                        </div>
                     {% endfor %}
-                    </div>
-                    <div class="col-md-6">
-                        {% for student in students %}
-                            {% for c in student.student.course.all %}
-                                {% if c.pk == course.pk %}
-                                <div class="form-group">
-                                {{ form.grade }}
-                                </div>
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-                </div>
+                {% else %}
+                    <p class="lead">No students</p>
+                {% endif %}
+                <br/>
+                <input type="submit" value="Submit" class="btn btn-primary">
             </form>
-            <input type="submit" value="Submit" class="btn btn-primary">
         </div>
     </div>
 </div>

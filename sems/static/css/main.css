@@ -204,10 +204,15 @@ form.login label {
     width: 100%
 }
 
-.form-control {
+.form-control, .input-styled input, .input-styled select {
     border: none;
     border-radius: 4px;
     border: 1px solid #e5e5e5;
+    width: 100%;
+}
+
+.input-styled label {
+    width: 100%;
 }
 
 .form-control:focus {
@@ -224,7 +229,16 @@ form.login label {
     color: #888;
 }
 
-
+/*
+form label, input[type=number], select, input[type=text] {
+    width: 100%;
+}
+*/
+.border-bottom {
+    border-bottom: 1px solid #eee !important;
+    padding: 4px 0 4px 0;
+    margin: 4px 0 4px 0px;
+}
 
 
 

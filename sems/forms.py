@@ -82,14 +82,17 @@ class AddPostForm(forms.ModelForm):
 
 
 class GradeStudentsForm(forms.ModelForm):
+
     class Meta:
         model = Grade
-        fields = ('student', 'course', 'grade', )
+        fields = ('student', 'grade', )
 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['student'].widget.attrs.update({'class': 'form-control'})
-        self.fields['course'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['course'].widget.attrs.update({'class': 'form-control'})
         self.fields['grade'].widget.attrs.update({'class': 'form-control'})
 
+
+GradeStudentsFormSet = forms.modelformset_factory(Grade, form=GradeStudentsForm, extra=0)

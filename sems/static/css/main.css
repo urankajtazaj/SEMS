@@ -31,12 +31,19 @@ nav {
 }
 
 nav a {
-    padding: 10px;
+    padding: 20px 10px;
     color: rgba(0,0,0,.85);
+    border-bottom: 2px solid transparent;
+    transition: 100ms ease;
 }
 
-nav a:hover {
+nav a:hover:not(.active) {
     text-decoration: none;
+    color: #000;
+    border-color: #ccc;
+}
+
+.active:hover {
     color: #000;
 }
 
@@ -77,6 +84,8 @@ ul > a:hover > li {
 
 .card-box li {
     padding-left: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 table {
@@ -173,7 +182,7 @@ a.label:hover {
 .btn-third:hover, .empty-box a.btn-primary:hover, .empty-box button.btn-primary:hover, .card-box .btn-primary:hover, .btn-danger:hover {
     color: #222;
     background-color: #fff;
-    border-color: #ddd;
+    border-color: #222;
 }
 
 .btn-danger:hover {
@@ -451,6 +460,8 @@ footer {
     /*display: none;*/
     min-width: 550px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    max-height: 85vh;
+    overflow: auto;
 }
 
 .sm-label {
@@ -473,7 +484,9 @@ footer {
     align-items: center;
 }
 
-
+a.active {
+    border-color: #444;
+}
 
 
 

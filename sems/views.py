@@ -322,7 +322,7 @@ def post_list(request):
 
 def post_single(request, pk):
     post = New.objects.get(pk=pk)
-    posts = New.objects.all().order_by('-create_date')[:10]
+    posts = New.objects.all().order_by('-create_date')[:5]
     uploads = Upload.objects.all().order_by('-upload_time')[:5]
 
     if request.user.is_authenticated:

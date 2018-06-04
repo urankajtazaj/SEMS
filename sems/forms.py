@@ -1,6 +1,7 @@
 from django import forms
 from .models import Upload, Student, New, Grade, Course, Program
 from django.contrib.auth.models import User
+from django.forms import CharField
 
 # Upload files to specific course
 class UploadFormFile(forms.ModelForm):
@@ -120,6 +121,7 @@ class CourseAddForm(forms.ModelForm):
 
 
 class ProgramForm(forms.ModelForm):
+
     class Meta:
         model = Program
         fields = '__all__'

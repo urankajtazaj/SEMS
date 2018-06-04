@@ -131,18 +131,18 @@ def course_detail(request, pk):
         return redirect('login')
 
 
-def course_add(request):
+def course_add(request, pk):
     if request.method == 'POST':
         form = CourseAddForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('program_single', pk=request.POST.get('program'))
     else:
-        form = CourseAddForm()
+        form = CourseAddForm(initial={'program': Program.objects.get(pk=pk)})
 
     if request.user.is_authenticated and request.user.is_superuser:
         return render (
-            request, 'course_add.html', {'form': form},
+            request, 'course_add.html', {'form': form, 'program': pk},
         )
     else:
         return redirect('login')

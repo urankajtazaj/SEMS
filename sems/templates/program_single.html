@@ -40,13 +40,13 @@
         {% else %}
         <p class="text-center"><i class="material-icons">sentiment_dissatisfied</i><br/>No courses added</p>
         {% if user.is_superuser %}
-        <p class="text-center lead">Start by <a href="{% url 'course_add' %}">adding new course</a></p>
+        <p class="text-center lead">Start by <a href="{% url 'course_add' pk=program.pk %}">adding new course</a></p>
         {% endif %}
         {% endif %}
     </div>
     {% if user.is_authenticated and user.is_superuser and courses %}
     <div class="empty-box">
-        <a class="btn btn-primary" href="{% url 'course_add' %}">Add course</a>
+        <a class="btn btn-primary" href="{% url 'course_add' pk=program.pk %}">Add course</a>
     </div>
     <!-- <i class="material-icons">add</i>  -->
     {% endif %}

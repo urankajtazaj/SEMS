@@ -3,17 +3,78 @@
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6 card-box">
-            <h5>Select Users</h5><br/>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ form.first_name }}
-                    <small class="faded">Hold 'Control', or 'Command' on Mac and select</small>
+    <div class="row">
+        <div class="col-md-7 col-xs-12">
+            <div class="card-box">
+                <h6>Select Users</h6><br/>
+
+                <form method="get">
+                    <input type="text" name="first_name" placeholder="First name">
+                    <input type="text" name="last_name" placeholder="Last name">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                <br>
+                {% if students %}
+                <table>
+                    <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <td>
+                                {{ student.first_name }} {{ student.last_name }}<br/>
+                            </td>
+                            <td class="text-right"><small><a class="btn btn-sm btn-third" href="{% url 'confirm_teacher' course_id=course_id student_id=student.pk %}">Select</a></small></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {% if students.paginator.page_range|length > 1 %}
+                <div class="pagination">
+                    {% for i in students.paginator.page_range %}
+                        {% if i == students.number %}
+                            <a href="#"><b>{{ i }}</b></a>
+                        {% else %}
+                            <a href="?page={{ i }}">{{ i }}</a>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <input type="submit" value="Save" class="btn btn-primary">
-            </form>
+                {% endif %}
+
+                {% else %}
+                <p class="text-danger">No Users Available</p>
+                {% endif %}
+            </div>
+            <div class="empty-box">
+                <a class="btn btn-primary" href="{% url 'course_detail' pk=course_id %}">Go back to course</a>
+            </div>
+        </div>
+        <div class="col-md-5 col-xs-12">
+            <div class="card-box">
+                <h6>Currently selected</h6><br/>
+                {% if teachers %}
+                <table>
+                    <tbody>
+                    {% for teacher in teachers %}
+                        <tr>
+                            <td>
+                                {{ teacher.first_name }} {{ teacher.last_name }}<br/>
+                            </td>
+                            <td class="text-right">
+                                <span class="with-popup">
+                                    <div class="popup p-delete">
+                                        <p>Are you sure you want to remove this teacher?</p>
+                                        <a href="{% url 'delete_teacher' course_id=course_id student_id=teacher.pk %}">Remove</a>
+                                    </div><small><a class="btn btn-sm btn-third text-danger">Remove</a></small>
+                                </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-danger">No users selected</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

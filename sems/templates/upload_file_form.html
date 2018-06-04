@@ -7,14 +7,11 @@
         <div class="col-md-6 col-xs-12 card-box">
             <form method="post" enctype="multipart/form-data" >
                 {% csrf_token %}
-                <!--{{ form.as_p }}-->
                 <h5>Upload file</h5>
                 <br/>
                 <div class="form-group">
-                    <!--<label>-->
-                        File name<br/>
-                        {{ form.name }}
-                    <!--</label>-->
+                    File name<br/>
+                    {{ form.name }}
                 </div>
                 <div class="form-group">
                     {{ form.file }}

@@ -2,29 +2,45 @@
 
 
 {% block content %}
-<!--<div class="card-box">-->
-    <!--<h2 class="text-uppercase">Choose a Program</h2>-->
-<!--</div>-->
-<div class="shadow-box">
-{% if programs %}
-<table>
-    <thead>
-        <tr>
-            <th>Program name</th>
-        </tr>
-    </thead>
-    {% for p in programs %}
-        <tr>
-            <td><a href="{% url 'program_single' pk=p.pk %}">{{ p }}</a></td>
-        </tr>
-    {% endfor %}
-    </table>
-    {% if user.is_superuser %}
-    <br/><br/>
-    <a href="#" class="btn btn-primary">Add New</a>
+<div class="container">
+    <div class="shadow-box">
+    {% if programs %}
+    <table>
+        <thead>
+            <tr>
+                <th>Program name</th>
+                {% if user.is_superuser %}
+                <th></th>
+                {% endif %}
+            </tr>
+        </thead>
+        {% for p in programs %}
+            <tr>
+                <td><a href="{% url 'program_single' pk=p.pk %}">{{ p }}</a></td>
+                {% if user.is_superuser %}
+                <td class="text-right">
+                    <a title="Edit" href="{% url 'program_edit' pk=p.pk %}" class="label sm-label"><i class="fas fa-pencil-alt"></i></a>
+                    <span class="with-popup">
+                        <div class="popup p-delete">
+                            <p>Are you sure you want to remove this program?</p>
+                            <a href="{% url 'program_delete' pk=p.pk %}">Remove</a>
+                        </div>
+                        <a title="Delete" class="label sm-label"><i class="fas fa-times"></i></a>
+                    </span>
+                </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+    <p>There are no programs available</p>
     {% endif %}
-{% else %}
-<p>There are no programs available</p>
-{% endif %}
+    </div>
+        {% if user.is_superuser %}
+        <div class="empty-box">
+            <a href="{% url 'program_add' %}" class="btn btn-primary">Add New Program</a>
+        </div>
+        <!-- <i class="material-icons">add</i> -->
+        {% endif %}
 </div>
 {% endblock %}

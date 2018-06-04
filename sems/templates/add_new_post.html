@@ -6,7 +6,7 @@
     <div class="col-md-8 col-xs-12">
         <div class="card-box">
             <h5>Add new post</h5><br/>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
                     Title<br/>
@@ -21,8 +21,8 @@
                     {{ form.picture }}
                 </div>
                 <hr/>
-                <input type="submit" value="Add Post" class="btn btn-primary">
-                <a class="btn btn-primary" href="#">Cancel</a>
+                <button type="submit" class="btn btn-primary"><i class="material-icons">add</i> Add Post</button>
+                <a class="btn btn-danger" href="{% url 'home' %}"><i class="material-icons">close</i>Cancel</a>
             </form>
         </div>
     </div>

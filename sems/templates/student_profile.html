@@ -2,45 +2,122 @@
 
 
 {% block content %}
-<div class="container">
-    <div class="card-box">
-        <div class="row">
-            <div class="col-md-2 col-xs-12">
-                <div class="thumb img-round">
-                    <img src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
-                </div>
-                {% if user.is_authenticated %}
-                {% if user.student.pk == student.pk or user.is_superuser %}
-                <div class="text-left">
-                    <br/>
-                    <a href="{% url 'user_edit' pk=student.pk %}"><i class="fas fa-pencil-alt"></i> Edit</a><br/>
-                    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </div>
-                {% endif %}
-                {% endif %}
-            </div>
-            <div class="col-md-10 col-xs-12">
-                <h2>{{ student.first_name }} {{ student.last_name }}</h2>
-                <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary"><span class="label">{{ student.program }}</span></a>
-                <hr/>
-                <!--<br/>-->
-                <div><span class="sm-label label text-primary"><i class="fas fa-map-marker"></i></span> {{ student.city }}, {{ student.country }}</div><br/>
-                <div><span class="sm-label label text-primary"><i class="fas fa-envelope"></i></span> {{ student.email }}</div>
-                {% if student.website %}
-                <br/>
-                <div><span class="sm-label label text-primary"><i class="fas fa-link"></i></span> <a href="{{ student.get_website }}" title="{{ student.get_website }}" target="_blank">{{ student.website }}</a> </div>
-                {% endif %}
-                <hr/>
-                <h4>Enrolled Courses</h4>
-                {% if student.course.all %}
-                    {% for course in student.course.all %}
-                    <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
-                    {% endfor %}
+
+{% if user.is_superuser or user.student == student %}
+<div class="abs-popup">
+    <div class="card-box grades">
+        <!-- <h5>Success</h5><br/> -->
+        <a onclick="toggleGrades()" class="toggleBtn btn btn-danger"><i class="fas fa-times"></i> Close</a><br><br>
+        <table>
+            <thead>
+                <th>Course</th>
+                <th>Grade</th>
+            </thead>
+            <tbody>
+                {% if success %}
+                {% for grade in success %}
+                <tr>
+                    <td>{{ grade.course }}</td>
+                    <td>{% if grade.grade >= 5 %}{{ grade.grade }}{% else %}&mdash;{% endif %}</td>
+                </tr>
+                {% endfor %}
                 {% else %}
-                <b class="text-danger">No courses</b>
+                <tr>
+                    <td>Empty dataset</td>
+                    <td></td>
+                </tr>
                 {% endif %}
+            </tbody>
+        </table><br>
+    </div>
+</div>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-md-3 col-xs-12">
+                        <div class="thumb img-round">
+                            <img src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
+                        </div>
+                        {% if user.is_authenticated %}
+                        {% if user.student.pk == student.pk or user.is_superuser %}
+                        <div class="text-left">
+                            <br/>
+                            <a class="btn btn-primary" style="display: block" href="{% url 'user_edit' pk=student.pk %}"><i class="material-icons">edit</i>Edit</a><br/>
+                            <!-- <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a> -->
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-9 col-xs-12">
+                        <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+                        <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary"><span class="label">{{ student.program }}</span></a>
+                        <hr/>
+                        <!--<br/>-->
+                        <div><span class="sm-label label text-primary"><i class="fas fa-map-marker"></i></span> {{ student.city }}, {{ student.country }}</div><br/>
+                        <div><span class="sm-label label text-primary"><i class="fas fa-envelope"></i></span> {{ student.email }}</div>
+                        {% if student.website %}
+                        <br/>
+                        <div><span class="sm-label label text-primary"><i class="fas fa-link"></i></span> <a href="{{ student.get_website }}" title="{{ student.get_website }}" target="_blank">{{ student.website }}</a> </div>
+                        {% endif %}
+                        <hr/>
+                        <h4>Enrolled Courses</h4>
+                        {% if student.course.all %}
+                            {% for course in student.course.all %}
+                            <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
+                            {% endfor %}
+                        {% else %}
+                        <b class="text-danger">No courses</b>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if user.is_superuser or user.student == student %}
+            <div class="empty-box text-center">
+                <a onclick="toggleGrades()" class="toggleBtn btn btn-primary">View grades</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="card-box">
+                <h5>Overview</h5><br/>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Average Grade</td>
+                            <td>{{ details.grade__avg|floatformat:-2 }}</td>
+                        </tr>
+                        <tr>
+                            <td>Highest Grade</td>
+                            <td>{{ details.grade__max }}</td>
+                        </tr>
+                        <tr>
+                            <td>Lowest Grade</td>
+                            <td>{{ details.grade__min }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+
+{% block javascript %}
+<script>
+    var visible = false;
+    function toggleGrades() {
+        if (visible) {
+            $('.abs-popup').hide()
+        } else {
+            $('.abs-popup').show();
+            $('.abs-popup').css('display', 'flex');
+        }
+        visible = !visible;
+    }
+</script>
 {% endblock %}

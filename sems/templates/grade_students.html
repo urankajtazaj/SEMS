@@ -2,37 +2,45 @@
 
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-8 col-xs-12">
-        <div class="card-box">
-            <h5>Grade Students in {{ course }}</h5><br/>
-            <form method="post">
-                {% csrf_token %}
-                {{ formset.management_form }}
-                {% if formset|length > 0 %}
-                    {% for form in formset %}
-                        <div class="row justify-content-center border-bottom input-styled">
-                            {{ form.id }}
-                            <div class="col-md-6 col-xs-12">
-                                <label>
-                                    Student<br/>
-                                    {{ form.student }}
-                                </label>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-xs-12">
+            <div class="card-box">
+                <h5>Grade Students in {{ course }}</h5><br/>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    {% if formset|length > 0 %}
+                        {% for form in formset %}
+                            <div class="row justify-content-center border-bottom input-styled">
+                                {{ form.id }}
+                                <div class="col-md-5 col-xs-12">
+                                    <label>
+                                        Student<br/>
+                                        {{ form.student }}
+                                    </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="slight-bottom text-center">
+                                        <i class="no-abs material-icons">compare_arrows</i>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-xs-12">
+                                    <label>
+                                        Grade<br/>
+                                        {{ form.grade }}
+                                    </label>
+                                </div>
                             </div>
-                            <div class="col-md-6 col-xs-12">
-                                <label>
-                                    Grade<br/>
-                                    {{ form.grade }}
-                                </label>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p class="lead">No students</p>
-                {% endif %}
-                <br/>
-                <input type="submit" value="Submit" class="btn btn-primary">
-            </form>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-danger">No students</p>
+                    {% endif %}
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Save all</button>
+                    <a class="btn btn-danger" href="{% url 'course_detail' pk=course.pk %}">Back</a>
+                </form>
+            </div>
         </div>
     </div>
 </div>

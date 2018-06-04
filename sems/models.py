@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 
 class Program(models.Model):
     name = models.CharField(max_length=150)
-    summary = models.CharField(max_length=400, null=True, blank=True)
+    summary = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -60,7 +60,6 @@ def create_profile(sender, **kwargs):
     if kwargs['created']:
         student = Student.objects.create(user=kwargs['instance'])
 
-
 post_save.connect(create_profile, sender=User)
 
 
@@ -82,6 +81,9 @@ class Grade(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     grade = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.student.first_name + ' ' + self.student.last_name
 
 
 class Upload(models.Model):

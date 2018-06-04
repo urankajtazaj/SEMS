@@ -1,35 +1,54 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<div class="card-box">
-    <h3>{{ program.name }}</h3>
-    {% if program.summary %}
-    <p>{{ program.summary }}</p>
-    {% endif %}
-</div>
-<div class="shadow-box">
-    {% if courses %}
-    <table>
-        <thead>
+<div class="container">
+    <div class="card-box">
+        <h3>{{ program.name }}</h3>
+        {% if program.summary %}
+        <p>{{ program.summary }}</p>
+        {% endif %}
+    </div>
+    <div class="shadow-box">
+        {% if courses %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Course name</th>
+                    <th class="text-right">Credits</th>
+                    <th></th>
+                </tr>
+            </thead>
+        {% for course in courses %}
             <tr>
-                <th>Course name</th>
-                <th class="text-right">Credits</th>
+                <td><a href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a></td>
+                <td class="text-right"><b>{{ course.credits }}</b></td>
+                {% if user.is_superuser %}
+                    <td style="max-width: 10px" class="text-right">
+                        <a title="Edit" href="#" class="label sm-label"><i class="fas fa-pencil-alt"></i></a>
+                        <span class="with-popup">
+                            <div class="popup p-delete">
+                                <p>Are you sure you want to remove this program?</p>
+                                <a href="#">Delete</a>
+                            </div>
+                            <a title="Delete" class="label sm-label"><i class="fas fa-times"></i></a>
+                        </span>
+                    </td>
+                {% endif %}
             </tr>
-        </thead>
-    {% for course in courses %}
-        <tr>
-            <td><a href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a></td>
-            <td class="text-right"><b>{{ course.credits }}</b></td>
-        </tr>
-    {% endfor %}
-    </table>
-    {% else %}
-    <p class="lead text-center">There are no courses available.</p>
+        {% endfor %}
+        </table>
+        {% else %}
+        <p class="text-center"><i class="material-icons">sentiment_dissatisfied</i><br/>No courses added</p>
+        {% if user.is_superuser %}
+        <p class="text-center lead">Start by <a href="{% url 'course_add' %}">adding new course</a></p>
+        {% endif %}
+        {% endif %}
+    </div>
+    {% if user.is_authenticated and user.is_superuser and courses %}
+    <div class="empty-box">
+        <a class="btn btn-primary" href="{% url 'course_add' %}">Add course</a>
+    </div>
+    <!-- <i class="material-icons">add</i>  -->
     {% endif %}
 </div>
-{% if user.is_authenticated and user.is_superuser %}
-<div class="card-box text-right">
-    <a class="btn btn-primary" href="{% url 'course_add' %}">Add course</a>
-</div>
-{% endif %}
 {% endblock %}

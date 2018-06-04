@@ -2,62 +2,64 @@
 
 
 {% block content %}
-<div class="row">
-    <div class="col-md-12 col-xs-12">
-        <div class="card-box">
-            <h5>Latest news</h5><br/>
-            <div class="row">
-                {% load static %}
-                {% for post in news %}
-                <div class="col-md-4 col-xs-12">
-                    {% if post.picture %}
-                    <div class="post-img">
-                        <img src="{% static 'uploads/' %}{{ post.picture }}" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="card-box">
+                <h6>Latest news</h6><br/>
+                <div class="row">
+                    {% load static %}
+                    {% for post in news %}
+                    <div class="col-md-4 col-xs-12">
+                        {% if post.picture %}
+                        <div class="post-img">
+                            <img src="{% static 'uploads/' %}{{ post.picture }}" />
+                        </div>
+                        {% endif %}
+                        <h5><a href="{% url 'post_single' pk=post.pk %}">{{ post.title }}</a></h5>
+                        <p>{{ post.get_content|safe }}</p>
                     </div>
-                    {% endif %}
-                    <h5><a href="{% url 'post_single' pk=post.pk %}">{{ post.title }}</a></h5>
-                    <p>{{ post.get_content|safe }}</p>
-                </div>
-                {% endfor %}
-                <div class="col-md-12 text-center">
-                    <br/>
-                    <a class="btn btn-primary" href="#">View all posts</a>
-                    {% if user.is_authenticated and user.is_superuser %}
-                    <a class="btn btn-primary" href="{% url 'post_add' %}">Add new</a>
-                    {% endif %}
+                    {% endfor %}
+                    <div class="col-md-12">
+                        <br/>
+                        <a class="with-icon btn btn-third" href="{% url 'post_list' %}"><i class="material-icons">chevron_right</i> View all posts</a>
+                        {% if user.is_authenticated and user.is_superuser %}
+                        <a class="with-icon btn btn-third" href="{% url 'post_add' %}"><i class="material-icons">add</i>Add new</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4 col-xs-12">
-        <div class="card-box">
-            <h5>Programs</h5>
-            <ul class="list-unstyled">
-                {% for program in programs %}
-                <li><a href="{% url 'program_single' pk=program.pk %}">{{ program.name }}</a></li>
-                {% endfor %}
-            </ul>
+        <div class="col-md-4 col-xs-12">
+            <div class="card-box">
+                <h6>Programs</h6>
+                <ul class="list-unstyled">
+                    {% for program in programs %}
+                    <a href="{% url 'program_single' pk=program.pk %}"><li>{{ program.name }}</li></a>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="col-md-4 col-xs-12">
-        <div class="card-box">
-            <h5>Latest uploads</h5>
-            {% load static %}
-            <ul class="list-unstyled">
-                {% for upload in uploads %}
-                <li><a href="{% static 'uploads/' %}{{upload.file }}" title="{{ upload }}">{{ upload.name }}</a> &mdash; <a href="{% url 'course_detail' pk=upload.course.pk %}">{{ upload.course }}</a></li>
-                {% endfor %}
-            </ul>
+        <div class="col-md-4 col-xs-12">
+            <div class="card-box">
+                <h6>Recently logged users</h6>
+                <ul class="list-unstyled">
+                    {% for user in users %}
+                    <a href="{% url 'student_detail' pk=user.student.pk %}"><li>{{ user.student.first_name }} {{ user.student.last_name }}</li></a>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="col-md-4 col-xs-12">
-        <div class="card-box">
-            <h5>Recently logged users</h5>
-            <ul class="list-unstyled">
-                {% for user in users %}
-                <li><a href="{% url 'student_detail' pk=user.student.pk %}">{{ user.student.first_name }} {{ user.student.last_name }}</a></li>
-                {% endfor %}
-            </ul>
+        <div class="col-md-4 col-xs-12">
+            <div class="card-box">
+                <h6>Latest uploads</h6>
+                {% load static %}
+                <ul class="list-unstyled">
+                    {% for upload in uploads %}
+                    <li><a href="{% url 'course_detail' pk=upload.course.pk %}" title="{{ upload }}"><i class="material-icons">attachment</i> {{ upload.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>

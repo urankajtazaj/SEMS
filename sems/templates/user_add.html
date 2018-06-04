@@ -6,18 +6,22 @@
     <div class="row justify-content-center">
         <div class="col-md-6 col-xs-12 card-box">
             <h4>Login info</h4><br/>
-            <form method="post">
+            <form method="post" class="input-styled">
             {% csrf_token %}
                 <div class="form-group">
+                    Username<br>
                     {{ form.username }}
                 </div>
                 <div class="form-group">
+                    Password<br>
                     {{ form.password1 }}
                 </div>
                 <div class="form-group">
+                    Repeat Password<br>
                     {{ form.password2 }}
                 </div>
-                <input type="submit" class="btn btn-primary" value="Continue" />
+                <br/>
+                <button type="submit" class="btn btn-primary"><i class="material-icons">navigate_next</i> Continue</button>
             </form>
         </div>
     </div>

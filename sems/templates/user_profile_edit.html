@@ -8,12 +8,13 @@
 
 {% block content %}
 <div class="container">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card-box">
                         <h5>Personal info</h5><br/>
                         {% csrf_token %}
+                        {{ form.user }}
                         <div class="form-group">
                             {{ form.first_name }}
                         </div>
@@ -54,11 +55,12 @@
                             <small class="faded">Hold 'Control', or 'Command' on Mac and select</small>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
+                    <!-- <div class="col-md-6"> -->
                     <div class="card-box text-right">
-                        <input type="submit" class="btn btn-primary" value="SAVE">
+                        <button type="submit" class="btn btn-primary"><i class="material-icons">check</i>Save</button>
+                        <a class="no-float btn btn-danger" href="{% url 'student_detail' pk=student.pk%}"><i class="material-icons">chevron_left</i>Back</a>
                     </div>
+                <!-- </div> -->
                 </div>
             </div>
         </form>

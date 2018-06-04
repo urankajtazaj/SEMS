@@ -1,5 +1,5 @@
 from django import forms
-from .models import Upload, Student, New, Grade
+from .models import Upload, Student, New, Grade, Course, Program
 from django.contrib.auth.models import User
 
 # Upload files to specific course
@@ -15,12 +15,16 @@ class UploadFormFile(forms.ModelForm):
 
 # Add/Edit User profile
 class UpdateProfile(forms.ModelForm):
+
+    # course = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = Student
-        fields = ('first_name', 'last_name', 'email', 'course', 'program', 'country', 'city', 'picture', 'website', )
+        fields = ('first_name', 'last_name', 'email', 'course', 'program', 'country', 'city', 'picture', 'website', 'user', )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['user'].widget.attrs.update({'hidden': True})
         self.fields['first_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'First Name'})
         self.fields['last_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Last Name'})
         self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Email'})
@@ -36,9 +40,7 @@ class SignUpForm(forms.Form):
     username = forms.CharField()
     password1 = forms.CharField(widget = forms.PasswordInput())
     password2 = forms.CharField(widget = forms.PasswordInput())
-
-    username.widget.attrs.update({'class': 'form-control'})
-
+    
 
     def clean_username(self):
         try:
@@ -61,7 +63,7 @@ class SignUpForm(forms.Form):
 class SelectTeachersForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('first_name', )
+        fields = ('first_name', 'last_name', )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -91,8 +93,41 @@ class GradeStudentsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['student'].widget.attrs.update({'class': 'form-control'})
-        # self.fields['course'].widget.attrs.update({'class': 'form-control'})
         self.fields['grade'].widget.attrs.update({'class': 'form-control'})
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class CourseAddForm(forms.ModelForm):
+
+    class Meta:
+        model = Course
+        fields = '__all__'
+        widgets = {
+            'start_date': DateInput(),
+            'end_date': DateInput()
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['summary'].widget.attrs.update({'class': 'form-control'})
+        self.fields['program'].widget.attrs.update({'class': 'form-control'})
+        self.fields['start_date'].widget.attrs.update({'class': 'form-control'})
+        self.fields['end_date'].widget.attrs.update({'class': 'form-control'})
+        self.fields['credits'].widget.attrs.update({'class': 'form-control'})
+
+
+class ProgramForm(forms.ModelForm):
+    class Meta:
+        model = Program
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['summary'].widget.attrs.update({'class': 'form-control'})
 
 
 GradeStudentsFormSet = forms.modelformset_factory(Grade, form=GradeStudentsForm, extra=0)

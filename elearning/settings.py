@@ -100,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/students/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 SIGNUP_FORM_CLASS = 'seme.forms.SignUpForm'
 # AUTH_USER_MODEL = 'sems.User'

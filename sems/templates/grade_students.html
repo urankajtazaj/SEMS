@@ -14,23 +14,14 @@
                         {% for form in formset %}
                             <div class="row justify-content-center border-bottom input-styled">
                                 {{ form.id }}
-                                <div class="col-md-5 col-xs-12">
-                                    <label>
-                                        Student<br/>
-                                        {{ form.student }}
-                                    </label>
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="slight-bottom text-center">
-                                        <i class="no-abs material-icons">compare_arrows</i>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 col-xs-12">
-                                    <label>
-                                        Grade<br/>
-                                        {{ form.grade }}
-                                    </label>
-                                </div>
+                                <label class="col-md-6 col-6">
+                                    Student<br/>
+                                    {{ form.student }}
+                                </label>
+                                <label class="col-md-6 col-6">
+                                    Grade<br/>
+                                    {{ form.grade }}
+                                </label>
                             </div>
                         {% endfor %}
                     {% else %}

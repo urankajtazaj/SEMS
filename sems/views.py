@@ -215,6 +215,15 @@ def user_edit(request, pk):
 
             courses = request.POST.getlist('course')
 
+            is_super = request.POST.get('is_super')
+
+            if is_super:
+                usr = User.objects.get(pk=student.user.pk)
+                usr.is_admin = True
+                usr.is_staff = True
+                usr.is_superuser = True
+                usr.save()
+
             for c in courses:
                 grade = Grade()
                 usr = User.objects.get(pk=request.POST.get('user'))
@@ -234,7 +243,7 @@ def user_edit(request, pk):
             form.save()
             return redirect('students')
     else:
-        form = UpdateProfile(instance=instance)
+        form = UpdateProfile(instance=instance, initial=({'is_super': User.objects.get(pk=student.user.pk).is_superuser}))
 
     return render(
         request, 'user_profile_edit.html', {'form': form, 'student': student},

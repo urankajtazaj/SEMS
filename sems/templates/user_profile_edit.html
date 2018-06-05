@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             {{ form.website }}
-                        </div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -55,10 +55,20 @@
                             <small class="faded">Hold 'Control', or 'Command' on Mac and select</small>
                         </div>
                     </div>
+                    {% if user.is_superuser %}
+                    <div class="card-box">
+                        <div class="form-check">
+                            {{ form.is_super }} 
+                            <label class="form-check-label" for="id_is_super">
+                                Superuser
+                            </label>
+                        </div>
+                    </div>
+                    {% endif %}
                     <!-- <div class="col-md-6"> -->
-                    <div class="card-box text-right">
-                        <button type="submit" class="btn btn-primary"><i class="material-icons">check</i>Save</button>
-                        <a class="no-float btn btn-danger" href="{% url 'student_detail' pk=student.pk%}"><i class="material-icons">chevron_left</i>Back</a>
+                    <div class="empty-box">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a class="btn btn-danger" href="{% url 'student_detail' pk=student.pk%}">Back</a>
                     </div>
                 <!-- </div> -->
                 </div>

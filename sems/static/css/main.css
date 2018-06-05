@@ -32,7 +32,7 @@ nav {
 
 nav a {
     padding: 20px 10px;
-    color: rgba(0,0,0,.85);
+    color: #777;
     border-bottom: 2px solid transparent;
     transition: 100ms ease;
 }
@@ -43,7 +43,7 @@ nav a:hover:not(.active) {
     border-color: #ccc;
 }
 
-.active:hover {
+nav a.active:hover {
     color: #000;
 }
 
@@ -383,6 +383,15 @@ footer {
     margin-top: 50px;
 }
 
+footer a {
+    color: #ccc;
+    transition: 150ms ease;
+}
+
+footer a:hover {
+    color: #888;
+}
+
 .post {
     color: #000;
     margin-bottom: 25px;
@@ -458,7 +467,8 @@ footer {
 
 .grades {
     /*display: none;*/
-    min-width: 550px;
+    width: 550px;
+    max-width: 90%;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     max-height: 85vh;
     overflow: auto;
@@ -471,7 +481,7 @@ footer {
 }
 
 .abs-popup {
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     left: 0;
@@ -485,10 +495,9 @@ footer {
 }
 
 a.active {
+    color: #000;
     border-color: #444;
 }
-
-
 
 
 

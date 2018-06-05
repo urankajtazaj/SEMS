@@ -4,26 +4,31 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6 col-xs-12 card-box">
+        <div class="col-md-6 col-xs-12">
             <form method="post" enctype="multipart/form-data" >
-                {% csrf_token %}
-                <h5>Upload file</h5>
-                <br/>
-                <div class="form-group">
-                    File name<br/>
-                    {{ form.name }}
+                <div class="card-box">
+                    {% csrf_token %}
+                    <h5>Upload file</h5>
+                    <br/>
+                    <div class="form-group">
+                        File name<br/>
+                        {{ form.name }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.file }}
+                    </div>
+                    <div class="form-group">
+                        <select hidden name="course" required="" id="id_course">
+                            <option value="{{ course.pk }}" selected>{{ course }}</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    {{ form.file }}
+                <div class="empty-box">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <a class="btn btn-danger" href="{% url 'course_detail' pk=course.pk %}">Cancel</a>
                 </div>
-                <div class="form-group">
-                    <select hidden name="course" required="" id="id_course">
-                        <option value="{{ course.pk }}" selected>{{ course }}</option>
-                    </select>
-                </div>
-                <br/>
-                <button type="submit" class="btn btn-primary">Upload</button>
-                <a class="btn btn-danger" href="{% url 'course_detail' pk=course.pk %}">Cancel</a>
+                <hr>
+                <small class="faded">Valid files: <b>PDF, Word, Excel, Powepoint, Zip/Rar</b></small>
             </form>
         </div>
     </div>

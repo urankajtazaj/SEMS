@@ -4,24 +4,28 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6 col-xs-12 card-box">
-            <h4>Login info</h4><br/>
-            <form method="post" class="input-styled">
-            {% csrf_token %}
-                <div class="form-group">
-                    Username<br>
-                    {{ form.username }}
-                </div>
-                <div class="form-group">
-                    Password<br>
-                    {{ form.password1 }}
-                </div>
-                <div class="form-group">
-                    Repeat Password<br>
-                    {{ form.password2 }}
-                </div>
-                <br/>
+        <div class="col-md-6 col-xs-12">
+            <div class="card-box">
+                <h4>Login info</h4><br/>
+                <form method="post" class="input-styled">
+                {% csrf_token %}
+                    <div class="form-group">
+                        Username<br>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                        Password<br>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="form-group">
+                        Repeat Password<br>
+                        {{ form.password2 }}
+                    </div>
+                </form>
+            </div>
+            <div class="empty-box text-right">
                 <button type="submit" class="btn btn-primary"><i class="material-icons">navigate_next</i> Continue</button>
+            </div>
             </form>
         </div>
     </div>

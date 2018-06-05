@@ -19,6 +19,8 @@ class UpdateProfile(forms.ModelForm):
 
     # course = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), widget=forms.CheckboxSelectMultiple)
 
+    is_super = forms.BooleanField(required=False)
+
     class Meta:
         model = Student
         fields = ('first_name', 'last_name', 'email', 'course', 'program', 'country', 'city', 'picture', 'website', 'user', )

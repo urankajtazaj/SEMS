@@ -9,6 +9,7 @@ urlpatterns = [
     path('programs/edit/<int:pk>', views.program_edit, name='program_edit'),
     path('programs/delete/<int:pk>', views.program_delete, name='program_delete'),
     path('programs/<int:pk>/course/add/', views.course_add, name='course_add'),
+    path('programs/<int:p_pk>/course/delete/<int:pk>', views.course_delete, name='course_delete'),
     # path('programs/<int:pk>', views.program_detail, name='programs_detail'),
     path('programs/course/<int:pk>', views.course_detail, name='course_detail'),
     path('program/<int:pk>', views.program_detail, name='program_single'),

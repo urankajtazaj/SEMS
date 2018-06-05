@@ -95,7 +95,7 @@ class GradeStudentsForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['student'].widget.attrs.update({'class': 'form-control'})
+        self.fields['student'].widget.attrs.update({'class': 'form-control prev-default'})
         self.fields['grade'].widget.attrs.update({'class': 'form-control'})
 
 

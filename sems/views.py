@@ -148,6 +148,13 @@ def course_add(request, pk):
         return redirect('login')
 
 
+def course_delete(request, pk, p_pk):
+    course = Course.objects.get(pk=pk)
+    course.delete()
+
+    return redirect('program_single', pk=p_pk)
+
+
 def handle_file_upload(request, course_id):
     course = Course.objects.get(pk = course_id)
     if request.method == 'POST':

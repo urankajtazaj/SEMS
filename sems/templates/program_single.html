@@ -27,8 +27,8 @@
                         <a title="Edit" href="#" class="label sm-label"><i class="fas fa-pencil-alt"></i></a>
                         <span class="with-popup">
                             <div class="popup p-delete">
-                                <p>Are you sure you want to remove this program?</p>
-                                <a href="#">Delete</a>
+                                <p>Are you sure you want to remove this course?</p>
+                                <a href="{% url 'course_delete' p_pk=program.pk pk=course.pk %}">Delete</a>
                             </div>
                             <a title="Delete" class="label sm-label"><i class="fas fa-times"></i></a>
                         </span>

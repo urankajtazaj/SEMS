@@ -182,7 +182,7 @@ a.label:hover {
 .btn-third:hover, .empty-box a.btn-primary:hover, .empty-box button.btn-primary:hover, .card-box .btn-primary:hover, .btn-danger:hover {
     color: #222;
     background-color: #fff;
-    border-color: #222;
+    border-color: #666;
 }
 
 .btn-danger:hover {
@@ -499,6 +499,9 @@ a.active {
     border-color: #444;
 }
 
+td .fas {
+    color: #222;
+}
 
 
 

@@ -4,34 +4,35 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-xs-12">
-            <div class="card-box">
+        <div class="col-md-6 col-xs-12">
+            <form method="post">
+                <div class="card-box">
                 <h5>Grade Students in {{ course }}</h5><br/>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ formset.management_form }}
-                    {% if formset|length > 0 %}
-                        {% for form in formset %}
-                            <div class="row justify-content-center border-bottom input-styled">
-                                {{ form.id }}
-                                <label class="col-md-6 col-6">
-                                    Student<br/>
-                                    {{ form.student }}
-                                </label>
-                                <label class="col-md-6 col-6">
-                                    Grade<br/>
-                                    {{ form.grade }}
-                                </label>
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        <p class="text-danger">No students</p>
-                    {% endif %}
-                    <br/>
+                {% csrf_token %}
+                {{ formset.management_form }}
+                {% if formset|length > 0 %}
+                    {% for form in formset %}
+                        <div class="row justify-content-start border-bottom input-styled">
+                            {{ form.id }}
+                            <label class="col-md-8 col-6">
+                                <!-- Student<br/> -->
+                                {{ form.student }}
+                            </label>
+                            <label class="col-md-4 col-6">
+                                <!-- Grade<br/> -->
+                                {{ form.grade }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-danger">No students</p>
+                {% endif %}
+                </div>
+                <div class="empty-box">
                     <button type="submit" class="btn btn-primary">Save all</button>
                     <a class="btn btn-danger" href="{% url 'course_detail' pk=course.pk %}">Back</a>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

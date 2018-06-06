@@ -4,10 +4,10 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-xs-12">
-            <div class="card-box">
-                <h5>Add new post</h5><br/>
-                <form method="post" enctype="multipart/form-data">
+        <div class="col-md-7 col-xs-12">
+            <form method="post" enctype="multipart/form-data">
+                <div class="card-box">
+                    <h5>Add new post</h5><br/>
                     {% csrf_token %}
                     <div class="form-group">
                         Title<br/>
@@ -21,11 +21,12 @@
                         Cover Picture<br/>
                         {{ form.picture }}
                     </div>
-                    <hr/>
-                    <button type="submit" class="btn btn-primary"><i class="material-icons">add</i> Add Post</button>
-                    <a class="btn btn-danger" href="{% url 'home' %}"><i class="material-icons">close</i>Cancel</a>
-                </form>
-            </div>
+                </div>
+                <div class="empty-box">
+                    <button type="submit" class="btn btn-primary">Add Post</button>
+                    <a class="btn btn-danger" href="{% url 'home' %}">Cancel</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>

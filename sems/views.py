@@ -6,12 +6,13 @@ from .models import Course, Program, User, Upload, Student, New, Grade
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum, Avg, Max, Min
-from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsFormSet, CourseAddForm, ProgramForm
+from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm, CourseAddForm, ProgramForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 from django.forms import inlineformset_factory
 from django.forms import modelformset_factory
 from django.core.paginator import Paginator
+from django import forms
 
 
 def programs_view(request):
@@ -203,6 +204,8 @@ def user_add(request):
     else:
         form = UserCreationForm()
 
+    print(form.errors)
+
     if request.user.is_authenticated and request.user.is_superuser:
         return render(
             request, 'user_add.html', {'form': form},
@@ -348,6 +351,7 @@ def post_single(request, pk):
     else:
         return redirect('login')
 
+
 def post_add(request):
 
     if request.method == 'POST':
@@ -366,11 +370,14 @@ def post_add(request):
         return redirect('login')
 
 
+
 def grade_students(request, course_id):
     course = Course.objects.get(pk=course_id)
     curr_grades = Grade.objects.filter(course=course)
 
     queryset = Grade.objects.filter(course=course)
+
+    GradeStudentsFormSet = forms.modelformset_factory(Grade, form=GradeStudentsForm, extra=0)
 
     if request.method == 'POST':
         formset = GradeStudentsFormSet(request.POST, queryset=queryset)

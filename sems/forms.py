@@ -88,15 +88,21 @@ class AddPostForm(forms.ModelForm):
 
 class GradeStudentsForm(forms.ModelForm):
 
+    # student = forms.ChoiceField(choices=[(s.pk, s.first_name + ' ' + s.last_name) for s in Student.objects.all()])
+
     class Meta:
         model = Grade
         fields = ('student', 'grade', )
 
-
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['student'].widget.attrs.update({'class': 'form-control prev-default'})
+        super(GradeStudentsForm, self).__init__(*args, **kwargs)
+        # if course:
+            # self.fields['student'].widget = forms.ChoiceField(choices=[(s.pk, s.first_name) for s in Student.objects.all()])
+        # self.fields['student'].widget = forms.ChoiceField(queryset=Student.objects.values_list('pk', 'first_name'))
+        self.fields['student'].widget.attrs.update({'class': 'form-control'})
         self.fields['grade'].widget.attrs.update({'class': 'form-control'})
+
+
 
 
 class DateInput(forms.DateInput):
@@ -132,6 +138,3 @@ class ProgramForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
         self.fields['summary'].widget.attrs.update({'class': 'form-control'})
-
-
-GradeStudentsFormSet = forms.modelformset_factory(Grade, form=GradeStudentsForm, extra=0)

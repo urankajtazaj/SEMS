@@ -53,7 +53,8 @@ class Student(models.Model):
             return self.website
 
     def __str__(self):
-        return self.user.username
+        return self.first_name + ' ' + self.last_name
+
 
 
 def create_profile(sender, **kwargs):
@@ -83,7 +84,7 @@ class Grade(models.Model):
     grade = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.student.first_name + ' ' + self.student.last_name
+        return self.student.student.first_name + ' ' + self.student.student.last_name
 
 
 class Upload(models.Model):
@@ -109,3 +110,10 @@ class Upload(models.Model):
 
     def __str__(self):
         return str(self.file)[6:]
+
+
+
+def get_full_name(self):
+    return self.student.first_name + ' ' + self.student.last_name
+
+User.add_to_class("__str__", get_full_name)

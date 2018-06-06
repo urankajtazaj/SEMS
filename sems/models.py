@@ -114,6 +114,9 @@ class Upload(models.Model):
 
 
 def get_full_name(self):
-    return self.student.first_name + ' ' + self.student.last_name
+    if self.student.first_name:
+        return self.student.first_name + ' ' + self.student.last_name
+    else:
+        return self.username
 
 User.add_to_class("__str__", get_full_name)

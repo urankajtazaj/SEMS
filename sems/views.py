@@ -2,7 +2,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student, New, Grade
+from .models import Course, Program, User, Upload, Student, New, Grade, ProvimetMundshme
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum, Avg, Max, Min
@@ -477,4 +477,23 @@ def year_add(request):
 
     return render (
         request, 'year_add.html', {'form': form}, 
+    )
+
+
+def register_courses(request):
+
+    usr = request.user
+    level = usr.student.level
+    year = usr.student.viti
+    sem = usr.student.semester
+
+    instance = ProvimetMundshme.objects.values_list('course', flat=True).filter(level=level, year=year, semester=sem)
+
+    courses = dict()
+
+    for course in instance:
+        courses[Course.objects.get(pk=course)] = course
+
+    return render (
+        request, 'register_courses.html', {'course': courses}, 
     )

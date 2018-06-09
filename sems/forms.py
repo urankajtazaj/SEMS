@@ -1,5 +1,5 @@
 from django import forms
-from .models import Upload, Student, New, Grade, Course, Program
+from .models import Upload, Student, New, Grade, Course, Program, ProvimetMundshme
 from django.contrib.auth.models import User
 from django.forms import CharField
 
@@ -138,3 +138,22 @@ class ProgramForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
         self.fields['summary'].widget.attrs.update({'class': 'form-control'})
+
+
+class LendetForm(forms.ModelForm):
+
+    course = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=[(c.pk, c.name) for c in Course.objects.all()],
+    )
+
+    class Meta:
+        model = ProvimetMundshme
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['program'].widget.attrs.update({'class': 'form-control'})
+        self.fields['semester'].widget.attrs.update({'class': 'form-control'})
+        self.fields['year'].widget.attrs.update({'class': 'form-control'})
+        self.fields['level'].widget.attrs.update({'class': 'form-control'})

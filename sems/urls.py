@@ -31,4 +31,5 @@ urlpatterns = [
     path('course/<int:course_id>/grades/', views.grade_students, name='grade_students'),
     path('posts/', views.post_list, name='post_list'),
     re_path(r'^$', views.home_view, name='home'),
+    path('settings/year/add/', views.year_add, name='year_add'),
 ]

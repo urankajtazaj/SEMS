@@ -5,6 +5,33 @@ from datetime import datetime
 from django import forms
 from django.db.models.signals import post_save
 
+
+
+YEARS = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+    )
+
+SEMESTER = (
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),
+    (4, '4'),
+    (5, '5'),
+    (6, '6'),
+    (7, '7'),
+    (8, '8'),
+)
+
+LEVELS = (
+    ('1', 'Bachelor'),
+    ('2', 'Master'),
+)
+
+
+
 class Program(models.Model):
     name = models.CharField(max_length=150)
     summary = models.TextField(null=True, blank=True)
@@ -44,6 +71,9 @@ class Student(models.Model):
     city = models.CharField(max_length=100, null=True)
     course = models.ManyToManyField(Course, related_name='course')
     course_teacher = models.ManyToManyField(Course, related_name='course_teacher')
+    viti = models.IntegerField(choices=YEARS, default=1)
+    semester = models.IntegerField(choices=SEMESTER, default=1)
+    level = models.CharField(max_length=100, choices=LEVELS, default=1)
 
 
     def get_website(self):
@@ -123,21 +153,12 @@ User.add_to_class("__str__", get_full_name)
 
 
 class ProvimetMundshme(models.Model):
-    
-    YEARS = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-    )
-
-    SEMESTER = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-    )
-
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
-    year = models.CharField(max_length=2, choices=YEARS, default=1)
-    semester = models.CharField(max_length=2, choices=SEMESTER, default=1)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    year = models.IntegerField(choices=YEARS, default=1)
+    semester = models.IntegerField(choices=SEMESTER, default=1)
+    course = models.ManyToManyField(Course)
+    level = models.CharField(max_length=100, choices=LEVELS, default='Bachelor')
+
+
+    def __str__(self):
+        return self.level + ': ' + self.program.name + ', viti ' + str(self.year) + ', sem ' + str(self.semester)

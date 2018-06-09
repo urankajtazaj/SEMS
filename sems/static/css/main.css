@@ -503,7 +503,19 @@ td .fas {
     color: #222;
 }
 
+.overflow-auto {
+    overflow-y: auto;
+    max-height: 300px;
+}
 
+.overflow-auto ul {
+    list-style: none;
+    padding: 0;
+}
+
+.overflow-auto li {
+    padding: 2px 0;
+}
 
 
 

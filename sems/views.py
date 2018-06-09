@@ -6,7 +6,7 @@ from .models import Course, Program, User, Upload, Student, New, Grade
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum, Avg, Max, Min
-from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm, CourseAddForm, ProgramForm
+from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm, CourseAddForm, ProgramForm, LendetForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 from django.forms import inlineformset_factory
@@ -460,4 +460,21 @@ def grade_students(request, course_id):
 
     return render (
         request, 'grade_students.html', {'formset': formset, 'course': course},
+    )
+
+# ########################################################
+
+
+def year_add(request):
+
+    if request.method == 'POST':
+        form = LendetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = LendetForm()
+
+    return render (
+        request, 'year_add.html', {'form': form}, 
     )

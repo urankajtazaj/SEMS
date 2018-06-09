@@ -15,6 +15,8 @@ from django.core.paginator import Paginator
 from django import forms
 
 
+# ########################################################
+
 def programs_view(request):
     programs = Program.objects.all()
 
@@ -80,6 +82,8 @@ def program_detail(request, pk):
         return redirect('login')
 
 
+# ########################################################
+
 def students_view(request):
     students = Student.objects.all()
     programs = Program.objects.all()
@@ -116,6 +120,8 @@ def student_detail(request, pk):
     else:
         return redirect('login')
 
+
+# ########################################################
 
 def course_detail(request, pk):
     course = Course.objects.get(pk = pk)
@@ -156,6 +162,8 @@ def course_delete(request, pk, p_pk):
     return redirect('program_single', pk=p_pk)
 
 
+# ########################################################
+
 def handle_file_upload(request, course_id):
     course = Course.objects.get(pk = course_id)
     if request.method == 'POST':
@@ -186,13 +194,14 @@ def handle_file_edit(request, course_id, file_id):
     )
 
 
-# TODO Add this
 def handle_file_delete(request, course_id, file_id):
     file = Upload.objects.get(pk=file_id)
     file.delete()
 
     return redirect('course_detail', pk=course_id)
 
+
+# ########################################################
 
 def user_add(request):
     if request.method == 'POST':
@@ -212,6 +221,13 @@ def user_add(request):
         )
     else:
         return redirect('login')
+
+
+def user_delete(request, pk):
+    usr = get_object_or_404(User, pk=pk)
+    usr.delete()
+
+    return redirect('students')
 
 
 def user_edit(request, pk):
@@ -259,6 +275,8 @@ def user_edit(request, pk):
         request, 'user_profile_edit.html', {'form': form, 'student': student},
     )
 
+# ########################################################
+
 
 def select_teacher(request, course_id):
     students = Student.objects.all()
@@ -280,6 +298,7 @@ def select_teacher(request, course_id):
         request, 'select_teacher.html', {'students': students, 'course_id': course_id, 'teachers': curr_teachers},
     )
 
+# ########################################################
 
 
 def confirm_select_teacher(request, course_id, student_id):
@@ -302,6 +321,7 @@ def confirm_delete_teacher(request, course_id, student_id):
 
     return redirect('add_teacher', course_id=course_id)
 
+# ########################################################
 
 
 # AJAX Call
@@ -324,6 +344,8 @@ def home_view(request):
         )
     else:
         return redirect('login')
+
+# ########################################################
 
 
 def post_list(request):
@@ -389,12 +411,13 @@ def post_edit(request, pk):
         return redirect('login')
 
 
-
 def post_delete(request, pk):
-    post = New.objects.get(pk=pk)
+    post = get_object_or_404(New, pk=pk)
     post.delete()
 
     return redirect('home')
+
+# ########################################################
 
 
 def grade_students(request, course_id):
@@ -415,7 +438,6 @@ def grade_students(request, course_id):
         else:
             print(formset.errors)
     else:
-        # queryset = Student.objects.filter(course=course)
         formset = GradeStudentsFormSet(queryset=queryset)
 
     return render (

@@ -120,7 +120,6 @@ def get_full_name(self):
         return self.username
 
 User.add_to_class("__str__", get_full_name)
-<<<<<<< HEAD
 
 
 class ProvimetMundshme(models.Model):
@@ -142,5 +141,3 @@ class ProvimetMundshme(models.Model):
     year = models.CharField(max_length=2, choices=YEARS, default=1)
     semester = models.CharField(max_length=2, choices=SEMESTER, default=1)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-=======
->>>>>>> d5313e1651f5d445e25b59898518b8dcfef7bd7d

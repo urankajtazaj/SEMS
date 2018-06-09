@@ -120,3 +120,24 @@ def get_full_name(self):
         return self.username
 
 User.add_to_class("__str__", get_full_name)
+
+
+class ProvimetMundshme(models.Model):
+    
+    YEARS = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+    )
+
+    SEMESTER = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+    )
+
+    program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    year = models.CharField(max_length=2, choices=YEARS, default=1)
+    semester = models.CharField(max_length=2, choices=SEMESTER, default=1)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)

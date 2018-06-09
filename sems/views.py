@@ -370,6 +370,32 @@ def post_add(request):
         return redirect('login')
 
 
+def post_edit(request, pk):
+    post = New.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = AddPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AddPostForm(instance=post)
+
+    if request.user.is_authenticated and request.user.is_superuser:
+        return render (
+            request, 'add_new_post.html', {'form': form},
+        )
+    else:
+        return redirect('login')
+
+
+
+def post_delete(request, pk):
+    post = New.objects.get(pk=pk)
+    post.delete()
+
+    return redirect('home')
+
 
 def grade_students(request, course_id):
     course = Course.objects.get(pk=course_id)

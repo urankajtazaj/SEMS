@@ -24,7 +24,7 @@
                 <td class="text-right"><b>{{ course.credits }}</b></td>
                 {% if user.is_superuser %}
                     <td style="max-width: 10px" class="text-right">
-                        <a title="Edit" href="#" class="label sm-label"><i class="fas fa-pencil-alt"></i></a>
+                        <a title="Edit" href="{% url 'course_edit' pk=course.pk %}" class="label sm-label"><i class="fas fa-pencil-alt"></i></a>
                         <span class="with-popup">
                             <div class="popup p-delete">
                                 <p>Are you sure you want to remove this course?</p>

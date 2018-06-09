@@ -155,6 +155,24 @@ def course_add(request, pk):
         return redirect('login')
 
 
+def course_edit(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    if request.method == 'POST':
+        form = CourseAddForm(request.POST, instance=course)
+        if form.is_valid():
+            form.save()
+            return redirect('program_single', pk=request.POST.get('program'))
+    else:
+        form = CourseAddForm(instance=course)
+
+    if request.user.is_authenticated and request.user.is_superuser:
+        return render (
+            request, 'course_add.html', {'form': form, 'program': pk},
+        )
+    else:
+        return redirect('login')
+
+
 def course_delete(request, pk, p_pk):
     course = Course.objects.get(pk=pk)
     course.delete()

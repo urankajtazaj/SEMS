@@ -53,8 +53,9 @@
                         {% endif %}
                     </div>
                     <div class="col-md-9 col-xs-12">
-                        <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+                        <h2>{{ student.first_name }} {{ student.last_name }}<small class="faded"> &mdash; {{ student.get_level_display }}, {{ student.viti }}</small></h2>
                         <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary"><span class="label">{{ student.program }}</span></a>
+                        <!-- <br>Semestri: {{ student.semester }}<br> -->
                         <hr/>
                         <!--<br/>-->
                         <div><span class="sm-label label text-primary"><i class="fas fa-map-marker"></i></span> {{ student.city }}, {{ student.country }}</div><br/>

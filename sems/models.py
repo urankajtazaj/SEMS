@@ -159,6 +159,19 @@ class ProvimetMundshme(models.Model):
     course = models.ManyToManyField(Course)
     level = models.CharField(max_length=100, choices=LEVELS, default='Bachelor')
 
-
     def __str__(self):
         return self.level + ': ' + self.program.name + ', viti ' + str(self.year) + ', sem ' + str(self.semester)
+
+
+class RegisteredCourse(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    registered = models.BooleanField()
+    featured = models.BooleanField()
+
+    def get_course(self):
+        return self.course
+
+    def __str__(self):
+        return str(self.user) + ', ' + self.course.name

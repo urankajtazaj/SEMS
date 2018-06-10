@@ -2,7 +2,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student, New, Grade, ProvimetMundshme
+from .models import Course, Program, User, Upload, Student, New, Grade, ProvimetMundshme, RegisteredCourse
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum, Avg, Max, Min
@@ -13,8 +13,17 @@ from django.forms import inlineformset_factory
 from django.forms import modelformset_factory
 from django.core.paginator import Paginator
 from django import forms
+from django.template.defaulttags import register
 
 
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+
+@register.filter
+def sub(value, arg):
+    return value - arg
 # ########################################################
 
 def programs_view(request):
@@ -482,18 +491,46 @@ def year_add(request):
 
 def register_courses(request):
 
+    limit = 5
+
     usr = request.user
     level = usr.student.level
     year = usr.student.viti
     sem = usr.student.semester
 
+    registered = RegisteredCourse.objects.values_list('pk', 'course').filter(user=usr, registered=True, program=request.user.student.program)
     instance = ProvimetMundshme.objects.values_list('course', flat=True).filter(level=level, year=year, semester=sem)
 
-    courses = dict()
+    courses = list()
+    reg_courses = dict()
+
+    for pk in registered:
+        reg_courses[(Course.objects.get(pk=pk[1]))] = pk[0]
 
     for course in instance:
-        courses[Course.objects.get(pk=course)] = course
+        courses.append(Course.objects.get(pk=course))
 
     return render (
-        request, 'register_courses.html', {'course': courses}, 
+        request, 'register_courses.html', {'course': courses, 'reg_courses': reg_courses, 'max_reached': int((len(registered) == limit)), 'limit': limit}, 
     )
+
+
+def register_course(request, pk, max_reached):
+    if not max_reached:
+        regs = RegisteredCourse()
+        regs.user = request.user
+        regs.program = request.user.student.program
+        regs.course = Course.objects.get(pk=pk)
+        regs.registered = True
+        regs.featured = False
+
+        regs.save()
+
+    return redirect('register_courses')
+
+
+def unregister_course(request, pk):
+    regs = RegisteredCourse.objects.get(pk=pk)
+    regs.delete()
+
+    return redirect('register_courses')

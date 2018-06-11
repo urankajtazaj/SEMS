@@ -484,7 +484,24 @@ def year_add(request):
     else:
         form = LendetForm()
 
-    print(form.errors)
+    return render (
+        request, 'year_add.html', {'form': form}, 
+    )
+
+
+def year_edit(request, pk):
+    current = ProvimetMundshme.objects.get(pk=pk)
+    courses = ProvimetMundshme.objects.values_list('course', flat=True).filter(pk=pk)
+
+    print(courses)
+
+    if request.method == 'POST':
+        form = LendetForm(request.POST, instance=current)
+        if form.is_valid():
+            form.save()
+            return redirect('current_years')
+    else:
+        form = LendetForm(instance=current, initial={'course': list(courses)})
 
     return render (
         request, 'year_add.html', {'form': form}, 

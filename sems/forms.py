@@ -142,11 +142,6 @@ class ProgramForm(forms.ModelForm):
 
 class LendetForm(forms.ModelForm):
 
-    course = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        choices=[(c.pk, c.name) for c in Course.objects.all()],
-    )
-
     class Meta:
         model = ProvimetMundshme
         fields = '__all__'
@@ -157,3 +152,9 @@ class LendetForm(forms.ModelForm):
         self.fields['semester'].widget.attrs.update({'class': 'form-control'})
         self.fields['year'].widget.attrs.update({'class': 'form-control'})
         self.fields['level'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['course'].widget = forms.CheckboxSelectMultiple
+
+    course = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=[(c.pk, c.name) for c in Course.objects.all()],
+    )

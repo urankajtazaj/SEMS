@@ -499,7 +499,7 @@ def register_courses(request):
     sem = usr.student.semester
 
     registered = RegisteredCourse.objects.values_list('pk', 'course').filter(user=usr, registered=True, program=request.user.student.program)
-    instance = ProvimetMundshme.objects.values_list('course', flat=True).filter(level=level, year=year, semester=sem)
+    instance = ProvimetMundshme.objects.values_list('course', flat=True).filter(level=level, year=year, semester=sem, program=request.user.student.program)
 
     courses = list()
     reg_courses = dict()

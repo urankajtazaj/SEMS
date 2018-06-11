@@ -153,7 +153,7 @@ class LendetForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['program'].widget.attrs.update({'class': 'form-control'})
+        self.fields['program'].widget.attrs.update({'class': 'form-control', 'data-type': 'program-listener'})
         self.fields['semester'].widget.attrs.update({'class': 'form-control'})
         self.fields['year'].widget.attrs.update({'class': 'form-control'})
         self.fields['level'].widget.attrs.update({'class': 'form-control'})

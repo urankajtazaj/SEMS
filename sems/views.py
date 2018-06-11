@@ -484,8 +484,18 @@ def year_add(request):
     else:
         form = LendetForm()
 
+    print(form.errors)
+
     return render (
         request, 'year_add.html', {'form': form}, 
+    )
+
+
+def current_years(request):
+    years = ProvimetMundshme.objects.all()
+
+    return render (
+        request, 'current_years.html', {'years': years}, 
     )
 
 

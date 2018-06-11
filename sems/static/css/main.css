@@ -77,6 +77,10 @@ nav a.active:hover {
     margin-bottom: 40px;
 }
 
+.card-box h6 a {
+    z-index: 3;
+}
+
 .empty-box {
     border-color: transparent;
     background-color: transparent;

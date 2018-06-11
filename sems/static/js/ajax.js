@@ -19,8 +19,8 @@ $('#id_program').change(function() {
             } else {
                 $(courses).children('li').remove();
                 $(data).each(function(i, el) {
-                    $(courses).append('<li><label for="id_course_' + i + '">' +
-                                    '<input type="checkbox" name="course" value="' + el.pk + '" id="id_course_' + i + '"> ' +
+                    $(courses).append('<li><label for="id_course_' + (i+1) + '">' +
+                                    '<input type="checkbox" name="course" value="' + el.pk + '" id="id_course_' + (i+1) + '"> ' +
                                      el.name +
                                  '</label></li>');
                 });

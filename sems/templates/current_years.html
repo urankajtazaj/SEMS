@@ -1,0 +1,26 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		{% for year in years %}
+		<div class="col-md-6 col-xs-12">
+			<div class="card-box">
+			<h6>{{ year.program }}<a href="#" class="float-right btn-sm btn btn-third">Edit</a></h6>
+			<span class="faded">Level: </span>{{ year.get_level_display }}<br>
+			<span class="faded">Year: </span>{{ year.year }}<br>
+			<span class="faded">Semester: </span>{{ year.semester }}
+			<hr>
+			<b>Courses</b><br><br>
+			<div class="overflow-auto">
+				{% for course in year.course.all %}
+					<a href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a><br>
+				{% endfor %}
+			</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

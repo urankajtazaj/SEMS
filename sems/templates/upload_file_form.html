@@ -8,8 +8,7 @@
             <form method="post" enctype="multipart/form-data" >
                 <div class="card-box">
                     {% csrf_token %}
-                    <h5>Upload file</h5>
-                    <br/>
+                    <h6>Upload file</h6>
                     <div class="form-group">
                         File name<br/>
                         {{ form.name }}

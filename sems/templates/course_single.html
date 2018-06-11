@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            <div class="card-box">
+            <div class="no-shade card-box">
                 <h2>{{ course }}</h2>
                 <p>{{ course.summary }}</p>
                 {% if teachers %}
@@ -77,7 +77,7 @@
             {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                     <div class="card-box">
-                        <h5>Admin</h5>
+                        <h6>Admin</h6>
                         <ul class="list-unstyled">
                             <li><i class="material-icons">person_outline</i> <a href="{% url 'add_teacher' course_id=course.pk %}">Edit teachers</a></li>
                             <li><i class="material-icons">attachment</i> <a href="{% url 'upload_file_view' course_id=course.pk %}" >Upload new file</a></li>
@@ -88,7 +88,7 @@
                     {% for u in usrs %}
                     {% if u == user %}
                     <div class="card-box">
-                        <h5>Admin</h5>
+                        <h6>Admin</h6>
                         <ul class="list-unstyled">
                             <li><i class="material-icons">attachment</i> <a href="{% url 'upload_file_view' course_id=course.pk %}" >Upload new file</a></li>
                             <li><i class="material-icons">done</i> <a href="{% url 'grade_students' course_id=course.pk %}" >Grade Students</a></li>

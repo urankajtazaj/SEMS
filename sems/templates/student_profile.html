@@ -5,7 +5,7 @@
 
 {% if user.is_superuser or user.student == student %}
 <div class="abs-popup">
-    <div class="card-box grades">
+    <div class="no-shade card-box grades">
         <!-- <h5>Success</h5><br/> -->
         <a onclick="toggleGrades()" class="toggleBtn btn btn-danger"><i class="fas fa-times"></i> Close</a><br><br>
         <table>
@@ -36,7 +36,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <div class="card-box">
+            <div class="no-shade card-box">
                 <div class="row">
                     <div class="col-md-3 col-xs-12 text-center">
                         <div class="thumb img-round">
@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-4 col-xs-12">
             <div class="card-box">
-                <h5>Overview</h5><br/>
+                <h6>Overview</h6>
                 <table>
                     <tbody>
                         <tr>

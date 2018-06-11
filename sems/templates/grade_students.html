@@ -7,7 +7,7 @@
         <div class="col-md-6 col-xs-12">
             <form method="post">
                 <div class="card-box">
-                <h5>Grade Students in {{ course }}</h5><br/>
+                <h6>Grade Students in {{ course }}</h6>
                 {% csrf_token %}
                 {{ formset.management_form }}
                 {% if formset|length > 0 %}

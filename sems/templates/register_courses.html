@@ -1,0 +1,81 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<div class="card-box">			
+				<h6>Register Courses</h6><br>
+				<table>
+					<thead>
+						<th>Course name</th>
+						{% if not max_reached %}
+						<th></th>
+						{% endif %}
+					</thead>
+					<tbody>
+						{% for c in course %}
+							{% if c not in reg_courses %}
+							<tr>
+								<td>{{ c }}</td>
+								{% if not max_reached %}
+								<td class="text-right"><a href="{% url 'reg_course' pk=c.pk max_reached=max_reached %}" onclick="reg_clicked(this)" class="btn-sm btn btn-third">Register</a></td>
+								{% endif %}
+							</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+				
+				<br><br>
+				{% with len=reg_courses|length %}
+				<p>You can add max of {{ limit }} ({{ limit|sub:len }} remaining)</p>
+				{% endwith %}
+
+				{% if max_reached %}
+				<p class="text-danger">Maximum number reached</p>
+				{% endif %}
+
+			</div>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<div class="card-box">			
+				<h6>Registered Courses</h6><br>
+				<table>
+					<thead>
+						<th>Course name</th>
+						<th></th>
+					</thead>
+					<tbody>
+						{% for crs in reg_courses %}
+						<tr>
+							<td>{{ crs }}</td>
+							<td class="text-right"><a href="{% url 'unreg_course' pk=reg_courses|get_item:crs %}" onclick="unreg_clicked(this)" class="btn-sm btn btn-danger">Remove</a></td>
+						</tr>
+						{% endfor %}
+					</tbody> 
+				</table>
+			</div>
+			<div class="empty-box">
+				<a href="#" class="btn btn-primary">Paraqit provimet</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+	function reg_clicked(el) {
+		$(el).text("Registering");
+		$('a.btn').css('opacity', '0.5');
+	}
+
+	function unreg_clicked(el) {
+		$(el).text("Removing");
+		$('a.btn').css('opacity', '0.5');
+	}
+
+</script>
+{% endblock %}

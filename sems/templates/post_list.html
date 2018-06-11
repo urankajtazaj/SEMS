@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		{% load static %}
+		{% for post in posts %}
+		<div class="col-md-4 col-xs-12">
+			<a href="{% url 'post_single' pk=post.pk %}" class="card-box post">
+				<div class="post-img">
+					<img src="{% static 'uploads/' %}{% if post.picture %}{{ post.picture }}{% else %}no-img.png{% endif %}">
+				</div>
+				<h6>{{ post.title }}</h6>
+				<small>{{ post.content|striptags|truncatewords:20 }}</small>
+			</a>
+		</div>
+		{% endfor %}
+
+		<div class="col-md-12 text-center">
+
+			{% if posts.paginator.page_range|length > 1 %}
+			<div class="pagination">
+				<a href="?page=1">&laquo;</a>
+				{% for i in posts.paginator.page_range %}
+					{% if i == posts.number %}
+						<a href="?page={{ i }}"><b>{{ i }}</b></a>
+					{% else %}
+						<a href="?page={{ i }}">{{ i }}</a>
+					{% endif %}
+				{% endfor %}
+				<a href="?page={{ posts.paginator.num_pages }}">&raquo;</a>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

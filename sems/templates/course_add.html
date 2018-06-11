@@ -1,0 +1,25 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-8 col-xs-12">
+			<div class="card-box">
+				<h5>Add Course</h5><br/>
+				<form method="post">{% csrf_token %}
+					{% for field in form %}
+						<div class="form-group">
+							{{ field.label }}<br/>
+							{{ field }}
+						</div>
+					{% endfor %}
+					<br/>
+					<button type="submit" name="submit" class="btn btn-primary"><i class="material-icons">add</i> Add Course</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

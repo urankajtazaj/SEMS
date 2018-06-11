@@ -1,0 +1,27 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-8 col-xs-12">
+			<form method="post">
+				<div class="card-box">
+					{% csrf_token %}
+					<div class="form-group">
+						Program name<br>
+						{{ form.name }}
+					</div>
+					<div class="form-group">
+						Summary<br>
+						{{ form.summary }}
+					</div>
+				</div>
+				<div class="empty-box">
+					<button class="btn btn-primary" type="submit">Save Program</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

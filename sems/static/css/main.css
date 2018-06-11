@@ -58,6 +58,15 @@ nav a.active:hover {
     border: 1px solid #eee;
     background-color: #fff;
 }
+/*
+.card-box::after {
+    width: 100%;
+    height: 70px;
+    background-color: #ccc;
+    position: absolute;
+    left: 0;
+    top: 0;
+}*/
 
 .empty-box {
     border-color: transparent;

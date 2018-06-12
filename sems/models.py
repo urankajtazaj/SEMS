@@ -30,6 +30,10 @@ LEVELS = (
     ('2', 'Master'),
 )
 
+TYPES = (
+    ('o', 'Obligative'),
+    ('z', 'Zgjedhore'),
+)
 
 
 class Program(models.Model):
@@ -47,6 +51,7 @@ class Course(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     credits = models.IntegerField(null=True, default=0)
+    # course_type = models.BooleanField()
 
     def __str__(self):
         return self.name

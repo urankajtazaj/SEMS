@@ -3,23 +3,76 @@
 
 {% block content %}
 <div class="container">
-	<div class="row justify-content-center">
-		<div class="col-md-8 col-xs-12">
-			<div class="card-box">
-				<h6>Add Course</h6><br/>
-				<form method="post">{% csrf_token %}
-					{% for field in form %}
+	<form method="post">{% csrf_token %}
+		<div class="row justify-content-center">
+			<div class="col-md-8 col-xs-12">
+				<div class="card-box">
+					<h6>Add Course</h6>
+					<div class="form-group">
+						Course name<br>
+						{{ form.name }}
+					</div>
+					<div class="form-group">
+						Summary<br>
+						{{ form.summary }}
+					</div>
+					<div class="form-group">
+						Credits<br>
+						{{ form.credits }}
+					</div>
+				</div>
+				<div class="empty-box">
+					<button type="submit" name="submit" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		{% url 'course_add' pk=program as add_course %}
+			<div class="col-md-4 col-xs-12">
+				{% if request.path == add_course %}
+				<div class="card-box">
+					<h6>Teacher</h6>
+					<div id="msg" role="alert">
+
+					</div>
+					<form method="post">
+						{% csrf_token %}
 						<div class="form-group">
-							{{ field.label }}<br/>
-							{{ field }}
+							<select id="user_1" name="user_1" class="form-control">	
+								<option value="0">None</option>	
+								{% for u in users %}
+								<option value="{{ u.pk }}">{{ u }}</option>
+								{% endfor %}
+							</select>
 						</div>
-					{% endfor %}
-					<br/>
-					<button type="submit" name="submit" class="btn btn-primary"><i class="material-icons">add</i> Add Course</button>
-				</form>
+						<small class="faded">You can add more teachers later</small>
+					</form>
+				</div>
+				{% endif %}
+				<div class="card-box">
+					<h6>Program</h6>
+					<div class="form-group">
+						{{ form.program }}
+					</div>
+				</div>
+				<div class="card-box">
+					<h6>Date</h6>
+					<div class="form-group">
+						Start<br>
+						{{ form.start_date }}
+					</div>
+					<div class="form-group">
+						End<br>
+						{{ form.end_date }}
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	<!-- </div> -->
+	</form>
+</div>	
+{% endblock %}
 
+
+{% block javascript %}
+{% load static %}
+<script src="{% static 'js/ajax.js' %}"></script>
 {% endblock %}

@@ -79,7 +79,12 @@ def program_edit(request, pk):
 def program_detail(request, pk):
     program = Program.objects.get(pk=pk)
     courses = Course.objects.filter(program_id=pk)
-    credits = Course.objects.aggregate(Sum('credits'))
+    # credits = Course.objects.aggregate(Sum('credits'))
+
+    paginator = Paginator(courses, 10)
+    page = request.GET.get('page')
+
+    courses = paginator.get_page(page)
 
     if request.user.is_authenticated:
         return render(
@@ -147,24 +152,39 @@ def course_detail(request, pk):
         return redirect('login')
 
 
+
+def update_teacher(pk_t1):
+    pk_t1 = int(pk_t1)
+    if pk_t1 > 0:
+        course = Course.objects.latest('pk')
+        t1 = User.objects.get(pk=pk_t1)
+
+        if not User.objects.filter(student__course_teacher__in=[course], pk=pk_t1).exists():
+            t1.student.course_teacher.add(course)
+
+
+
 def course_add(request, pk):
+    users = User.objects.all()
     if request.method == 'POST':
         form = CourseAddForm(request.POST)
         if form.is_valid():
             form.save()
+            update_teacher(request.POST.get('user_1'))
             return redirect('program_single', pk=request.POST.get('program'))
     else:
         form = CourseAddForm(initial={'program': Program.objects.get(pk=pk)})
 
     if request.user.is_authenticated and request.user.is_superuser:
         return render (
-            request, 'course_add.html', {'form': form, 'program': pk},
+            request, 'course_add.html', {'form': form, 'program': pk, 'users': users},
         )
     else:
         return redirect('login')
 
 
 def course_edit(request, pk):
+    users = User.objects.all()
     course = get_object_or_404(Course, pk=pk)
     if request.method == 'POST':
         form = CourseAddForm(request.POST, instance=course)
@@ -176,7 +196,7 @@ def course_edit(request, pk):
 
     if request.user.is_authenticated and request.user.is_superuser:
         return render (
-            request, 'course_add.html', {'form': form, 'program': pk},
+            request, 'course_add.html', {'form': form, 'program': pk, 'users': users, 'course': pk},
         )
     else:
         return redirect('login')
@@ -480,7 +500,7 @@ def year_add(request):
         form = LendetForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('current_years')
     else:
         form = LendetForm()
 
@@ -492,8 +512,6 @@ def year_add(request):
 def year_edit(request, pk):
     current = ProvimetMundshme.objects.get(pk=pk)
     courses = ProvimetMundshme.objects.values_list('course', flat=True).filter(pk=pk)
-
-    print(courses)
 
     if request.method == 'POST':
         form = LendetForm(request.POST, instance=current)
@@ -509,7 +527,7 @@ def year_edit(request, pk):
 
 
 def current_years(request):
-    years = ProvimetMundshme.objects.all()
+    years = ProvimetMundshme.objects.all().order_by('program__name')
 
     return render (
         request, 'current_years.html', {'years': years}, 
@@ -518,7 +536,7 @@ def current_years(request):
 
 def register_courses(request):
 
-    limit = 5
+    limit = 6
 
     usr = request.user
     level = usr.student.level

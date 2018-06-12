@@ -32,3 +32,30 @@ $('#id_program').change(function() {
         }
     });
 });
+
+
+$("#update_teacher_btn").click(function() {
+    var val1 = $("#user_1").val();
+    var c = $("#course").val();
+
+    console.log(c + ": " + val1);
+
+    $.ajax({
+        url: '/ajax/update/teacher/',
+        type: 'get',
+        data: {
+            'c_pk': c,
+            'pk_t1': val1,
+        },
+        dataType: 'json',
+        success: function(data) {
+            $("#msg").addClass('alert alert-success');
+            $("#msg").text('Teacher Updated');
+        },
+        error : function(xhr,errmsg,err) {
+            $('#results').html(+errmsg);
+            console.log(xhr.status + ": " + xhr.responseText);
+        }
+    });
+
+});

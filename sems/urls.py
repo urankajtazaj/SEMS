@@ -37,4 +37,6 @@ urlpatterns = [
     path('courses/register/', views.register_courses, name='register_courses'),
     path('register/course/<int:pk>/max/<int:max_reached>', views.register_course, name='reg_course'),
     path('register/course/remove/<int:pk>', views.unregister_course, name='unreg_course'),
+
+    # path('ajax/update/teacher/', views.update_teacher, name='update_teacher'),
 ]

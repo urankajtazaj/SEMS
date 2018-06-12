@@ -58,6 +58,7 @@ nav a.active:hover {
     position: relative;
     background-color: #fff;
     /*z-index: 1;*/
+    position: relative;
     overflow: hidden;
 }
 
@@ -420,20 +421,31 @@ footer a:hover {
 }
 
 .pagination {
-    margin-top: 25px;
+    background-color: #f9f9f9;    
+    display: inline-flex;
     justify-content: center;
+    border-radius: 100px;
+    position: absolute;
+    content: ' ';
+    left: 50%;
+    bottom: 10;
+    transform: translateX(-50%);
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #eee;
 }
 
 .pagination a {
     padding: 5px 11px;
-    color: #000;
-    background-color: #fff;
-    border-bottom: 2px solid #eee;
+    color: #888;
+    /*background-color: #fff;*/
+    /*border-bottom: 2px solid #eee;*/
     /*border: 1px solid #eee;*/
 }
 
-.pagination a b {
+.pagination a b, .pagination a:hover {
     color: #6B6DFB;
+    color: #000;
 }
 
 .with-popup {

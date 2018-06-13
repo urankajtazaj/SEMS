@@ -64,12 +64,17 @@
                         <div><span class="sm-label label text-primary"><i class="fas fa-link"></i></span> <a href="{{ student.get_website }}" title="{{ student.get_website }}" target="_blank">{{ student.website }}</a> </div>
                         {% endif %}
                         <hr/>
-                        <h4>Enrolled Courses</h4>
+                        <h5>Enrolled Courses</h5>
                         {% if student.course.all %}
-                            {% for course in student.course.all %}
-                            <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
-                            {% endfor %}
-                        {% else %}
+                            <div class="hide">
+                                <div class="white-shadow">
+                                    <div onclick="showCourses(this)" id="trigger">Expand <i class="fas fa-angle-down"></i></div>
+                                </div>
+                                {% for course in student.course.all %}
+                                <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
+                                {% endfor %}
+                            </div>
+                            {% else %}
                         <b class="text-danger">No courses</b>
                         {% endif %}
                     </div>
@@ -94,11 +99,11 @@
                         </tr>
                         <tr>
                             <td>Highest Grade</td>
-                            <td>{{ details.grade__max }}</td>
+                            <td>{% if not details.grade__max %}&mdash;{% else %}{{ details.grade__max }}{% endif %}</td>
                         </tr>
                         <tr>
                             <td>Lowest Grade</td>
-                            <td>{{ details.grade__min }}</td>
+                            <td>{% if not details.grade__min %}&mdash;{% else %}{{ details.grade__min }}{% endif %}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -112,6 +117,8 @@
 {% block javascript %}
 <script>
     var visible = false;
+    var collapsed = true;
+
     function toggleGrades() {
         if (visible) {
             $('.abs-popup').hide()
@@ -120,6 +127,21 @@
             $('.abs-popup').css('display', 'flex');
         }
         visible = !visible;
+    }
+
+    function showCourses(btn) {
+        var btn = $(btn);
+
+        if (collapsed) {
+            btn.html("Collapse <i class=\"fas fa-angle-up\"></i>");
+            $(".hide").css("max-height", "unset");
+            $(".white-shadow").css("background", "unset");
+        } else {
+            btn.html("Expand <i class=\"fas fa-angle-down\"></i>");
+            $(".hide").css("max-height", "150");
+            $(".white-shadow").css("background", "linear-gradient(transparent 50%, rgba(255,255,255,.8) 80%)");
+        }
+        collapsed = !collapsed;
     }
 </script>
 {% endblock %}

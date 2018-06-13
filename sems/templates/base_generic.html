@@ -33,8 +33,22 @@
                     {% else %}
                         <a href="{% url 'current_years' %}">Current Years</a>
                         <a href="{% url 'year_add' %}">Add Year</a>
-                        <a href="{% url 'student_detail' pk=user.student.pk %}" {% if request.path == sd %} class="active"{% endif %}>{{ user.student.first_name }}</a>
-                    <a href="{% url 'logout' %}">Logout</a>
+                        <div class="dd">
+                            <a href="{% url 'student_detail' pk=user.student.pk %}" {% if request.path == sd %} class="active"{% endif %}>{{ user.student.first_name }}</a>
+                            <div class="dd-menu">
+                                <ul>
+                                    <a href="{% url 'student_detail' pk=user.student.pk %}">
+                                        <li>Profile</li>
+                                    </a>
+                                    <a href="#">
+                                        <li>Admin panel</li>
+                                    </a>
+                                    <a class="text-danger" href="{% url 'logout' %}">
+                                        <li>Logout</li>
+                                    </a>
+                                </ul>
+                            </div>                            
+                        </div>
                     {% endif %}
                     </div>
                 </div>

@@ -66,14 +66,18 @@
                         <hr/>
                         <h5>Enrolled Courses</h5>
                         {% if student.course.all %}
+                            {% if student.course.all|length > 10 %}
                             <div class="hide">
                                 <div class="white-shadow">
                                     <div onclick="showCourses(this)" id="trigger">Expand <i class="fas fa-angle-down"></i></div>
                                 </div>
+                            {% endif %}
                                 {% for course in student.course.all %}
                                 <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
                                 {% endfor %}
+                            {% if student.course.all|length > 10 %}
                             </div>
+                            {% endif %}
                             {% else %}
                         <b class="text-danger">No courses</b>
                         {% endif %}
@@ -135,11 +139,11 @@
         if (collapsed) {
             btn.html("Collapse <i class=\"fas fa-angle-up\"></i>");
             $(".hide").css("max-height", "unset");
-            $(".white-shadow").css("background", "unset");
+            $(".white-shadow").css({"background": "unset", "z-index": "0"});
         } else {
             btn.html("Expand <i class=\"fas fa-angle-down\"></i>");
             $(".hide").css("max-height", "150");
-            $(".white-shadow").css("background", "linear-gradient(transparent 50%, rgba(255,255,255,.8) 80%)");
+            $(".white-shadow").css({"background": "linear-gradient(transparent 50%, rgba(255,255,255,.8) 80%)", "z-index": "2"});
         }
         collapsed = !collapsed;
     }

@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container">
+	{% if years %}
 	<div class="row">
 		{% for year in years %}
 		<div class="col-md-4 col-sm-12 col-xs-12">
@@ -21,6 +22,20 @@
 			</div>
 		</div>
 		{% endfor %}
+		
 	</div>
+	{% else %}
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-xs-12">
+			<div class="card-box">
+				<h6>No added years</h6>
+				<p class="faded">Nuk keni zgjedhur lendet per nje semester</p>
+			</div>
+			<div class="empty-box text-center">
+				<a href="{% url 'year_add' %}" class="btn btn-primary">Zgjedh lendet</a>
+			</div>
+		</div>
+	</div>
+	{% endif %}
 </div>
 {% endblock %}

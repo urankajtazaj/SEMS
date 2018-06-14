@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card-box">
-                        <h5>Personal info</h5><br/>
+                        <h6>Personal info</h6><br/>
                         {% csrf_token %}
                         {{ form.user }}
                         <div class="form-group">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="card-box">
-                        <h5>Other</h5><br/>
+                        <h6>Other</h6><br/>
                         <div class="form-group">
                             {{ form.picture }}
                         </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card-box">
-                        <h5>Location</h5><br/>
+                        <h6>Location</h6><br/>
                         <div class="form-group">
                             {{ form.country }}
                         </div>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="card-box">
-                        <h5>Course info</h5><br/>
+                        <h6>Course info</h6><br/>
                         <div class="form-group">
                             {{ form.program }}
                         </div>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     {% if user.is_superuser %}
-                    <div class="card-box">
+                    <div class="no-shade card-box">
                         <div class="form-check">
                             {{ form.is_super }} 
                             <label class="form-check-label" for="id_is_super">

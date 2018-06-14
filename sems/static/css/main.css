@@ -95,6 +95,7 @@ nav a.active:hover {
     border: 1px solid #eee;
     position: relative;
     background-color: #fff;
+    background-color: rgba(255,255,255,.8);
     /*z-index: 1;*/
     position: relative;
     overflow: hidden;
@@ -104,16 +105,22 @@ nav a.active:hover {
     content: '';
     width: 100%;
     height: 70px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.03));
-    z-index: 0;
+    /*background-color: #fff;*/
+    /*background: linear-gradient(transparent, rgba(0,0,0,0.03));*/
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.04);
+    z-index: 1;
     left: 0;
     top: 0;
     position: absolute;
 }
 
 .card-box h6 {
-    z-index: 1;
+    z-index: 5;
     margin-bottom: 40px;
+    text-transform: uppercase;
+    font-family: "Roboto";
+    font-weight: bold;
 }
 
 .card-box h6 a {
@@ -230,20 +237,20 @@ a.label:hover {
 }
 
 .btn-primary, .empty-box a.btn-primary, .empty-box button.btn-primary, .btn-third, .btn-danger {
-    border-radius: 50px;
+    border-radius: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     color: #666;
     /*font-weight: normal;*/
     font-size: 14px;
     box-shadow: none;
-    padding: 7px 30px;
+    padding: 8px 30px;
 }
 
 .btn-third:hover, .empty-box a.btn-primary:hover, .empty-box button.btn-primary:hover, .card-box .btn-primary:hover, .btn-danger:hover {
     color: #222;
     background-color: #fff;
-    border-color: #666;
+    border-color: #777;
 }
 
 .btn-danger:hover {
@@ -308,6 +315,7 @@ table .btn-third {
     justify-content: center;
     align-items: center;
     border-radius: 100px;
+    box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.04);
 }
 
 .img-round > img, .thumb > img {
@@ -357,8 +365,10 @@ form.login label {
 
 .form-control, .input-styled input, .input-styled select {
     border: none;
-    border-radius: 4px;
-    border: 1px solid #e5e5e5;
+    /*box-shadow: 0 1px 5px rgba(0,0,0,0.05);*/
+    border-radius: 0px;
+    border-bottom: 1px solid #e5e5e5;
+    background: linear-gradient(transparent, #fff);
     width: 100%;
     padding: 6px 10px;
 }
@@ -367,8 +377,9 @@ form.login label {
     width: 100%;
 }
 
-.form-control:focus {
+.form-control:focus, input:focus {
     box-shadow: none;
+    outline: none;
 }
 
 .full-width {

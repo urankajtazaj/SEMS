@@ -86,9 +86,8 @@
             </div>
             {% if user.is_superuser or user.student == student %}
             <div class="empty-box text-left">
-                <a onclick="toggleGrades()" class="toggleBtn btn btn-primary">View grades</a>
-                <a class="btn btn-primary" href="{% url 'register_courses' %}">Regjistro lendet</a>
-                <a class="btn btn-primary" href="#">Paraqit provimet</a>
+                <a onclick="toggleGrades()" class="toggleBtn btn btn-primary">Shiko notat</a>
+                <a class="float-right btn btn-primary" href="#">Paraqit provimet</a>
             </div>
             {% endif %}
         </div>

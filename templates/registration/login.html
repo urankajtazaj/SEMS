@@ -2,13 +2,13 @@
 
 
 {% block content %}
-<form method="post" class="login shadow-box">
+<form method="post" class="login card-box">
     {% csrf_token %}
 
     {% if user.is_authenticated %}
         <p class="lead text-center">Already logged in</p>
     {% else %}
-        <h1 class="text-center">SEMS</h1><br/>
+        <h6>LOGIN</h6><br/>
         <div class="form-group">
             <label>
                 <!--Username<br/>-->

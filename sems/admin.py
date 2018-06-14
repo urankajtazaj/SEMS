@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Program, Upload, State, Student, New, Grade, ProvimetMundshme, RegisteredCourse
+from .models import Course, Program, Upload, State, Student, New, Grade
 
 class UploadAdmin(admin.ModelAdmin):
     list_display = ('name', 'course', 'file')
@@ -10,8 +10,8 @@ class GradeAdmin(admin.ModelAdmin):
 class RegisteredCourseAdmin(admin.ModelAdmin):
 	list_display = ('user', 'program', 'course', 'registered', 'featured', )
 
-admin.site.register(ProvimetMundshme)
-admin.site.register(RegisteredCourse, RegisteredCourseAdmin)
+# admin.site.register(ProvimetMundshme)
+# admin.site.register(RegisteredCourse, RegisteredCourseAdmin)
 admin.site.register(Grade, GradeAdmin)
 admin.site.register(New)
 admin.site.register(Student)

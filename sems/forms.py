@@ -1,5 +1,5 @@
 from django import forms
-from .models import Upload, Student, New, Grade, Course, Program, ProvimetMundshme
+from .models import Upload, Student, New, Grade, Course, Program
 from django.contrib.auth.models import User
 from django.forms import CharField
 
@@ -35,7 +35,7 @@ class UpdateProfile(forms.ModelForm):
         self.fields['country'].widget.attrs.update({'class': 'form-control'})
         self.fields['city'].widget.attrs.update({'class': 'form-control', 'placeholder': 'City'})
         self.fields['website'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Website'})
-        self.fields['course'].widget.attrs.update({'class': 'full-width'})
+        self.fields['course'].widget.attrs.update({'class': 'full-width', 'hidden': True, 'required': False})
 
 
 # Sign up form
@@ -123,6 +123,9 @@ class CourseAddForm(forms.ModelForm):
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
         self.fields['summary'].widget.attrs.update({'class': 'form-control'})
         self.fields['program'].widget.attrs.update({'class': 'form-control'})
+        self.fields['level'].widget.attrs.update({'class': 'form-control'})
+        self.fields['year'].widget.attrs.update({'class': 'form-control'})
+        self.fields['semester'].widget.attrs.update({'class': 'form-control'})
         self.fields['start_date'].widget.attrs.update({'class': 'form-control'})
         self.fields['end_date'].widget.attrs.update({'class': 'form-control'})
         self.fields['credits'].widget.attrs.update({'class': 'form-control'})
@@ -140,21 +143,20 @@ class ProgramForm(forms.ModelForm):
         self.fields['summary'].widget.attrs.update({'class': 'form-control'})
 
 
-class LendetForm(forms.ModelForm):
+# class LendetForm(forms.ModelForm):
 
-    class Meta:
-        model = ProvimetMundshme
-        fields = '__all__'
+#     class Meta:
+#         model = ProvimetMundshme
+#         fields = '__all__'
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['program'].widget.attrs.update({'class': 'form-control', 'data-type': 'program-listener'})
-        self.fields['semester'].widget.attrs.update({'class': 'form-control'})
-        self.fields['year'].widget.attrs.update({'class': 'form-control'})
-        self.fields['level'].widget.attrs.update({'class': 'form-control'})
-        # self.fields['course'].widget = forms.CheckboxSelectMultiple
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['program'].widget.attrs.update({'class': 'form-control', 'data-type': 'program-listener'})
+#         self.fields['semester'].widget.attrs.update({'class': 'form-control'})
+#         self.fields['year'].widget.attrs.update({'class': 'form-control'})
+#         self.fields['level'].widget.attrs.update({'class': 'form-control'})
 
-    course = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        choices=[(c.pk, c.name) for c in Course.objects.all()],
-    )
+#     course = forms.MultipleChoiceField(
+#         widget=forms.CheckboxSelectMultiple,
+#         choices=[(c.pk, c.name) for c in Course.objects.all()],
+#     )

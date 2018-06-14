@@ -52,7 +52,7 @@
                         {% endif %}
                     </div>
                     <div class="col-md-9 col-xs-12">
-                        <h2>{{ student.first_name }} {{ student.last_name }}<small class="faded"> &mdash; {{ student.get_level_display }}, {{ student.viti }}</small></h2>
+                        <h2>{{ student.first_name }} {{ student.last_name }}<small class="faded"> &mdash; {{ student.get_level_display }}</small></h2>
                         <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary"><span class="label">{{ student.program }}</span></a>
                         <!-- <br>Semestri: {{ student.semester }}<br> -->
                         <hr/>
@@ -66,7 +66,7 @@
                         <hr/>
                         <h5>Enrolled Courses</h5>
                         {% if student.course.all %}
-                            {% if student.course.all|length > 10 %}
+                            {% if student.course.all|length > 8 %}
                             <div class="hide">
                                 <div class="white-shadow">
                                     <div onclick="showCourses(this)" id="trigger">Expand <i class="fas fa-angle-down"></i></div>
@@ -75,7 +75,7 @@
                                 {% for course in student.course.all %}
                                 <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
                                 {% endfor %}
-                            {% if student.course.all|length > 10 %}
+                            {% if student.course.all|length > 8 %}
                             </div>
                             {% endif %}
                             {% else %}

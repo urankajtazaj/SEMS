@@ -2,11 +2,11 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student, New, Grade, ProvimetMundshme, RegisteredCourse
+from .models import Course, Program, User, Upload, Student, New, Grade
 from django.contrib.auth.models import User, Group
 from elearning import settings
-from django.db.models import Sum, Avg, Max, Min
-from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm, CourseAddForm, ProgramForm, LendetForm
+from django.db.models import Sum, Avg, Max, Min, Count
+from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm, CourseAddForm, ProgramForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 from django.forms import inlineformset_factory
@@ -194,6 +194,8 @@ def course_edit(request, pk):
     else:
         form = CourseAddForm(instance=course)
 
+    # print(form.errors)
+
     if request.user.is_authenticated and request.user.is_superuser:
         return render (
             request, 'course_add.html', {'form': form, 'program': pk, 'users': users, 'course': pk},
@@ -374,7 +376,7 @@ def confirm_delete_teacher(request, course_id, student_id):
 # AJAX Call
 def filter_courses_view(request):
     program = request.GET.get('program', None)
-    course = Course.objects.filter(program=program).values('pk', 'name', )
+    course = Course.objects.filter(program=program).values('pk', 'name', 'obligative', )
     data = list(course)
     return JsonResponse(data, safe=False)
 
@@ -526,38 +528,18 @@ def year_edit(request, pk):
     )
 
 
-def current_years(request):
-    years = ProvimetMundshme.objects.all().order_by('program__name')
+# def current_years(request):
+#     years = Course.objects.values('program__name', 'level', 'year', 'semester').annotate(Count('program'))
 
-    return render (
-        request, 'current_years.html', {'years': years}, 
-    )
+#     print(years)
+
+#     return render (
+#         request, 'current_years.html', {'years': years}, 
+#     )
 
 
 def register_courses(request):
-
-    limit = 6
-
-    usr = request.user
-    level = usr.student.level
-    year = usr.student.viti
-    sem = usr.student.semester
-
-    registered = RegisteredCourse.objects.values_list('pk', 'course').filter(user=usr, registered=True, program=request.user.student.program)
-    instance = ProvimetMundshme.objects.values_list('course', flat=True).filter(level=level, year=year, semester=sem, program=request.user.student.program)
-
-    courses = list()
-    reg_courses = dict()
-
-    for pk in registered:
-        reg_courses[(Course.objects.get(pk=pk[1]))] = pk[0]
-
-    for course in instance:
-        courses.append(Course.objects.get(pk=course))
-
-    return render (
-        request, 'register_courses.html', {'course': courses, 'reg_courses': reg_courses, 'max_reached': int((len(registered) == limit)), 'limit': limit}, 
-    )
+    pass
 
 
 def register_course(request, pk, max_reached):
@@ -574,8 +556,8 @@ def register_course(request, pk, max_reached):
     return redirect('register_courses')
 
 
-def unregister_course(request, pk):
-    regs = RegisteredCourse.objects.get(pk=pk)
-    regs.delete()
+# def unregister_course(request, pk):
+#     regs = RegisteredCourse.objects.get(pk=pk)
+#     regs.delete()
 
-    return redirect('register_courses')
+#     return redirect('register_courses')

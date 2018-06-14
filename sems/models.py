@@ -26,8 +26,8 @@ SEMESTER = (
 )
 
 LEVELS = (
-    ('1', 'Bachelor'),
-    ('2', 'Master'),
+    ('Bachelor', 'Bachelor'),
+    ('Master', 'Master'),
 )
 
 TYPES = (
@@ -52,9 +52,18 @@ class Course(models.Model):
     end_date = models.DateField()
     credits = models.IntegerField(null=True, default=0)
     obligative = models.BooleanField(default=True)
+    year = models.IntegerField(choices=YEARS, default=1)
+    semester = models.IntegerField(choices=SEMESTER, default=1)
+    level = models.CharField(max_length=100, choices=LEVELS, default='Bachelor')
 
     def __str__(self):
         return self.name
+
+    def get_type(self):
+        if self.obligative:
+            return "O"
+        else: 
+            return "Z"
 
 
 class State(models.Model):
@@ -74,8 +83,8 @@ class Student(models.Model):
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     city = models.CharField(max_length=100, null=True)
-    course = models.ManyToManyField(Course, related_name='course')
-    course_teacher = models.ManyToManyField(Course, related_name='course_teacher')
+    course = models.ManyToManyField(Course, related_name='course', blank=True)
+    course_teacher = models.ManyToManyField(Course, related_name='course_teacher', blank=True)
     viti = models.IntegerField(choices=YEARS, default=1)
     semester = models.IntegerField(choices=SEMESTER, default=1)
     level = models.CharField(max_length=100, choices=LEVELS, default=1)
@@ -161,26 +170,26 @@ def get_full_name(self):
 User.add_to_class("__str__", get_full_name)
 
 
-class ProvimetMundshme(models.Model):
-    program = models.ForeignKey(Program, on_delete=models.CASCADE)
-    year = models.IntegerField(choices=YEARS, default=1)
-    semester = models.IntegerField(choices=SEMESTER, default=1)
-    course = models.ManyToManyField(Course)
-    level = models.CharField(max_length=100, choices=LEVELS, default='Bachelor')
+# class ProvimetMundshme(models.Model):
+#     program = models.ForeignKey(Program, on_delete=models.CASCADE)
+#     year = models.IntegerField(choices=YEARS, default=1)
+#     semester = models.IntegerField(choices=SEMESTER, default=1)
+#     course = models.ManyToManyField(Course)
+#     level = models.CharField(max_length=100, choices=LEVELS, default='Bachelor')
 
-    def __str__(self):
-        return self.level + ': ' + self.program.name + ', viti ' + str(self.year) + ', sem ' + str(self.semester)
+#     def __str__(self):
+#         return self.level + ': ' + self.program.name + ', viti ' + str(self.year) + ', sem ' + str(self.semester)
 
 
-class RegisteredCourse(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    registered = models.BooleanField()
-    featured = models.BooleanField()
+# class RegisteredCourse(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
+#     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+#     registered = models.BooleanField()
+#     featured = models.BooleanField()
 
-    def get_course(self):
-        return self.course
+#     def get_course(self):
+#         return self.course
 
-    def __str__(self):
-        return str(self.user) + ', ' + self.course.name
+#     def __str__(self):
+#         return str(self.user) + ', ' + self.course.name

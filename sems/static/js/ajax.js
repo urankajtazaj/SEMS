@@ -14,7 +14,7 @@ $('#id_program').change(function() {
             if ($('#id_program').attr('data-type') != 'program-listener') {
                 $(courses).children('option').remove();
                 $(data).each(function(i, el) {
-                    $(courses).append('<option value="'+ el.pk +'">' + el.name + '</option>');
+                    $(courses).append('<option value="'+ el.pk +'"' + (el.obligative ? "selected" : "") + '>' + el.name + '</option>');
                 });
             } else {
                 $(courses).children('li').remove();

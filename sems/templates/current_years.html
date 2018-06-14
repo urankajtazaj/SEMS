@@ -8,17 +8,19 @@
 		{% for year in years %}
 		<div class="col-md-4 col-sm-12 col-xs-12">
 			<div class="card-box">
-			<h6>{{ year.program }}<a href="{% url 'year_edit' pk=year.pk %}" class="float-right btn-sm btn btn-third">Edit</a></h6>
-			<span class="faded">Level: </span>{{ year.get_level_display }}<br>
+			<h6>{{ year.program__name }}</h6>
+			<span class="faded">Level: </span>{{ year.level }}<br>
 			<span class="faded">Year: </span>{{ year.year }}<br>
-			<span class="faded">Semester: </span>{{ year.semester }}
-			<hr>
-			<b>Courses</b><br><br>
-			<div class="overflow-auto">
+			<span class="faded">Semester: </span>{{ year.semester }} <br>
+			<span class="faded">Courses: </span>{{ year.program__count }} <br><br>
+			<a href="#" class="btn-sm full-width btn btn-primary">Edit</a>
+			<!-- <div class="overflow-auto">
+				<ul class="list-unstyled">
 				{% for course in year.course.all %}
-					<a href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a><br>
+					<li><a href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a></li>
 				{% endfor %}
-			</div>
+				</ul>
+			</div> -->
 			</div>
 		</div>
 		{% endfor %}

@@ -33,10 +33,10 @@ urlpatterns = [
     re_path(r'^$', views.home_view, name='home'),
     path('settings/year/add/', views.year_add, name='year_add'),
     path('settings/year/edit/<int:pk>', views.year_edit, name='year_edit'),
-    path('settings/year/view/', views.current_years, name='current_years'),
+    # path('settings/year/view/', views.current_years, name='current_years'),
     path('courses/register/', views.register_courses, name='register_courses'),
     path('register/course/<int:pk>/max/<int:max_reached>', views.register_course, name='reg_course'),
-    path('register/course/remove/<int:pk>', views.unregister_course, name='unreg_course'),
+    # path('register/course/remove/<int:pk>', views.unregister_course, name='unreg_course'),
 
     # path('ajax/update/teacher/', views.update_teacher, name='update_teacher'),
 ]

@@ -7,7 +7,7 @@
         <div class="col-md-6 col-xs-12">
             <form method="post">
                 <div class="card-box">
-                <h6>Grade Students in {{ course }}</h6>
+                <h6>{{ course }}</h6>
                 {% csrf_token %}
                 {{ formset.management_form }}
                 {% if formset|length > 0 %}
@@ -15,11 +15,9 @@
                         <div class="row justify-content-start border-bottom input-styled">
                             {{ form.id }}
                             <label class="col-md-8 col-6">
-                                <!-- Student<br/> -->
                                 {{ form.student }}
                             </label>
                             <label class="col-md-4 col-6">
-                                <!-- Grade<br/> -->
                                 {{ form.grade }}
                             </label>
                         </div>

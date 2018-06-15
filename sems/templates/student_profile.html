@@ -52,8 +52,11 @@
                         {% endif %}
                     </div>
                     <div class="col-md-9 col-xs-12">
-                        <h2>{{ student.first_name }} {{ student.last_name }}<small class="faded"> &mdash; {{ student.get_level_display }}</small></h2>
-                        <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary"><span class="label">{{ student.program }}</span></a>
+                        <h3>{{ student.first_name }} {{ student.last_name }}</h3>
+                        <small class="faded lead">
+                            {{ student.get_level_display }} &mdash;
+                            <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary">{{ student.program }}</a>
+                        </small>
                         <!-- <br>Semestri: {{ student.semester }}<br> -->
                         <hr/>
                         <!--<br/>-->

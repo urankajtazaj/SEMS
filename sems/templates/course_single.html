@@ -6,8 +6,10 @@
     <div class="row">
         <div class="col-md-12 col-xs-12">
             <div class="no-shade card-box">
-                <h2>{{ course }}</h2>
-                <p>{{ course.summary }}</p>
+                <h4>{{ course }}</h4>
+                {% if course.summary %}
+                    <p>{{ course.summary }}</p>
+                {% endif %}
                 {% if teachers %}
                     <h6>Teacher(s)</h6>
                     {% for teacher in teachers %}

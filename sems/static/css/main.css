@@ -369,6 +369,10 @@ form.login label {
     width: 100%
 }
 
+.fixed-width input, .fixed-width select {
+    min-width: 140px
+}
+
 .form-control, .input-styled input, .input-styled select {
     border: none;
     /*box-shadow: 0 1px 5px rgba(0,0,0,0.05);*/

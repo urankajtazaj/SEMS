@@ -568,3 +568,21 @@ def admin_view(request):
     return render (
         request, 'admin_panel.html', {'formset': formset},
     )
+
+
+def paraqit_provimet(request):
+    programs = Program.objects.all()
+    courses = Course.objects.all()
+
+    if request.method == 'GET':
+        request.GET.get('program') = 10
+        if request.GET.get('filter'):
+            program = request.GET.get('program')
+            year = int(request.GET.get('year'))
+            semester = int(request.GET.get('semester'))
+
+            courses = Course.objects.filter(program=program, year=year, semester=semester)
+
+    return render (
+        request, 'paraqit_provimet.html', {'programs': programs, 'courses': courses}, 
+    )

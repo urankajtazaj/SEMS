@@ -2,11 +2,11 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student, New, Grade
+from .models import Course, Program, User, Upload, Student, New, Grade, afatet_provimeve
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum, Avg, Max, Min, Count
-from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm, CourseAddForm, ProgramForm
+from .forms import UploadFormFile, UpdateProfile, SelectTeachersForm, AddPostForm, GradeStudentsForm, CourseAddForm, ProgramForm, AfatetForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 from django.forms import inlineformset_factory
@@ -528,16 +528,6 @@ def year_edit(request, pk):
     )
 
 
-# def current_years(request):
-#     years = Course.objects.values('program__name', 'level', 'year', 'semester').annotate(Count('program'))
-
-#     print(years)
-
-#     return render (
-#         request, 'current_years.html', {'years': years}, 
-#     )
-
-
 def register_courses(request):
     pass
 
@@ -556,8 +546,25 @@ def register_course(request, pk, max_reached):
     return redirect('register_courses')
 
 
-# def unregister_course(request, pk):
-#     regs = RegisteredCourse.objects.get(pk=pk)
-#     regs.delete()
 
-#     return redirect('register_courses')
+# ADMIN
+def admin_view(request):
+
+    queryset = afatet_provimeve.objects.all()
+    AfatetFormSet = forms.modelformset_factory(afatet_provimeve, form=AfatetForm, extra=0)
+
+    if request.method == 'POST':
+        formset = AfatetFormSet(request.POST, queryset=queryset)
+        if formset.is_valid():
+            instances = formset.save(commit=False)
+            for instance in instances:
+                instance.save()
+            return redirect('administrator')
+        else: 
+            print(formset.errors)
+    else:
+        formset = AfatetFormSet(queryset=queryset)
+
+    return render (
+        request, 'admin_panel.html', {'formset': formset},
+    )

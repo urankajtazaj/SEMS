@@ -1,20 +1,17 @@
-{% extends 'base_generic.html' %}
-
-
-{% block content %}
+{% extends 'base_generic.html' %} {% block content %}
 <div class="container">
     <div class="shadow-box">
-    {% if programs %}
-    <table>
-        <thead>
-            <tr>
-                <th>Program name</th>
-                {% if user.is_superuser %}
-                <th></th>
-                {% endif %}
-            </tr>
-        </thead>
-        {% for p in programs %}
+        {% if programs %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Program name</th>
+                    {% if user.is_superuser %}
+                    <th></th>
+                    {% endif %}
+                </tr>
+            </thead>
+            {% for p in programs %}
             <tr>
                 <td><a href="{% url 'program_single' pk=p.pk %}">{{ p }}</a></td>
                 {% if user.is_superuser %}
@@ -30,17 +27,16 @@
                 </td>
                 {% endif %}
             </tr>
-        {% endfor %}
+            {% endfor %}
         </table>
-    {% else %}
-    <p>There are no programs available</p>
-    {% endif %}
-    </div>
-        {% if user.is_superuser %}
-        <div class="empty-box">
-            <a href="{% url 'program_add' %}" class="btn btn-primary">Add New Program</a>
-        </div>
-        <!-- <i class="material-icons">add</i> -->
+        {% else %}
+        <p>There are no programs available</p>
         {% endif %}
+    </div>
+    {% if user.is_superuser %}
+    <div class="empty-box">
+        <a href="{% url 'program_add' %}" class="btn btn-primary">Add New Program</a>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

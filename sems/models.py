@@ -5,6 +5,24 @@ from datetime import datetime
 from django import forms
 from django.db.models.signals import post_save
 
+DAYS = (
+    [(i, i) for i in range(1, 31)]
+)
+
+MONTHS = (
+    (1, 'Janar'),
+    (2, 'Shkurt'),
+    (3, 'Mars'),
+    (4, 'Prill'),
+    (5, 'Maj'),
+    (6, 'Qershor'),
+    (7, 'Korrik'),
+    (8, 'Gusht'),
+    (9, 'Shtator'),
+    (10, 'Tetor'),
+    (11, 'Nentor'),
+    (12, 'Dhjetor'),
+)
 
 
 YEARS = (
@@ -164,11 +182,20 @@ class Upload(models.Model):
 def get_full_name(self):
     if self.student.first_name and self.student.last_name:
         return self.student.first_name + ' ' + self.student.last_name
-    else:
-        return self.username
+    return self.username
 
 User.add_to_class("__str__", get_full_name)
 
+
+class afatet_provimeve(models.Model):
+    emri = models.CharField(max_length=200, null=True, blank=True)
+    prej = models.DateField()
+    deri = models.DateField()
+
+    def __str__(self):
+        if self.emri:
+            return self.emri
+        return "Afati (" + str(self.pk) + ")"
 
 # class ProvimetMundshme(models.Model):
 #     program = models.ForeignKey(Program, on_delete=models.CASCADE)

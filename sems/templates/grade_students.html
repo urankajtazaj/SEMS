@@ -1,30 +1,22 @@
-{% extends 'base_generic.html' %}
-
-
-{% block content %}
+{% extends 'base_generic.html' %} {% block content %}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 col-xs-12">
             <form method="post">
                 <div class="card-box">
-                <h6>{{ course }}</h6>
-                {% csrf_token %}
-                {{ formset.management_form }}
-                {% if formset|length > 0 %}
-                    {% for form in formset %}
-                        <div class="row justify-content-start border-bottom input-styled">
-                            {{ form.id }}
-                            <label class="col-md-8 col-6">
-                                {{ form.student }}
-                            </label>
-                            <label class="col-md-4 col-6">
-                                {{ form.grade }}
-                            </label>
-                        </div>
-                    {% endfor %}
-                {% else %}
+                    <h6>{{ course }}</h6> {% csrf_token %} {{ formset.management_form }} {% if formset|length > 0 %} {% for form in formset %}
+                    <div class="row justify-content-start border-bottom input-styled">
+                        {{ form.id }}
+                        <label class="col-md-8 col-6">
+                            {{ form.student }}
+                        </label>
+                        <label class="col-md-4 col-6">
+                            {{ form.grade }}
+                        </label>
+                    </div>
+                    {% endfor %} {% else %}
                     <p class="text-danger">No students</p>
-                {% endif %}
+                    {% endif %}
                 </div>
                 <div class="empty-box">
                     <button type="submit" class="btn btn-primary">Save all</button>

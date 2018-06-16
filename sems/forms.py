@@ -1,5 +1,5 @@
 from django import forms
-from .models import Upload, Student, New, Grade, Course, Program
+from .models import Upload, Student, New, Grade, Course, Program, afatet_provimeve
 from django.contrib.auth.models import User
 from django.forms import CharField
 
@@ -142,6 +142,25 @@ class ProgramForm(forms.ModelForm):
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
         self.fields['summary'].widget.attrs.update({'class': 'form-control'})
 
+
+
+class AfatetForm(forms.ModelForm):
+
+    class Meta:
+        model = afatet_provimeve
+        fields = '__all__'
+        widgets = {
+            'prej': DateInput(),
+            'deri': DateInput()
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['prej'].widget.attrs.update({'class': 'form-control'})
+        self.fields['deri'].widget.attrs.update({'class': 'form-control'})
+        self.fields['emri'].widget.attrs.update({'class': 'form-control'})
+
+            
 
 # class LendetForm(forms.ModelForm):
 

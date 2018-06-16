@@ -1,9 +1,9 @@
 {% load static %}
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -14,25 +14,21 @@
     <!-- <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js"></script> -->
     <title>Document</title>
 </head>
+
 <body>
     <div class="wrapper">
         <header>
             <nav>
                 <div class="container">
-                    {% url 'home' as hom %}
-                    {% url 'students' as acc %}
-                    {% url 'programs' as prog %}
-                    {% url 'login' as log %}
-                    {% url 'student_detail' pk=user.student.pk as sd %}
-                    <a href="{% url 'home' %}" {% if request.path == hom %} class="active"{% endif %}>Home</a>
-                    <a href="{% url 'students' %}" {% if request.path == acc %} class="active"{% endif %}>Accounts</a>
-                    <a href="{% url 'programs' %}" {% if request.path == prog %} class="active"{% endif %}>Courses</a>
+                    {% url 'home' as hom %} {% url 'students' as acc %} {% url 'programs' as prog %} {% url 'login' as log %} {% url 'student_detail' pk=user.student.pk as sd %}
+                    <a href="{% url 'home' %}" {% if request.path==h om %} class="active" {% endif %}>Home</a>
+                    <a href="{% url 'students' %}" {% if request.path==a cc %} class="active" {% endif %}>Accounts</a>
+                    <a href="{% url 'programs' %}" {% if request.path==p rog %} class="active" {% endif %}>Courses</a>
                     <div class="inline-block float-right text-right">
-                    {% if not user.is_authenticated %}
-                    <a href="{% url 'login' %}" {% if request.path == log %} class="active"{% endif %}>Login</a>
-                    {% else %}
+                        {% if not user.is_authenticated %}
+                        <a href="{% url 'login' %}" {% if request.path==l og %} class="active" {% endif %}>Login</a> {% else %}
                         <div class="dd">
-                            <a href="{% url 'student_detail' pk=user.student.pk %}" {% if request.path == sd %} class="active"{% endif %}>{{ user.student.first_name }}</a>
+                            <a href="{% url 'student_detail' pk=user.student.pk %}" {% if request.path==s d %} class="active" {% endif %}>{{ user.student.first_name }}</a>
                             <div class="dd-menu">
                                 <ul>
                                     <a href="{% url 'student_detail' pk=user.student.pk %}">
@@ -45,16 +41,14 @@
                                         <li>Logout</li>
                                     </a>
                                 </ul>
-                            </div>                            
+                            </div>
                         </div>
-                    {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </nav>
         </header>
-        <br/>
-        {% block content %}
-        {% endblock %}
+        <br/> {% block content %} {% endblock %}
     </div>
     <footer>
         <div class="container">
@@ -65,36 +59,33 @@
             </div>
         </div>
     </footer>
-    
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    {% block javascript %}
-    {% endblock %}
-
+    {% block javascript %} {% endblock %}
     <script>
-        var btn = $('.with-popup');
+    var btn = $('.with-popup');
 
-        if (btn.length > 0) {
-            function close_popups() {
-                $('.popup').css('display', 'none');
-            }
-
-            $(document).keyup(function(e){
-                if (e.keyCode == 27)
-                    close_popups();
-            });
-
-            $(document).click(function(e){
-                if ( $(e.target).closest(btn).length === 0 ) {
-                    close_popups();
-                }
-            })
-
-            btn.click(function(){
-                close_popups();
-                $('.popup', this).css('display', 'block');
-            });
+    if (btn.length > 0) {
+        function close_popups() {
+            $('.popup').css('display', 'none');
         }
-    </script>
 
+        $(document).keyup(function(e) {
+            if (e.keyCode == 27)
+                close_popups();
+        });
+
+        $(document).click(function(e) {
+            if ($(e.target).closest(btn).length === 0) {
+                close_popups();
+            }
+        })
+
+        btn.click(function() {
+            close_popups();
+            $('.popup', this).css('display', 'block');
+        });
+    }
+    </script>
 </body>
+
 </html>

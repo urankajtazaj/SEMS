@@ -241,7 +241,7 @@ a.label:hover {
 }
 
 .btn-primary, .empty-box a.btn-primary, .empty-box button.btn-primary, .btn-third, .btn-danger {
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #fff;
     border: 1px solid #ddd;
     color: #666;
@@ -249,12 +249,14 @@ a.label:hover {
     font-size: 14px;
     box-shadow: none;
     padding: 8px 30px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.08);
 }
 
 .btn-third:hover, .empty-box a.btn-primary:hover, .empty-box button.btn-primary:hover, .card-box .btn-primary:hover, .btn-danger:hover {
     color: #222;
     background-color: #fff;
-    border-color: #777;
+    border-color: #bbb;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
 .btn-danger:hover {
@@ -517,7 +519,7 @@ footer a:hover {
     background-color: #fff;
     border: 1px solid #eee;
     border-bottom: 3px solid rgba(0,0,0,0.06);
-    /*box-shadow: 0 3px 6px rgba(0,0,0,0.08);*/
+    z-index: 10;
     border-radius: 8px;
 }
 
@@ -529,13 +531,6 @@ footer a:hover {
     padding: 5px 20px;
     border-radius: 50px;
     transition: 150ms ease;
-}
-
-.p-delete {
-    /*color: #FD2258;*/
-    /*background-color: #FD2258;*/
-    /*border-bottom: 3px solid #e81045;*/
-    /*color: #fff;*/
 }
 
 .p-delete a {
@@ -648,7 +643,9 @@ td .fas {
     z-index: 2;
 }
 
-
+tr.smaller-inputs input {
+    max-width: 180px;
+}
 
 
 

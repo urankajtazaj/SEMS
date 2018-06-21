@@ -105,10 +105,8 @@ nav a.active:hover {
     content: '';
     width: 100%;
     height: 70px;
-    /*background-color: #fff;*/
-    /*background: linear-gradient(transparent, rgba(0,0,0,0.03));*/
     border-bottom: 1px solid #eee;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.04);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
     z-index: 1;
     left: 0;
     top: 0;
@@ -240,7 +238,7 @@ a.label:hover {
     color: #888;
 }
 
-.btn-primary, .empty-box a.btn-primary, .empty-box button.btn-primary, .btn-third, .btn-danger {
+.btn-primary, .empty-box a.btn-primary, .empty-box button.btn-primary, input.btn-primary, .btn-third, .btn-danger {
     border-radius: 5px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -252,7 +250,7 @@ a.label:hover {
     box-shadow: 0 2px 2px rgba(0,0,0,0.08);
 }
 
-.btn-third:hover, .empty-box a.btn-primary:hover, .empty-box button.btn-primary:hover, .card-box .btn-primary:hover, .btn-danger:hover {
+.btn-third:hover, .empty-box a.btn-primary:hover, .empty-box button.btn-primary:hover, input.btn-primary:hover, .card-box .btn-primary:hover, .btn-danger:hover {
     color: #222;
     background-color: #fff;
     border-color: #bbb;
@@ -608,6 +606,7 @@ td .fas {
     max-height: 150px;
     overflow: hidden;
     position: relative;
+    padding-bottom: 45px;
 }
 
 .hide > .white-shadow {
@@ -647,10 +646,32 @@ td .fas {
     z-index: 2;
 }
 
-tr.smaller-inputs input {
-    max-width: 180px;
+.smaller-inputs input {
+    /*max-width: 250px;*/
+    min-width: 400px;
 }
 
+.status {
+    border-radius: 50px;
+    padding: 2px 17px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
+.status.green {
+    background-color: #6ae25f;
+    color: #254f21;
+}
+
+.status.orange {
+    background-color: #f9ab52;
+    color: #4f3f21;
+}
+
+.status.red {
+    background-color: #ff9393;
+    color: #682a2a;
+}
 
 

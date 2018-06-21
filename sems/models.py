@@ -5,6 +5,13 @@ from datetime import datetime
 from django import forms
 from django.db.models.signals import post_save
 
+
+STATUS = (
+    (0, 'Ne progres'), 
+    (1, 'Aprovuar'),
+    (2, 'Refuzuar'),
+)
+
 DAYS = (
     [(i, i) for i in range(1, 31)]
 )
@@ -189,34 +196,24 @@ User.add_to_class("__str__", get_full_name)
 
 class afatet_provimeve(models.Model):
     emri = models.CharField(max_length=200, null=True, blank=True)
-    prej = models.DateField()
-    deri = models.DateField()
+    aktiv = models.BooleanField(default=False)
 
     def __str__(self):
         if self.emri:
             return self.emri
         return "Afati (" + str(self.pk) + ")"
 
-# class ProvimetMundshme(models.Model):
-#     program = models.ForeignKey(Program, on_delete=models.CASCADE)
-#     year = models.IntegerField(choices=YEARS, default=1)
-#     semester = models.IntegerField(choices=SEMESTER, default=1)
-#     course = models.ManyToManyField(Course)
-#     level = models.CharField(max_length=100, choices=LEVELS, default='Bachelor')
 
-#     def __str__(self):
-#         return self.level + ': ' + self.program.name + ', viti ' + str(self.year) + ', sem ' + str(self.semester)
+class Provimet(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    time = models.DateTimeField(default=datetime.now)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    times = models.IntegerField(default=0)
 
-
-# class RegisteredCourse(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
-#     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-#     registered = models.BooleanField()
-#     featured = models.BooleanField()
-
-#     def get_course(self):
-#         return self.course
-
-#     def __str__(self):
-#         return str(self.user) + ', ' + self.course.name
+    def __str__(self):
+        if self.student.student.first_name and not self.student.student.last_name:
+            return self.student.student.first_name
+        elif self.student.student.first_name and self.student.student.last_name:
+            return self.student.student.first_name + ' ' + self.student.student.last_name
+        else:
+            return 'Student'

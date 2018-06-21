@@ -1,0 +1,114 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="no-shade card-box">
+				<form method="get" class="form-spaced fixed-width">
+					<label for="program">
+						<span class="faded">Programi</span><br>
+						<select name="program" class="form-control" id="program">
+							{% for program in programs %}
+							<option value="{{ program.pk }}">{{ program.name }}</option>
+							{% endfor%}
+						</select>
+					</label>
+					<label for="year">
+						<span class="faded">Viti</span><br>
+						<select name="year" id="year" class="form-control">
+							{% for i in '1234' %}
+							<option value="{{ i }}">{{ i }}</option>
+							{% endfor %}
+						</select>
+					</label>
+					<label for="semester">
+						<span class="faded">Semestri</span><br>
+						<select name="semester" id="semester" class="form-control">
+							{% for i in '12345678' %}
+							<option value="{{ i }}">{{ i }}</option>
+							{% endfor %}
+						</select>
+					</label>
+					<label for="afati">
+						<span class="faded">Afati</span><br>
+						<select name="afati" id="afati" class="form-control">
+							{% for a in afatet %}
+							<option value="{{ a.pk }}">{{ a.emri }}</option>
+							{% endfor %}
+						</select>
+					</label>
+					<input type="submit" name="filter" value="filtro" class="btn btn-primary">
+				</form>
+			</div>
+			<div class="card-box">
+				<h6>Zgjedh lëndët</h6>
+				<table>
+					<thead>
+						<tr>
+							<th style="max-width: 50px">Tipi</th>
+							<th>Emri i lendes</th>
+							<th>Ligjeruesi</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for course in courses %}
+						<tr>
+							<td style="max-width: 50px">{{ course.get_type }}</td>
+							<td>{{ course.name }}</td>
+							<td>
+								{% for t in course.course_teacher.all %}
+								{{ t }}<br>
+								{% endfor %}
+							</td>
+							<td class="text-right"><a href="#" class="btn-sm btn btn-primary">Paraqit</a></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<br>
+			<hr>
+			<br>
+			<div class="card-box">
+				<h6>Provimet e paraqitura</h6>
+				<table>
+					<thead>
+						<tr>
+							<th style="max-width: 50px">Tipi</th>
+							<th>Emri i lendes</th>
+							<th>Ligjeruesi</th>
+							<th>Paraqitur</th>
+							<th>Nota</th>
+							<th></th>
+							<th></th>
+							<!-- <th class="text-right">Statusi</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						{% for p in provimet %}
+						<tr>
+							<td style="max-width: 50px">{{ p.course.get_type }}</td>
+							<td>{{ p.course.name }}</td>
+							<td>
+								{% for t in p.course.course_teacher.all %}
+								{{ t }}<br>
+								{% endfor %}
+							</td>
+							<td>{{ p.times }}</td>
+							<td>{% if p.course.pk|get_grade:request.user.pk >= 5 %}{{ p.course.pk|get_grade:request.user.pk }}{% else %}&mdash;{% endif %}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+
+<!-- <td class="text-right"><span class="status {% if p.status == 0 %}orange{% elif p.status == 1 %}green{% else %}red{% endif %}">{{ p.get_status_display }}</span></td> -->

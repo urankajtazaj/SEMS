@@ -13,6 +13,7 @@
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>Course name</th>
                     <th class="text-right">Credits</th>
                     <th></th>
@@ -20,6 +21,7 @@
             </thead>
         {% for course in courses %}
             <tr>
+                <td style="max-width: 20px"><b>{{ course.get_type }}</b></td>
                 <td><a href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a></td>
                 <td class="text-right"><b>{{ course.credits }}</b></td>
                 {% if user.is_superuser %}

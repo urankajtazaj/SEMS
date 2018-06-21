@@ -149,15 +149,13 @@ class AfatetForm(forms.ModelForm):
     class Meta:
         model = afatet_provimeve
         fields = '__all__'
-        widgets = {
-            'prej': DateInput(),
-            'deri': DateInput()
-        }
+        # widgets = {
+        #     'prej': DateInput(),
+        #     'deri': DateInput()
+        # }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['prej'].widget.attrs.update({'class': 'form-control'})
-        self.fields['deri'].widget.attrs.update({'class': 'form-control'})
         self.fields['emri'].widget.attrs.update({'class': 'form-control'})
 
             

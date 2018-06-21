@@ -2,7 +2,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student, New, Grade, afatet_provimeve
+from .models import Course, Program, User, Upload, Student, New, Grade, afatet_provimeve, Provimet
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum, Avg, Max, Min, Count
@@ -16,6 +16,14 @@ from django import forms
 from django.template.defaulttags import register
 
 
+max_paraqit = 3
+
+@register.filter
+def get_grade(course, user):
+    grade = list(Grade.objects.values_list('grade', flat=True).filter(course__pk=course, student__pk=user))
+    if not grade:
+        return 0
+    return grade[0]
 
 @register.filter
 def get_item(dictionary, key):
@@ -171,6 +179,8 @@ def course_add(request, pk):
         if form.is_valid():
             form.save()
             update_teacher(request.POST.get('user_1'))
+            if request.POST.get('submit') != 'Ruaj':
+                return redirect('course_add', pk=pk)
             return redirect('program_single', pk=request.POST.get('program'))
     else:
         form = CourseAddForm(initial={'program': Program.objects.get(pk=pk)})
@@ -556,8 +566,7 @@ def admin_view(request):
     if request.method == 'POST':
         formset = AfatetFormSet(request.POST, queryset=queryset)
         if formset.is_valid():
-            instances = formset.save(commit=False)
-            for instance in instances:
+            for instance in formset.forms:
                 instance.save()
             return redirect('administrator')
         else: 
@@ -572,17 +581,23 @@ def admin_view(request):
 
 def paraqit_provimet(request):
     programs = Program.objects.all()
-    courses = Course.objects.all()
+    provimetList = list(Provimet.objects.values_list('course', flat=True).filter(student=request.user))
+    courses = Course.objects.all().exclude(pk__in=provimetList)
+    provimet = Provimet.objects.filter(student=request.user)
+    afatet = afatet_provimeve.objects.all()
 
     if request.method == 'GET':
-        request.GET.get('program') = 10
         if request.GET.get('filter'):
             program = request.GET.get('program')
             year = int(request.GET.get('year'))
             semester = int(request.GET.get('semester'))
 
-            courses = Course.objects.filter(program=program, year=year, semester=semester)
+            courses = Course.objects.filter(program=program, year=year, semester=semester).exclude(pk__in=provimetList)
 
     return render (
-        request, 'paraqit_provimet.html', {'programs': programs, 'courses': courses}, 
+        request, 'paraqit_provimet.html', {'programs': programs, 'courses': courses, 'provimet': provimet, 'afatet': afatet}, 
     )
+
+
+def paraqit_provimin(request, c_pk):
+    pass

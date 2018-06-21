@@ -19,6 +19,12 @@ from django.template.defaulttags import register
 max_paraqit = 3
 
 @register.filter
+def addOne(value):
+    # value = int(value)
+    value = value + 1
+    return value
+
+@register.filter
 def get_grade(course, user):
     grade = list(Grade.objects.values_list('grade', flat=True).filter(course__pk=course, student__pk=user))
     if not grade:
@@ -558,25 +564,36 @@ def register_course(request, pk, max_reached):
 
 
 # ADMIN
-def admin_view(request):
+def admin_view(request, afat_extra):
+
+    if not afat_extra:
+        afat_extra = 0
 
     queryset = afatet_provimeve.objects.all()
-    AfatetFormSet = forms.modelformset_factory(afatet_provimeve, form=AfatetForm, extra=0)
+    AfatetFormSet = forms.modelformset_factory(afatet_provimeve, form=AfatetForm, extra=afat_extra)
 
     if request.method == 'POST':
         formset = AfatetFormSet(request.POST, queryset=queryset)
         if formset.is_valid():
             for instance in formset.forms:
-                instance.save()
-            return redirect('administrator')
+                if instance.cleaned_data.get('emri'):
+                    instance.save()
+            return redirect('administrator', afat_extra=0)
         else: 
             print(formset.errors)
     else:
         formset = AfatetFormSet(queryset=queryset)
 
     return render (
-        request, 'admin_panel.html', {'formset': formset},
+        request, 'admin_panel.html', {'formset': formset, 'extra': afat_extra},
     )
+
+
+def delete_afat(request, pk):
+    afati = get_object_or_404(afatet_provimeve, pk=pk)
+    afati.delete()
+
+    return redirect('administrator', afat_extra=0)
 
 
 def paraqit_provimet(request):

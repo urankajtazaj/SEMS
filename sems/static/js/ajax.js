@@ -59,3 +59,4 @@ $("#update_teacher_btn").click(function() {
     });
 
 });
+

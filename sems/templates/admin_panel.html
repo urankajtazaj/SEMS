@@ -9,63 +9,34 @@
                 <br>
                 <form method="post">
                     {% csrf_token %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="max-width: 40px">Aktiv</th>
+                                <th>Emri</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                     {{ formset.management_form }} {% for form in formset %}
-                        {{ form.id }}
-                        <div id="form">
-                            <div class="form-group form-inline">
-                                <div class="smaller-inputs">
-                                    {{ form.emri }}
-                                </div>&nbsp;&nbsp;
-                                <div class="form-check">
-                                    {{ form.aktiv }}
-                                    <label class="form-check-label" for="{{ form.aktiv.auto_id}}">
-                                        Aktiv
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
+                            {{ form.id }}
+                            <tr>
+                                <td style="max-width: 40px" class="text-center">{{ form.aktiv }}</td>
+                                <td>{{ form.emri }}</td>
+                                <td class="text-center">{% if form.id.value %}<small><a class="text-danger" href="{% url 'delete_afat' pk=form.id.value %}">Fshije</a></small>{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                     {% if formset|length == 0 %}
                     <p class="lead">Asnje afat nuk u gjet</p>
                     {% endif %}
                     <br>
-                    <a href="#" onclick="addAfat()" class="float-left btn btn-primary">+</a>
-                    <input type="submit" value="Ruaj" class="float-right btn btn-primary">
+                    <a href="{% url 'administrator' afat_extra=extra|add:1 %}" class="float-right btn btn-primary">+</a>
+                    <input type="submit" value="Ruaj ndryshimet" class="float-left btn btn-primary">
                 </form>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
-
-
-{% block javascript %}
-<script>
-
-    var form = $("#form");
-
-    var els = 0;
-
-    form.each(function(i, el) {
-        if ($(el).attr('class') == 'form-group') {
-            els++;
-        }
-    });
-
-    function addAfat() {
-        els++;
-        var div = '<div class="form-group form-inline">' +
-                    '<div class="smaller-inputs">' +
-                    '    <input type="text" name="form-'+ (els) +'-emri" value="" class="form-control" maxlength="200" id="id_form-'+ els +'-emri">' +
-                    '</div>&nbsp;&nbsp;' +
-                    '<div class="form-check">' +
-                    '    <input type="checkbox" name="form-'+ els +'-aktiv" id="id_form-'+ els +'-aktiv">' +
-                        '<label class="form-check-label" for="id_form-'+ els +'-aktiv">' +
-                            'Aktiv' +
-                        '</label>' +
-                    '</div>' +
-                '</div>';
-        form.append(div);
-    }
-</script>
 {% endblock %}

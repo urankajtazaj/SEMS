@@ -39,7 +39,8 @@ urlpatterns = [
     # path('register/course/remove/<int:pk>', views.unregister_course, name='unreg_course'),
 
     path('provimet/paraqit/', views.paraqit_provimet, name='provimet'),
-    path('administrator/', views.admin_view, name='administrator'),
+    path('administrator/<int:afat_extra>', views.admin_view, name='administrator'),
+    path('afati/delete/<int:pk>', views.delete_afat, name='delete_afat'),
 
     # path('ajax/update/teacher/', views.update_teacher, name='update_teacher'),
 ]

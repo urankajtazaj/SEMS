@@ -34,7 +34,7 @@
                                     <a href="{% url 'student_detail' pk=user.student.pk %}">
                                         <li>Profile</li>
                                     </a>
-                                    <a href="#">
+                                    <a href="{% url 'administrator' afat_extra=0 %}">
                                         <li>Admin panel</li>
                                     </a>
                                     <a class="text-danger" href="{% url 'logout' %}">

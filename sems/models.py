@@ -206,10 +206,10 @@ class afatet_provimeve(models.Model):
 
 class Provimet(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
-    time = models.DateTimeField(default=datetime.now)
+    time = models.DateTimeField(default=datetime.now, blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
-    times = models.IntegerField(default=0)
     afati = models.ForeignKey(afatet_provimeve, on_delete=models.CASCADE, null=True)
+    refuzuar = models.BooleanField(default=False)
 
     def __str__(self):
         if self.student.student.first_name and not self.student.student.last_name:

@@ -15,7 +15,7 @@
 						<span class="faded">Viti</span><br>
 						<select name="year" id="year" class="form-control">
 							{% for i in '1234' %}
-							<option value="{{ i }}">{{ i }}</option>
+							<option {% if request.GET.year == i %}selected=""{% endif %} value="{{ i }}">{{ i }}</option>
 							{% endfor %}
 						</select>
 					</label>
@@ -23,7 +23,7 @@
 						<span class="faded">Semestri</span><br>
 						<select name="semester" id="semester" class="form-control">
 							{% for i in '12345678' %}
-							<option value="{{ i }}">{{ i }}</option>
+							<option {% if request.GET.semester == i %}selected=""{% endif %} value="{{ i }}">{{ i }}</option>
 							{% endfor %}
 						</select>
 					</label>
@@ -33,7 +33,7 @@
 						<select name="afati" id="afati" class="form-control">
 							<option value="-1">Zgjedh afatin</option>
 							{% for a in afatet %}
-							<option value="{{ a.pk }}">{{ a.emri }}</option>
+							<option {% if request.GET.afati == a.pk|toStr %}selected=""{% endif %} value="{{ a.pk|toInt }}">{{ a.emri }}</option>
 							{% endfor %}
 						</select>
 					</label>
@@ -44,6 +44,7 @@
 			<div class="card-box">
 				<h6>Zgjedh lëndët</h6>
 				{% if afatet %}
+				{% if courses and request.GET.afati|toInt > -1 %}
 				<table>
 					<thead>
 						<tr>
@@ -63,61 +64,20 @@
 								{{ t }}<br>
 								{% endfor %}
 							</td>
-							<td class="text-right"><a href="#" class="btn-sm btn btn-primary">Paraqit</a></td>
+							<td class="text-right"><a href="{% url 'paraqit_provimin' c_pk=course.pk a_pk=request.GET.afati|toInt %}" class="btn-sm btn btn-primary">Paraqit</a></td>
 						</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 				{% else %}
+				<p class="lead"><br>Nuk ka lende ne te dhenat e kerkuara</p><br>
+				{% endif %}
+				{% else %}
 					<p class="text-danger">Afati per paraqitje te provimeve ka perfunduar</p>
 				{% endif %}
 			</div>
-			<br>
-			<hr>
-			<br>
-			<div class="card-box">
-				<h6>Provimet e paraqitura</h6>
-				<br>
-				<form method="get" class="float-right form-inline">
-					<select style="min-width: 300px; margin-right: 10px" name="afati" class="form-control">
-						<option value="-1">Zgjedh afatin</option>
-						{% for a in afatetAll %}
-						<option value="{{ a.pk }}">{{ a.emri }}</option>
-						{% endfor %}
-					</select>
-					<input type="submit" value="Filtro" name="filterProvimet" class="btn btn-primary">
-				</form>
-				<br><br><br><br>
-				{% if provimet %}
-					<table>
-						<thead>
-							<tr>
-								<th style="max-width: 50px">Tipi</th>
-								<th>Emri i lendes</th>
-								<th>Ligjeruesi</th>
-								<th>Paraqitur</th>
-								<th>Nota</th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for p in provimet %}
-							<tr>
-								<td style="max-width: 50px">{{ p.course.get_type }}</td>
-								<td>{{ p.course.name }}</td>
-								<td>
-									{% for t in p.course.course_teacher.all %}
-									{{ t }}<br>
-									{% endfor %}
-								</td>
-								<td>{{ p.times }}</td>
-								<td>{% if p.course.pk|get_grade:request.user.pk >= 5 %}{{ p.course.pk|get_grade:request.user.pk }}{% else %}&mdash;{% endif %}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				{% endif %}
+			<div class="empty-box">
+				<a href="{% url 'provimet_paraqitura' %}" class="btn btn-primary">Provimet e paraqitura</a>
 			</div>
 		</div>
 	</div>

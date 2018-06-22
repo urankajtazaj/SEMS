@@ -19,6 +19,14 @@ from django.template.defaulttags import register
 max_paraqit = 3
 
 @register.filter
+def toInt(value):
+    return int(value)
+
+@register.filter
+def toStr(value):
+    return str(value)
+
+@register.filter
 def addOne(value):
     # value = int(value)
     value = value + 1
@@ -597,10 +605,9 @@ def delete_afat(request, pk):
 
 
 def paraqit_provimet(request):
-    # programs = Program.objects.get(pk=request.user.student.program.pk)
     provimetList = list(Provimet.objects.values_list('course', flat=True).filter(student=request.user))
-    courses = Course.objects.all().exclude(pk__in=provimetList)
-    provimet = None;
+    courses = None
+    provimet = None
     afatet = afatet_provimeve.objects.filter(aktiv=True)
     afatetAll = afatet_provimeve.objects.all()
     program = request.user.student.program
@@ -625,5 +632,29 @@ def paraqit_provimet(request):
     )
 
 
-def paraqit_provimin(request, c_pk):
-    pass
+def provimet_paraqitura(request):
+    afatetAll = afatet_provimeve.objects.all()
+    program = request.user.student.program
+    provimet = None;
+
+    if request.method == 'GET':
+        if request.GET.get('filterProvimet'):
+            if int(request.GET.get('afati')) >= 0:
+                provimet = Provimet.objects.filter(student=request.user, afati=int(request.GET.get('afati')))
+
+    return render (
+        request, 'provimet_paraqitura.html', {'program': program, 'provimet': provimet, 'afatetAll': afatetAll}, 
+    )
+
+
+def paraqit_provimin(request, c_pk, a_pk):
+    course = Course.objects.get(pk=c_pk)
+    provimet = Provimet()
+    provimet.course = course
+    provimet.student = request.user
+    provimet.afati = afatet_provimeve.objects.get(pk=a_pk)
+    provimet.time = datetime.now()
+    provimet.refuzuar = False
+    provimet.save()
+
+    return redirect('provimet_paraqitura')

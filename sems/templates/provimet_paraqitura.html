@@ -1,0 +1,73 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="no-shade card-box">
+				<form method="get" class="float-right form-inline">
+					<select style="min-width: 300px; margin-right: 10px" name="afati" class="form-control">
+						<option value="-1">Zgjedh afatin</option>
+						{% for a in afatetAll %}
+						<option value="{{ a.pk }}">{{ a.emri }}</option>
+						{% endfor %}
+					</select>
+					<input type="submit" value="Filtro" name="filterProvimet" class="btn btn-primary">
+				</form>
+			</div>
+			<div class="card-box">
+				<h6>Provimet e paraqitura</h6>
+				{% if provimet %}
+				<table>
+					<thead>
+						<tr>
+							<th style="max-width: 50px">Tipi</th>
+							<th>Emri i lendes</th>
+							<th>Ligjeruesi</th>
+							<th>Nota</th>
+							<th>Hera<br/>Paraqitur</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for p in provimet %}
+							<tr>
+								<td style="max-width: 50px"><b>{{ p.course.get_type }}</b></td>
+								<td>{{ p.course.name }}</td>
+								<td>
+									{% for t in p.course.course_teacher.all %}
+									{{ t }}<br>
+									{% endfor %}
+								</td>
+								<td>{% if p.course.pk|get_grade:request.user.pk >= 5 %}{{ p.course.pk|get_grade:request.user.pk }}{% else %}&mdash;{% endif %}</td>
+								<td>-</td>
+								<td style="min-width: 140px; max-width: 140px" class="text-right">
+									{% if p.course.pk|get_grade:request.user.pk >= 5 %}
+									<a href="#" class="no-float btn-sm btn btn-danger">Refuzo</a>
+									{% endif %} 
+									<a href="#" class="no-float btn-sm btn btn-danger">Anulo</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{% else %}
+				<br>
+				<p class="text-center lead text-danger">Nuk keni paraqitur provime ne afatin e zgjedhur</p><br>
+				{% endif %}
+			</div>
+			<div class="empty-box">
+				<a class="btn btn-primary" href="{% url 'provimet' %}">Paraqit provimet</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+{% load static %}
+<script src="{% static 'js/ajax.js' %}"></script>
+{% endblock %}
+
+<!-- <td class="text-right"><span class="status {% if p.status == 0 %}orange{% elif p.status == 1 %}green{% else %}red{% endif %}">{{ p.get_status_display }}</span></td> -->

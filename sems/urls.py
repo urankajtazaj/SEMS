@@ -37,8 +37,9 @@ urlpatterns = [
     path('courses/register/', views.register_courses, name='register_courses'),
     path('register/course/<int:pk>/max/<int:max_reached>', views.register_course, name='reg_course'),
     # path('register/course/remove/<int:pk>', views.unregister_course, name='unreg_course'),
-
+    path('provimet/paraqit/<int:c_pk>/<int:a_pk>', views.paraqit_provimin, name='paraqit_provimin'),
     path('provimet/paraqit/', views.paraqit_provimet, name='provimet'),
+    path('provimet/paraqitura/', views.provimet_paraqitura, name='provimet_paraqitura'),
     path('administrator/<int:afat_extra>', views.admin_view, name='administrator'),
     path('afati/delete/<int:pk>', views.delete_afat, name='delete_afat'),
 

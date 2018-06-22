@@ -60,3 +60,24 @@ $("#update_teacher_btn").click(function() {
 
 });
 
+
+$("#filterProvimet").change(function() {
+
+    var content = $("#provimetTable");
+
+    $.ajax({
+        url: '/ajax/filter/provimet/',
+        type: 'get',
+        data: { 'afati': $("#filterProvimet").val(), },
+        dataType: 'json',
+        success: function(data) {
+            content.html(data);
+            console.log(data);
+        },
+        error : function(xhr,errmsg,err) {
+            $('#results').html(+errmsg);
+            console.log(xhr.status + ": " + xhr.responseText);
+        }
+    });
+
+});

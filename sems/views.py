@@ -597,22 +597,31 @@ def delete_afat(request, pk):
 
 
 def paraqit_provimet(request):
-    programs = Program.objects.all()
+    # programs = Program.objects.get(pk=request.user.student.program.pk)
     provimetList = list(Provimet.objects.values_list('course', flat=True).filter(student=request.user))
     courses = Course.objects.all().exclude(pk__in=provimetList)
-    provimet = Provimet.objects.filter(student=request.user)
-    afatet = afatet_provimeve.objects.all()
+    provimet = None;
+    afatet = afatet_provimeve.objects.filter(aktiv=True)
+    afatetAll = afatet_provimeve.objects.all()
+    program = request.user.student.program
+
 
     if request.method == 'GET':
+
+        if request.GET.get('filterProvimet'):
+            if int(request.GET.get('afati')) >= 0:
+                provimet = Provimet.objects.filter(student=request.user, afati=int(request.GET.get('afati')))
+
+
         if request.GET.get('filter'):
-            program = request.GET.get('program')
             year = int(request.GET.get('year'))
             semester = int(request.GET.get('semester'))
 
             courses = Course.objects.filter(program=program, year=year, semester=semester).exclude(pk__in=provimetList)
 
+
     return render (
-        request, 'paraqit_provimet.html', {'programs': programs, 'courses': courses, 'provimet': provimet, 'afatet': afatet}, 
+        request, 'paraqit_provimet.html', {'program': program, 'courses': courses, 'provimet': provimet, 'afatet': afatet, 'afatetAll': afatetAll}, 
     )
 
 

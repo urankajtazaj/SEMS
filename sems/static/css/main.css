@@ -372,12 +372,12 @@ form.login label {
 }
 
 .form-control, .input-styled input, .input-styled select {
-    border: none;
     /*box-shadow: 0 1px 5px rgba(0,0,0,0.05);*/
-    border-radius: 0px;
-    border-bottom: 1px solid #e5e5e5;
+    border-radius: 5px;
     background: linear-gradient(transparent, #fff);
     width: 100%;
+    background: #f7f7f7;
+    border: none;
     padding: 6px 10px;
 }
 
@@ -388,6 +388,7 @@ form.login label {
 .form-control:focus, input:focus {
     box-shadow: none;
     outline: none;
+    background: #f5f5f5; 
 }
 
 .full-width {
@@ -607,6 +608,7 @@ td .fas {
     overflow: hidden;
     position: relative;
     padding-bottom: 45px;
+    transition: 250ms ease;
 }
 
 .hide > .white-shadow {

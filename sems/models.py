@@ -209,11 +209,12 @@ class Provimet(models.Model):
     time = models.DateTimeField(default=datetime.now)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     times = models.IntegerField(default=0)
+    afati = models.ForeignKey(afatet_provimeve, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         if self.student.student.first_name and not self.student.student.last_name:
-            return self.student.student.first_name
+            return self.student.student.first_name + ' - ' + self.afati.emri
         elif self.student.student.first_name and self.student.student.last_name:
-            return self.student.student.first_name + ' ' + self.student.student.last_name
+            return self.student.student.first_name + ' ' + self.student.student.last_name + ' - ' + self.afati.emri
         else:
-            return 'Student'
+            return 'Student' + ' - ' + self.afati.emri

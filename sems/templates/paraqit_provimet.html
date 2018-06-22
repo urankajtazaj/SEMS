@@ -9,11 +9,7 @@
 				<form method="get" class="form-spaced fixed-width">
 					<label for="program">
 						<span class="faded">Programi</span><br>
-						<select name="program" class="form-control" id="program">
-							{% for program in programs %}
-							<option value="{{ program.pk }}">{{ program.name }}</option>
-							{% endfor%}
-						</select>
+						<input class="form-control" type="text" name="program" value="{{ program.name }}" readonly="">
 					</label>
 					<label for="year">
 						<span class="faded">Viti</span><br>
@@ -31,19 +27,23 @@
 							{% endfor %}
 						</select>
 					</label>
+					{% if afatet %}
 					<label for="afati">
 						<span class="faded">Afati</span><br>
 						<select name="afati" id="afati" class="form-control">
+							<option value="-1">Zgjedh afatin</option>
 							{% for a in afatet %}
 							<option value="{{ a.pk }}">{{ a.emri }}</option>
 							{% endfor %}
 						</select>
 					</label>
+					{% endif %}
 					<input type="submit" name="filter" value="filtro" class="btn btn-primary">
 				</form>
 			</div>
 			<div class="card-box">
 				<h6>Zgjedh lëndët</h6>
+				{% if afatet %}
 				<table>
 					<thead>
 						<tr>
@@ -68,41 +68,56 @@
 						{% endfor %}
 					</tbody>
 				</table>
+				{% else %}
+					<p class="text-danger">Afati per paraqitje te provimeve ka perfunduar</p>
+				{% endif %}
 			</div>
 			<br>
 			<hr>
 			<br>
 			<div class="card-box">
 				<h6>Provimet e paraqitura</h6>
-				<table>
-					<thead>
-						<tr>
-							<th style="max-width: 50px">Tipi</th>
-							<th>Emri i lendes</th>
-							<th>Ligjeruesi</th>
-							<th>Paraqitur</th>
-							<th>Nota</th>
-							<th></th>
-							<th></th>
-							<!-- <th class="text-right">Statusi</th> -->
-						</tr>
-					</thead>
-					<tbody>
-						{% for p in provimet %}
-						<tr>
-							<td style="max-width: 50px">{{ p.course.get_type }}</td>
-							<td>{{ p.course.name }}</td>
-							<td>
-								{% for t in p.course.course_teacher.all %}
-								{{ t }}<br>
-								{% endfor %}
-							</td>
-							<td>{{ p.times }}</td>
-							<td>{% if p.course.pk|get_grade:request.user.pk >= 5 %}{{ p.course.pk|get_grade:request.user.pk }}{% else %}&mdash;{% endif %}</td>
-						</tr>
+				<br>
+				<form method="get" class="float-right form-inline">
+					<select style="min-width: 300px; margin-right: 10px" name="afati" class="form-control">
+						<option value="-1">Zgjedh afatin</option>
+						{% for a in afatetAll %}
+						<option value="{{ a.pk }}">{{ a.emri }}</option>
 						{% endfor %}
-					</tbody>
-				</table>
+					</select>
+					<input type="submit" value="Filtro" name="filterProvimet" class="btn btn-primary">
+				</form>
+				<br><br><br><br>
+				{% if provimet %}
+					<table>
+						<thead>
+							<tr>
+								<th style="max-width: 50px">Tipi</th>
+								<th>Emri i lendes</th>
+								<th>Ligjeruesi</th>
+								<th>Paraqitur</th>
+								<th>Nota</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for p in provimet %}
+							<tr>
+								<td style="max-width: 50px">{{ p.course.get_type }}</td>
+								<td>{{ p.course.name }}</td>
+								<td>
+									{% for t in p.course.course_teacher.all %}
+									{{ t }}<br>
+									{% endfor %}
+								</td>
+								<td>{{ p.times }}</td>
+								<td>{% if p.course.pk|get_grade:request.user.pk >= 5 %}{{ p.course.pk|get_grade:request.user.pk }}{% else %}&mdash;{% endif %}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -110,5 +125,9 @@
 {% endblock %}
 
 
+{% block javascript %}
+{% load static %}
+<script src="{% static 'js/ajax.js' %}"></script>
+{% endblock %}
 
 <!-- <td class="text-right"><span class="status {% if p.status == 0 %}orange{% elif p.status == 1 %}green{% else %}red{% endif %}">{{ p.get_status_display }}</span></td> -->

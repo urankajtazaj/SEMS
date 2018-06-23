@@ -51,6 +51,7 @@
 							<th style="max-width: 50px">Tipi</th>
 							<th>Emri i lendes</th>
 							<th>Ligjeruesi</th>
+							<th>Paraqitur</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -64,6 +65,7 @@
 								{{ t }}<br>
 								{% endfor %}
 							</td>
+							<td>{{ course.hera }}</td>
 							<td class="text-right"><a href="{% url 'paraqit_provimin' c_pk=course.pk a_pk=request.GET.afati|toInt %}" class="btn-sm btn btn-primary">Paraqit</a></td>
 						</tr>
 						{% endfor %}

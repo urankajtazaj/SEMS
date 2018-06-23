@@ -605,27 +605,22 @@ def delete_afat(request, pk):
 
 
 def paraqit_provimet(request):
-    provimetList = list(Provimet.objects.values_list('course', flat=True).filter(student=request.user))
+    provimetList = list()
     courses = None
     provimet = None
     afatet = afatet_provimeve.objects.filter(aktiv=True)
     afatetAll = afatet_provimeve.objects.all()
     program = request.user.student.program
 
-
     if request.method == 'GET':
-
-        if request.GET.get('filterProvimet'):
-            if int(request.GET.get('afati')) >= 0:
-                provimet = Provimet.objects.filter(student=request.user, afati=int(request.GET.get('afati')))
-
-
         if request.GET.get('filter'):
             year = int(request.GET.get('year'))
             semester = int(request.GET.get('semester'))
+            if int(request.GET.get('afati')) > -1:
+                afati = get_object_or_404(afatet_provimeve, pk=int(request.GET.get('afati')))
+                provimetList = list(Provimet.objects.values_list('course', flat=True).filter(student=request.user, afati=afati))
 
-            courses = Course.objects.filter(program=program, year=year, semester=semester).exclude(pk__in=provimetList)
-
+            courses = Course.objects.filter(program=program, year=year, semester=semester).exclude(pk__in=provimetList).annotate(hera=Count('pk'))
 
     return render (
         request, 'paraqit_provimet.html', {'program': program, 'courses': courses, 'provimet': provimet, 'afatet': afatet, 'afatetAll': afatetAll}, 
@@ -641,6 +636,9 @@ def provimet_paraqitura(request):
         if request.GET.get('filterProvimet'):
             if int(request.GET.get('afati')) >= 0:
                 provimet = Provimet.objects.filter(student=request.user, afati=int(request.GET.get('afati')))
+
+    # for p in Provimet.objects.raw('select "sems_provimet"."id", "sems_provimet"."course_id", count("sems_provimet"."course_id") as hera from "sems_provimet" group by "sems_provimet"."course_id"'):
+    #     print(Course.objects.get(pk=p.course_id), p.hera)
 
     return render (
         request, 'provimet_paraqitura.html', {'program': program, 'provimet': provimet, 'afatetAll': afatetAll}, 

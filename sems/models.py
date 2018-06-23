@@ -213,8 +213,8 @@ class Provimet(models.Model):
 
     def __str__(self):
         if self.student.student.first_name and not self.student.student.last_name:
-            return self.student.student.first_name + ' - ' + self.afati.emri
+            return self.student.student.first_name + ' - ' + self.afati.emri + ' - ' + self.course.name
         elif self.student.student.first_name and self.student.student.last_name:
-            return self.student.student.first_name + ' ' + self.student.student.last_name + ' - ' + self.afati.emri
+            return self.student.student.first_name + ' ' + self.student.student.last_name + ' - ' + self.afati.emri + ' - ' + self.course.name
         else:
             return 'Student' + ' - ' + self.afati.emri

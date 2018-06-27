@@ -126,6 +126,10 @@ nav a.active:hover {
     font-weight: bold;
 }
 
+.card-box > h6 > small {
+    text-transform: capitalize;
+}
+
 .card-box h6 a {
     z-index: 3;
 }

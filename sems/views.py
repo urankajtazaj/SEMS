@@ -28,7 +28,6 @@ def toStr(value):
 
 @register.filter
 def addOne(value):
-    # value = int(value)
     value = value + 1
     return value
 
@@ -355,8 +354,6 @@ def select_teacher(request, course_id):
     students = Student.objects.all()
     curr_teachers = Student.objects.filter(course_teacher__in=[Course.objects.get(pk=course_id)])
 
-    print(curr_teachers)
-
     if request.method == 'GET':
         first_name = request.GET.get('first_name', '')
         last_name = request.GET.get('last_name', '')
@@ -404,6 +401,7 @@ def filter_courses_view(request):
     data = list(course)
     return JsonResponse(data, safe=False)
 
+# ########################################################
 
 def home_view(request):
     uploads = Upload.objects.all().order_by('-upload_time')[:5]

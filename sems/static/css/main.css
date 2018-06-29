@@ -22,25 +22,29 @@ body {
     font-weight: lighter;
 }
 
+.no-padding {
+    padding: 0;
+}
+
 nav {
-    padding: 20px 0;
     background-color: #fff;
     /*box-shadow: 0 5px 15px rgba(0,0,0,0.07);*/
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;
+    height: 100vh;
 }
 
 nav a {
-    padding: 20px 10px;
+    display: block;
+    padding: 20px 15px;
     color: #777;
-    border-bottom: 2px solid transparent;
     transition: 100ms ease;
 }
 
 nav a:hover:not(.active) {
     text-decoration: none;
     color: #000;
-    border-color: #ccc;
+    background-color: #f7f7f7;
 }
 
 nav a.active:hover {
@@ -49,13 +53,14 @@ nav a.active:hover {
 
 .dd {
     position: relative;
-    display: inline;
+    display: block;
 }
 
 .dd-menu {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     position: absolute;
-    left: 0;
+    right: 0;
+    top: 0;
     text-align: left;
     display: none;
     background-color: #fff;
@@ -586,7 +591,7 @@ footer a:hover {
 
 a.active {
     color: #000;
-    border-color: #444;
+    background-color: #f7f7f7;
 }
 
 td .fas {

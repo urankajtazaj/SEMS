@@ -17,38 +17,45 @@
 
 <body>
     <div class="wrapper">
-        <header>
-            <nav>
-                <div class="container">
-                    {% url 'home' as hom %} {% url 'students' as acc %} {% url 'programs' as prog %} {% url 'login' as log %} {% url 'student_detail' pk=user.student.pk as sd %}
-                    <a href="{% url 'home' %}" {% if request.path == hom %} class="active" {% endif %}>Home</a>
-                    <a href="{% url 'students' %}" {% if request.path == acc %} class="active" {% endif %}>Accounts</a>
-                    <a href="{% url 'programs' %}" {% if request.path == prog %} class="active" {% endif %}>Courses</a>
-                    <div class="inline-block float-right text-right">
-                        {% if not user.is_authenticated %}
-                        <a href="{% url 'login' %}" {% if request.path == log %} class="active" {% endif %}>Login</a> {% else %}
-                        <div class="dd">
-                            <a href="{% url 'student_detail' pk=user.student.pk %}" {% if request.path == sd %} class="active" {% endif %}>{{ user.student.first_name }}</a>
-                            <div class="dd-menu">
-                                <ul>
-                                    <a href="{% url 'student_detail' pk=user.student.pk %}">
-                                        <li>Profile</li>
-                                    </a>
-                                    <a href="{% url 'administrator' afat_extra=0 %}">
-                                        <li>Admin panel</li>
-                                    </a>
-                                    <a class="text-danger" href="{% url 'logout' %}">
-                                        <li>Logout</li>
-                                    </a>
-                                </ul>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="no-padding col-md-2 col-sm-4">
+                    <header>
+                        <nav>
+                            {% url 'home' as hom %} {% url 'students' as acc %} {% url 'programs' as prog %} {% url 'login' as log %} {% url 'student_detail' pk=user.student.pk as sd %}
+                            <a href="{% url 'home' %}" {% if request.path == hom %} class="active" {% endif %}>Home</a>
+                            <a href="{% url 'students' %}" {% if request.path == acc %} class="active" {% endif %}>Accounts</a>
+                            <a href="{% url 'programs' %}" {% if request.path == prog %} class="active" {% endif %}>Courses</a>
+                            <div>
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}" {% if request.path == log %} class="active" {% endif %}>Login</a> {% else %}
+                                <div class="dd">
+                                    <a href="{% url 'student_detail' pk=user.student.pk %}" {% if request.path == sd %} class="active" {% endif %}>{{ user.student.first_name }}</a>
+                                    <div class="dd-menu">
+                                        <ul>
+                                            <a href="{% url 'student_detail' pk=user.student.pk %}">
+                                                <li>Profile</li>
+                                            </a>
+                                            <a href="{% url 'administrator' afat_extra=0 %}">
+                                                <li>Admin panel</li>
+                                            </a>
+                                            <a class="text-danger" href="{% url 'logout' %}">
+                                                <li>Logout</li>
+                                            </a>
+                                        </ul>
+                                    </div>
+                                </div>
+                                {% endif %}
                             </div>
-                        </div>
-                        {% endif %}
-                    </div>
+                        </nav>
+                    </header>
                 </div>
-            </nav>
-        </header>
-        <br/> {% block content %} {% endblock %}
+                <div class="col-md-10 col-sm-8">
+                    <br>
+                    {% block content %} {% endblock %}
+                </div>
+            </div>
+        </div>
     </div>
     <footer>
         <div class="container">

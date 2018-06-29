@@ -92,14 +92,13 @@ nav a.active:hover {
 
 .shadow-box, .card-box, .empty-box {
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-bottom: 10px;
     /*border-bottom: 2px solid #eee;*/
     /*box-shadow: 0 2px 3px rgba(0,0,0,0.07);*/
     display: block;
     border: 1px solid #eee;
     position: relative;
-    background-color: #fff;
     background-color: rgba(255,255,255,.8);
     /*z-index: 1;*/
     position: relative;
@@ -111,7 +110,7 @@ nav a.active:hover {
     width: 100%;
     height: 70px;
     border-bottom: 1px solid #eee;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+    /*box-shadow: 0 5px 15px rgba(0,0,0,0.04);*/
     z-index: 1;
     left: 0;
     top: 0;
@@ -250,20 +249,27 @@ a.label:hover {
 .btn-primary, .empty-box a.btn-primary, .empty-box button.btn-primary, input.btn-primary, .btn-third, .btn-danger {
     border-radius: 5px;
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 2px solid #0eb246;
     color: #666;
     /*font-weight: normal;*/
     font-size: 14px;
     box-shadow: none;
     padding: 8px 30px;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.08);
+    /*box-shadow: 0 2px 2px rgba(0,0,0,0.08);*/
+    background: linear-gradient(#25d160, #15c150);
+    color: #fff;
 }
 
 .btn-third:hover, .empty-box a.btn-primary:hover, .empty-box button.btn-primary:hover, input.btn-primary:hover, .card-box .btn-primary:hover, .btn-danger:hover {
-    color: #222;
+    color: #fff;
     background-color: #fff;
-    border-color: #bbb;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border-color: #0eb246;
+    background: linear-gradient(#2edb69, #15c150);
+}
+
+table .btn {
+    background: #fff;
+    border: 1px solid #ddd;
 }
 
 .btn-danger:hover {

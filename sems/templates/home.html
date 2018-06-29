@@ -4,12 +4,6 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-12 col-xs-12">
-            <div class="empty-box">
-                <a href="{% url 'provimet' %}" class="btn btn-primary">Paraqit provimet</a>
-                <a href="{% url 'provimet_paraqitura' %}" class="btn btn-primary">Provimet e paraqitura</a>
-            </div>
-        </div>
         {% if news %}
         <div class="col-md-12 col-xs-12">
             <div class="card-box">
@@ -67,6 +61,12 @@
                     <li><a href="{% url 'course_detail' pk=upload.course.pk %}" title="{{ upload }}"><i class="material-icons">attachment</i> {{ upload.name }}</a></li>
                     {% endfor %}
                 </ul>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12">
+            <div class="empty-box">
+                <a href="{% url 'provimet' %}" class="btn btn-primary">Paraqit provimet</a>
+                <a href="{% url 'provimet_paraqitura' %}" class="btn btn-primary">Provimet e paraqitura</a>
             </div>
         </div>
     </div>

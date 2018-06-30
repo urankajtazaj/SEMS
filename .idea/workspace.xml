@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/sems/static/css/main.css" line="222" mnemonic="5" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bac553b7-62e4-41a0-b5b8-43e41c81f3b9" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sems/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/sems/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sems/templates/course_single.html" beforeDir="false" afterPath="$PROJECT_DIR$/sems/templates/course_single.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sems/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/sems/views.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sems/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1170">
+              <caret line="84" column="36" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sems/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2820">
+              <caret line="200" column="24" selection-start-line="200" selection-start-column="24" selection-end-line="200" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="grade_students.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sems/templates/grade_students.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sems/static/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3210">
+              <caret line="214" column="11" selection-start-line="214" selection-start-column="11" selection-end-line="214" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sems/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1275">
+              <caret line="87" column="36" selection-start-line="87" selection-start-column="36" selection-end-line="87" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sems/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="9" column="77" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="77" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course_single.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sems/templates/course_single.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="53" column="45" lean-forward="true" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>sidebar</find>
+      <find>tabe</find>
+      <find>media_</find>
+      <find>decoration: none</find>
+      <find>s.</find>
+      <find>.shadow-</find>
+      <find>273c75</find>
+      <find>34beed</find>
+      <find>core</find>
+      <find>User</find>
+      <find>img-round</find>
+      <find>.btn-or</find>
+      <find>hover</find>
+      <find>.btn</find>
+      <find>.img-round</find>
+      <find>.btnpr</find>
+      <find>shadow-</find>
+      <find>.box</find>
+      <find>.form-bo</find>
+      <find>.btn {</find>
+      <find>.img-r</find>
+      <find>.form-cont</find>
+      <find>.card-bo</find>
+      <find>.card-b</find>
+      <find>.btn-</find>
+      <find>.card</find>
+      <find>.thumb</find>
+      <find>getlist</find>
+      <find>.form-contro</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>student.</replace>
+      <replace>34beed</replace>
+      <replace>f67280</replace>
+      <replace>settings.User</replace>
+      <replace>Student</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/sems/migrations/0002_auto_20180506_1157.py" />
+        <option value="$PROJECT_DIR$/sems/migrations/0003_auto_20180506_1158.py" />
+        <option value="$PROJECT_DIR$/sems/templates/student_detail.html" />
+        <option value="$PROJECT_DIR$/sems/templates/login.html" />
+        <option value="$PROJECT_DIR$/elearning/urls.py" />
+        <option value="$PROJECT_DIR$/templates/registration/password_reset.html" />
+        <option value="$PROJECT_DIR$/sems/migrations/0033_auto_20180513_1309.py" />
+        <option value="$PROJECT_DIR$/sems/templates/upload_file.html" />
+        <option value="$PROJECT_DIR$/templates/registration/login.html" />
+        <option value="$PROJECT_DIR$/sems/templates/programs_list.html" />
+        <option value="$PROJECT_DIR$/elearning/settings.py" />
+        <option value="$PROJECT_DIR$/sems/templates/user_add.html" />
+        <option value="$PROJECT_DIR$/sems/templates/student_profile.html" />
+        <option value="$PROJECT_DIR$/sems/templates/program_single.html" />
+        <option value="$PROJECT_DIR$/sems/templates/select_teacher.html" />
+        <option value="$PROJECT_DIR$/sems/templates/upload_file_form.html" />
+        <option value="$PROJECT_DIR$/templates/registration/password_reset_form.html" />
+        <option value="$PROJECT_DIR$/templates/registration/password_reset_done.html" />
+        <option value="$PROJECT_DIR$/sems/static/js/jquery-3.3.1.min.js" />
+        <option value="$PROJECT_DIR$/sems/templates/user_profile_edit.html" />
+        <option value="$PROJECT_DIR$/sems/static/js/ajax.js" />
+        <option value="$PROJECT_DIR$/sems/templates/base_generic.html" />
+        <option value="$PROJECT_DIR$/sems/templates/add_new_post.html" />
+        <option value="$PROJECT_DIR$/sems/templates/post_single.html" />
+        <option value="$PROJECT_DIR$/sems/templates/home.html" />
+        <option value="$PROJECT_DIR$/sems/templates/students_list.html" />
+        <option value="$PROJECT_DIR$/sems/admin.py" />
+        <option value="$PROJECT_DIR$/sems/urls.py" />
+        <option value="$PROJECT_DIR$/sems/models.py" />
+        <option value="$PROJECT_DIR$/sems/views.py" />
+        <option value="$PROJECT_DIR$/sems/forms.py" />
+        <option value="$PROJECT_DIR$/sems/static/css/main.css" />
+        <option value="$PROJECT_DIR$/sems/templates/grade_students.html" />
+        <option value="$PROJECT_DIR$/sems/templates/course_single.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="55" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="elearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elearning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elearning" type="462c0819:PsiDirectoryNode" />
+              <item name="elearning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elearning" type="462c0819:PsiDirectoryNode" />
+              <item name="sems" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elearning" type="462c0819:PsiDirectoryNode" />
+              <item name="sems" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elearning" type="462c0819:PsiDirectoryNode" />
+              <item name="sems" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="/usr/bin/git" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/registration" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/sems/registration/registration" />
+      <recent name="$PROJECT_DIR$/sems/registration" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bac553b7-62e4-41a0-b5b8-43e41c81f3b9" name="Default" comment="" />
+      <created>1525604055637</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1525604055637</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1525867982653</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1525867982653</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initial Commit">
+      <created>1525868694386</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1525868694386</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Program Detail">
+      <created>1525873560409</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1525873560409</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Commit">
+      <created>1526203273081</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1526203273081</updated>
+    </task>
+    <task id="LOCAL-00005" summary="User Profile">
+      <created>1526207068217</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1526207068217</updated>
+    </task>
+    <task id="LOCAL-00006" summary="User Profile">
+      <created>1526207080054</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1526207080055</updated>
+    </task>
+    <task id="LOCAL-00007" summary="User Profile">
+      <created>1526208134105</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1526208134105</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Connected Users with Profiles">
+      <created>1526294688366</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1526294688366</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Commit">
+      <created>1526338208038</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1526338208038</updated>
+    </task>
+    <task id="LOCAL-00010" summary="File Upload">
+      <created>1526333673669</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1526333673669</updated>
+    </task>
+    <task id="LOCAL-00011" summary="File Upload">
+      <created>1526459664913</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1526459664913</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Upload File to Database">
+      <created>1526630343455</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1526630343455</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Button hover style">
+      <created>1526678880575</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1526678880575</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Upload file in the selected course">
+      <created>1526679314170</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1526679314170</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added class to input forms">
+      <created>1526680390843</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1526680390843</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Cancel button">
+      <created>1526680422713</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1526680422713</updated>
+    </task>
+    <task id="LOCAL-00017" summary="redirect to current course">
+      <created>1526681111807</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1526681111807</updated>
+    </task>
+    <task id="LOCAL-00018" summary="UI Tweaks">
+      <created>1526681125406</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1526681125406</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Check if current user is logged in">
+      <created>1526726178577</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1526726178578</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Tweaks">
+      <created>1526726189688</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1526726189688</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Security tweaks">
+      <created>1526728781528</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1526728781528</updated>
+    </task>
+    <task id="LOCAL-00022" summary="UI Tweaks">
+      <created>1526729155030</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1526729155030</updated>
+    </task>
+    <task id="LOCAL-00023" summary="User Authentication Tweaks">
+      <created>1526730395760</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1526730395761</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Design Changes">
+      <created>1526738359700</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1526738359700</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Signup">
+      <created>1526740795093</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1526740795093</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Signup">
+      <created>1526747319384</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1526747319384</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Profile Update">
+      <created>1526759522889</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1526759522889</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Edit user">
+      <created>1526827503680</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1526827503680</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Updates">
+      <created>1526832955688</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1526832955688</updated>
+    </task>
+    <task id="LOCAL-00030" summary="UI Tweaks">
+      <created>1526886156594</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1526886156594</updated>
+    </task>
+    <task id="LOCAL-00031" summary="ajax">
+      <created>1526936414416</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1526936414417</updated>
+    </task>
+    <task id="LOCAL-00032" summary="ajax">
+      <created>1527018474431</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1527018474431</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Home page">
+      <created>1527020725713</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1527020725713</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Added posts">
+      <created>1527022291757</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1527022291757</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Single post page">
+      <created>1527024262034</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1527024262034</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Check if post picture exists">
+      <created>1527060653020</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1527060653020</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Single post page edit">
+      <created>1527060669404</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1527060669404</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Add new post">
+      <created>1527108252802</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1527108252802</updated>
+    </task>
+    <task id="LOCAL-00039" summary="commit">
+      <created>1527196586859</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1527196586859</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Add student Grades">
+      <created>1527349574584</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1527349574584</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="30" width="1920" height="1050" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16130732" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32936078" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286334" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Upload File to Database" />
+    <MESSAGE value="Button hover style" />
+    <MESSAGE value="Upload file in the selected course" />
+    <MESSAGE value="Added class to input forms" />
+    <MESSAGE value="Cancel button" />
+    <MESSAGE value="redirect to current course" />
+    <MESSAGE value="Check if current user is logged in" />
+    <MESSAGE value="Tweaks" />
+    <MESSAGE value="Security tweaks" />
+    <MESSAGE value="User Authentication Tweaks" />
+    <MESSAGE value="Design Changes" />
+    <MESSAGE value="Signup" />
+    <MESSAGE value="Profile Update" />
+    <MESSAGE value="Edit user" />
+    <MESSAGE value="Updates" />
+    <MESSAGE value="UI Tweaks" />
+    <MESSAGE value="ajax" />
+    <MESSAGE value="Home page" />
+    <MESSAGE value="Added posts" />
+    <MESSAGE value="Single post page" />
+    <MESSAGE value="Check if post picture exists" />
+    <MESSAGE value="Single post page edit" />
+    <MESSAGE value="Add new post" />
+    <MESSAGE value="commit" />
+    <MESSAGE value="Add student Grades" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add student Grades" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sems/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="74" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/base_generic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="74" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/students_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/base_generic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0003_auto_20180506_1158.py" />
+    <entry file="file://$PROJECT_DIR$/sems/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="42" lean-forward="true" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0002_auto_20180506_1157.py" />
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0003_auto_20180506_1158.py" />
+    <entry file="file://$PROJECT_DIR$/elearning/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0031_auto_20180513_1209.py" />
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0033_auto_20180513_1309.py" />
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0034_auto_20180513_1311.py" />
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0032_student_user.py" />
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0033_auto_20180513_1321.py" />
+    <entry file="file://$PROJECT_DIR$/sems/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="842">
+          <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/student_detail.html" />
+    <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elearning/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="105" column="31" lean-forward="true" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/static/uploads/23518956_1390466151080686_6475418620061224118_n_cXzdROj.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/static/uploads/23518956_1390466151080686_6475418620061224118_n_yOr2zZp.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/static/uploads/23518956_1390466151080686_6475418620061224118_n.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/static/uploads/23518956_1390466151080686_6475418620061224118_n_OBwBt9B.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/programs_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="51" lean-forward="true" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/program_single.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="60" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/select_teacher.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="95" selection-start-line="12" selection-start-column="95" selection-end-line="12" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/static/js/jquery-3.3.1.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_done.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/user_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/static/js/ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/user_profile_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/base_generic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/student_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/add_new_post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/post_single.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/students_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="77" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/upload_file_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2820">
+          <caret line="200" column="24" selection-start-line="200" selection-start-column="24" selection-end-line="200" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="84" column="36" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="87" column="36" selection-start-line="87" selection-start-column="36" selection-end-line="87" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/static/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3210">
+          <caret line="214" column="11" selection-start-line="214" selection-start-column="11" selection-end-line="214" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/grade_students.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sems/templates/course_single.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="53" column="45" lean-forward="true" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

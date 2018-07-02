@@ -54,28 +54,39 @@ a.active {
     background-color: #2A2D3E;
 }
 
+.dd::before, .minus::before {
+    content: '+';
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+.minus::before {
+    content: '-';
+}
+
 .dd {
     position: relative;
+    cursor: pointer;
     display: block;
+    color: rgba(255,255,255,.6);
 }
 
 .dd-menu {
     /*margin-top: 20px;*/
-    position: absolute;
-    right: 0;
-    top: 0;
+    /* position: absolute; */
     text-align: left;
     display: none;
-    background-color: #232632;
+    width: 100%;
+    background-color: #292c3a;
+    border-left: 5px solid #43485c;
     content: '';
     border-radius: 0 0 5px 5px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.07);
     z-index: 99;
     transition: 100ms ease;
-}
-
-.dd:hover > .dd-menu {
-    display: table;
 }
 
 .dd-menu ul {
@@ -162,6 +173,10 @@ a.active {
 
 ul > a:hover > li {
     background-color: #5bc0de20;
+}
+
+.dd-menu ul > a:hover > li {
+    background-color: #43485c !important;
 }
 
 .card-box li {

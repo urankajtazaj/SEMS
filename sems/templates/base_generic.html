@@ -19,7 +19,7 @@
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="no-padding col-md-2 col-sm-4">
+                <div class="no-padding col-md-1 col-sm-4">
                     <header>
                         <nav>
                             {% url 'home' as hom %} {% url 'students' as acc %} {% url 'programs' as prog %} {% url 'login' as log %} {% url 'student_detail' pk=user.student.pk as sd %}
@@ -47,25 +47,17 @@
                                 </div>
                                 {% endif %}
                             </div>
+                            <a href="https://github.com/urankajtazaj/SEMS" class="text-center" title="View on GitHub" target="_blank"><i class="fab fa-github-alt fa-2x"></i></a>
                         </nav>
                     </header>
                 </div>
-                <div class="col-md-10 col-sm-8">
+                <div class="col-md-11 col-sm-8">
                     <br>
                     {% block content %} {% endblock %}
                 </div>
             </div>
         </div>
     </div>
-    <footer>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-xs-12 text-center">
-                    <a href="https://github.com/urankajtazaj/SEMS" title="View on GitHub" target="_blank"><i class="fab fa-github-alt fa-2x"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     {% block javascript %} {% endblock %}
     <script>

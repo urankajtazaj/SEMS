@@ -653,4 +653,4 @@ def paraqit_provimin(request, c_pk, a_pk):
     provimet.refuzuar = False
     provimet.save()
 
-    return redirect('provimet_paraqitura')
+    return redirect('provimet')

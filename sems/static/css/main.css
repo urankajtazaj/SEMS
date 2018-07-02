@@ -27,28 +27,31 @@ body {
 }
 
 nav {
-    background-color: #fff;
+    background-color: #232632;
     /*box-shadow: 0 5px 15px rgba(0,0,0,0.07);*/
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;
     height: 100vh;
+    position: fixed;
+    min-width: 150px;
 }
 
 nav a {
     display: block;
     padding: 20px 15px;
-    color: #777;
+    color: rgba(255,255,255,.6);
     transition: 100ms ease;
 }
 
 nav a:hover:not(.active) {
     text-decoration: none;
-    color: #000;
-    background-color: #f7f7f7;
+    color: rgba(255,255,255,.6);
+    background-color: rgba(42, 45, 62,.5);
 }
 
-nav a.active:hover {
-    color: #000;
+a.active {
+    color: rgba(255,255,255,.8);
+    background-color: #2A2D3E;
 }
 
 .dd {
@@ -63,7 +66,7 @@ nav a.active:hover {
     top: 0;
     text-align: left;
     display: none;
-    background-color: #fff;
+    background-color: #232632;
     content: '';
     border-radius: 0 0 5px 5px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.07);
@@ -180,7 +183,6 @@ td, th {
 th {
     border: none;
     color: #333;
-    background-color: #fff;
     text-transform: uppercase;
 }
 
@@ -403,12 +405,13 @@ form.login label {
 .form-control, .form-control[readonly], .input-styled input, .input-styled select {
     /*box-shadow: 0 1px 5px rgba(0,0,0,0.05);*/
     border-radius: 5px;
-    background: linear-gradient(transparent, #fff);
+    background-color: #fff;
     width: 100%;
     /* background: #f7f7f7; */
     /* border: none; */
     padding: 8px 10px;
     border-color: #ddd;
+    transition: 200ms ease;
 }
 
 .input-styled label {
@@ -416,9 +419,9 @@ form.login label {
 }
 
 .form-control:focus, input:focus {
-    box-shadow: none;
+    /* box-shadow: none; */
     outline: none;
-    background: #f5f5f5; 
+    background-color: #fff; 
 }
 
 .full-width {
@@ -608,11 +611,6 @@ footer a:hover {
     display: none;
     justify-content: center;
     align-items: center;
-}
-
-a.active {
-    color: #000;
-    background-color: #f7f7f7;
 }
 
 td .fas {

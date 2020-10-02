@@ -1,7 +1,7 @@
 # SEMS
 Sistemi Elektronik për Menaxhimin e Studentëve
 #
-### Login
+### Login Page
 
 Username: `admin`
 
